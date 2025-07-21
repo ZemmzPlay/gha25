@@ -1,0 +1,209 @@
+.loginContainerOut {
+    width: 100%;
+    position: relative;
+    padding-bottom: 60px;
+}
+
+
+
+.topLoginImage {
+    width: 100%;
+    position: relative;
+}
+.topLoginImageDesktop {
+    width: 100%;
+    height: auto;
+}
+.topLoginImageMobile {
+    width: 100%;
+    height: auto;
+    display: none;
+}
+@media all and (max-width: 991px) {
+    .topLoginImageDesktop {
+        display: none;
+    }
+    .topLoginImageMobile {
+        display: block;
+    }
+}
+
+
+
+
+
+.loginContainer {
+    width: 80%;
+    margin: auto;
+}
+.loginTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 30px;
+    padding-bottom: 40px;
+}
+.loginTitleText {
+    color: var(--second-color);
+    font-family: 'WorkSansMedium';
+    font-size: 40px;
+}
+.loginTitleLine {
+    width: calc(100% - 160px);
+    height: 5px;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+}
+
+
+
+
+.loginInputsContainer {
+    width: 510px;
+    display: flex;
+    flex-direction: column;
+}
+.oneInputContainer {
+    width: 100%;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.oneInputContainer:last-child {
+    margin-bottom: 0px;
+}
+.oneInputContainer label {
+    font-size: 20px;
+    color: black;
+    line-height: 1;
+    margin-bottom: 0px;
+    width: 80px;
+    text-align: right;
+}
+.oneInputContainer input {
+    width: 418px;
+    height: 52px;
+    border-radius: 10px;
+    border: 2px solid var(--primary-color);
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.phoneContainer {
+    width: 418px;
+    height: 52px;
+    border-radius: 10px;
+    border: 2px solid var(--primary-color);
+    display: flex;
+    overflow: hidden;
+}
+.phoneContainer select {
+    width: 80px;
+    border: 0px;
+    outline: none;
+    padding: 5px;
+}
+.phoneContainer input {
+    border: 0px;
+    outline: none;
+    padding: 5px;
+}
+.submitButton {
+    font-family: 'WorkSansMedium';
+    margin-top: 30px;
+    margin-left: 90px;
+    width: 200px;
+    height: 40px;
+    border-radius: 7px;
+    color: white;
+    background-color: var(--primary-color);
+    transition: all 0.3s;
+    border: 1px solid var(--primary-color);
+}
+.submitButton:hover {
+    background-color: white;
+    color: var(--primary-color);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* CSS for error messages */
+.error-messages {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ff0000;
+    background-color: #ffebe8;
+    color: #ff0000;
+    border-radius: 5px;
+}
+
+.error-messages p {
+    margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+@media all and (max-width: 630px) {
+    .loginContainer {
+        width: 90%;
+    }
+    .loginInputsContainer {
+        width: 100%;
+    }
+    .loginContainerOut {
+        padding-bottom: 50px;
+    }
+    .loginTitle {
+        padding-bottom: 30px;
+    }
+    .loginTitleLine {
+        display: none;
+    }
+    .loginTitleText {
+        font-weight: bold;
+    }
+    .oneInputContainer label {
+        font-size: 15px;
+        width: 60px;
+    }
+    .oneInputContainer input {
+        width: calc(100% - 70px);
+        /*width: 255px;*/
+        font-size: 14px;
+        height: 40px;
+        border-radius: 7px;
+    }
+    .phoneContainer {
+        width: calc(100% - 70px);
+        /*width: 255px;*/
+        height: 40px;
+        border-radius: 7px;
+    }
+    .phoneContainer select {
+        font-size: 14px;
+    }
+    .phoneContainer input {
+        font-size: 14px;
+    }
+    .submitButton {
+        width: calc(100% - 70px);
+        margin-left: 70px;
+    }
+}

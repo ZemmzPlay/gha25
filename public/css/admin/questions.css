@@ -1,0 +1,22 @@
+.sessions-questions
+{
+  margin-bottom: 2px;
+}
+
+.sessions
+{
+  padding: 5px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+}
+
+.questions
+{
+  border: 1px solid black;
+  border-top: 0;
+  padding: 5px;
+  margin-bottom: 5px;
+  max-height: 75vh;
+  overflow: auto;
+}

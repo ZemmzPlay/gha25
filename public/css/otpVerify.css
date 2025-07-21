@@ -1,0 +1,206 @@
+.main-content {
+	padding: 0px;
+}
+.container
+{
+  width: 840px;
+  padding-top: 60px;
+  padding-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.error-message {
+    width: 100%;
+    background-color: #f8d7da; /* Light red background */
+    color: #721c24; /* Dark red text color */
+    padding: 10px;
+    border: 1px solid #f5c6cb; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    margin-bottom: 20px; /* Space at the bottom */
+}
+.error-message ul {
+  list-style-type: none;
+}
+
+
+.success-message {
+    width: 100%;
+    background-color: #d4edda; /* Light green background */
+    color: #155724; /* Dark green text color */
+    padding: 10px;
+    border: 1px solid #c3e6cb; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    margin-bottom: 20px; /* Space at the bottom */
+}
+
+form {
+  width: 100%;
+}
+
+.verifyOTPContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 60px;
+  align-items: center;
+}
+.titleOtp {
+  width: 100%;
+  font-size: 28px;
+  line-height: 1.3;
+  color: var(--second-color);
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+.inputOTP {
+  width: 450px;
+  height: 46px;
+  border-radius: 10px;
+  border: 2px solid var(--primary-color);
+  font-size: 15px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.verifyCodeSubmit {
+  width: 446px;
+  height: 41px;
+  background-color: var(--second-color);
+  border: 2px solid var(--second-color);
+  border-radius: 10px;
+  transition: all 0.3s;
+  cursor: pointer;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  outline: none;
+}
+.verifyCodeSubmit:hover {
+  background-color: white;
+  color: var(--primary-color);
+}
+.resendCodeText {
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 35px;
+}
+.resendCodeText a {
+  color: var(--second-color);
+  text-decoration: underline;
+  font-weight: bold;
+}
+.lineSep {
+  width: 630px;
+  height: 1px;
+  background-color: var(--primary-color);
+}
+
+
+
+
+
+
+.wrongNumberContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.changeNumberButton {
+  width: 446px;
+  height: 41px;
+  background-color: var(--second-color);
+  border: 2px solid var(--second-color);
+  border-radius: 10px;
+  transition: all 0.3s;
+  cursor: pointer;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  outline: none;
+}
+.changeNumberButton:hover {
+  background-color: white;
+  color: var(--primary-color);
+}
+.changeNumberInputContainer {
+  width: 450px;
+  height: 46px;
+  border-radius: 10px;
+  border: 2px solid var(--primary-color);
+  font-size: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.changeNumberInputCountryCode {
+  width: 70px;
+  height: 100%;
+  border-right: 2px solid var(--primary-color);
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.changeNumberInputPhone {
+  width: calc(100% - 72px);
+  font-size: 16px;
+  height: 100%;
+  border: 0px;
+  outline: none;
+  text-align: center;
+}
+
+
+@media all and (max-width: 991px) {
+  .container {
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-top: 35px;
+  }
+  form {
+    width: 90%;
+  }
+  .verifyOTPContainer {
+    width: 100%;
+  }
+  .wrongNumberContainer {
+    width: 100%;
+  }
+
+
+  .titleOtp {
+    font-size: 20px;
+  }
+  .inputOTP {
+    width: 100%;
+  }
+  .lineSep {
+    width: 100%;
+  }
+  .verifyCodeSubmit {
+    width: 100%;
+  }
+
+  .changeNumberButton {
+    width: 100%;
+  }
+  .changeNumberInputContainer {
+    width: 100%;
+  }
+}
+
+
+@media all and (max-width: 450px) {
+  .titleOtpTop {
+    width: 324px;
+    align-self: start;
+  }
+}

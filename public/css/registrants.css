@@ -1,0 +1,131 @@
+h1, h2, h3, h4, h5
+{
+  font-family: 'WorkSansBold', sans-serif;
+}
+
+.main-container
+{
+  padding: 0 2rem;
+}
+
+.btn-template
+{
+  background-color: green;
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: #ffffff;
+  transition: all 0.3s;
+  border: 1px solid green;
+}
+
+.btn-template:hover
+{
+  background-color: white;
+  color: green;
+}
+
+.second-title
+{
+  text-transform: none;
+  color: #602D90;
+}
+
+.text-description
+{
+  font-size: 16px;
+}
+
+.section
+{
+  margin-bottom: 3rem
+}
+
+.form-label
+{
+  color: #602D90;
+}
+
+.w-full
+{
+  width: 100%;
+}
+
+.mb-20
+{
+  margin-bottom: 20px;
+}
+
+select
+{
+  height: 38px;
+}
+
+textarea
+{
+  height: 200px !important;
+}
+
+.btn-file
+{
+  background-color: #602D90;
+  color: #ffffff;
+  border-radius: 7px;
+  transition: all 0.3s;
+  border: 1px solid #602D90;
+  padding: 5px 25px;
+}
+
+.btn-file:hover
+{
+  background-color: #ffffff;
+  color: #602D90;
+}
+
+.text-second
+{
+  color: gray;
+}
+
+
+.text-third
+{
+  color: #602D90;
+}
+
+.text-sm
+{
+  font-size: 11px;
+}
+
+input, select, textarea
+{
+/*  margin-bottom: 0;*/
+  padding: 7px;
+  resize: none;
+}
+
+input[type="radio"]
+{
+  margin-right: 2rem;
+  vertical-align: baseline;
+  margin-bottom: 0.5rem;
+}
+
+.questions
+{
+  margin-bottom: 3rem;
+}
+
+.has-error input
+{
+  border-color: #a94442;
+}
+
+input.error, textarea.error {
+  border: 1px solid red;
+}
+
+span.error
+{
+  color: red;
+}

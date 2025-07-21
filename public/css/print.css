@@ -1,0 +1,14 @@
+.main-title span, .main-title svg, .main-title path
+{
+  color: green !important;
+}
+
+.contact a
+{
+  color: green !important;
+}
+
+.text-green
+{
+  color: green !important;
+}

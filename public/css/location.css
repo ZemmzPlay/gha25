@@ -1,0 +1,93 @@
+h1, h2, h3, h4, h5
+{
+  color: #3EA651;
+}
+
+body
+{
+/*  font-family: 'WorkSansBold', sans-serif;*/
+}
+
+.map-container
+{
+  display: flex;
+  column-gap: 2rem;
+/*  padding: 0 50px;*/
+  align-items: center;
+}
+
+.map
+{
+  flex: 1 1;
+  width: 100%;
+  position: relative;
+}
+
+.map .fa-spinner
+{
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  z-index: 0;
+}
+
+.map-embed
+{
+  border: 2px solid #707070;
+  border-radius: 10px;
+  z-index: 10;
+  position: relative;
+}
+
+.map-details
+{
+  flex: 1 1;
+}
+
+.second-title
+{
+  text-transform: none;
+  color: #602D90;
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.fourth-title
+{
+  text-transform: none;
+  color: #602D90;
+  font-weight: normal;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.btn-direction
+{
+  background-color: #602D90;
+  color: #ffffff;
+  border-radius: 7px;
+  transition: all 0.3s;
+  border: 1px solid #602D90;
+}
+
+.btn-direction:hover
+{
+  background-color: #ffffff;
+  color: #602D90;
+}
+
+.btn-direction .fa-map
+{
+  margin-right: 15px;
+}
+
+@media (max-width: 991px)
+{
+  .map-container
+  {
+    flex-direction: column;
+    padding: 0;
+    align-items: start;
+    row-gap: 2rem;
+  }
+}

@@ -1,0 +1,20 @@
+.img-container-list
+{
+  background:#000000;
+  position: relative;
+  -webkit-clip-path: circle(50%);
+  clip-path: circle(50%);
+  margin: 0 auto;
+  max-width: 100px;
+  padding: 2px;
+}
+
+.img-container-list img
+{
+  display: block;
+  width:100%;
+  -webkit-clip-path: circle(50%);
+  clip-path: circle(50%);
+/*  filter: grayscale(100%);*/
+  transition: all 0.3s;
+}
