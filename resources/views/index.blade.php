@@ -327,21 +327,28 @@
   <div class="ourMessageContainer">
     <div class="ourMessageMiddleContainer">
       <div class="ourMessageLeft">
-        <!-- <div class="onePerson"> -->
-        <img class="ourMessageImage" src="{{ asset('images/home/chairman.png') }}" alt="Prof. Mohammad Zubaid" />
-        <div class="ourMessageNamePos">
-          <div class="ourMessageName">Prof. Mohammad Zubaid - Dr. Mohammad Al Jarallah</div>
-          <div class="ourMessagePos">Meeting Co-Chairs</div>
+        <div class="onePerson">
+          <img class="ourMessageImage" src="{{ asset('images/home/chairman.png') }}" alt="Prof. Mohammad Zubaid" />
+          <div class="ourMessageNamePos">
+            <div class="ourMessageName">Prof. Mohammad Zubaid</div>
+            <div class="ourMessagePos">Meeting Co-Chairs</div>
+          </div>
         </div>
-        <!-- </div> -->
+        <div class="onePerson">
+          <img class="ourMessageImage" src="{{ asset('images/home/chairman.png') }}" alt="Prof. Mohammad Zubaid" />
+          <div class="ourMessageNamePos">
+            <div class="ourMessageName">Prof. Mohammad Zubaid</div>
+            <div class="ourMessagePos">Meeting Co-Chairs</div>
+          </div>
+        </div>
 
         <!-- <div class="onePerson">
-                   <img class="ourMessageImage" src="{{ asset('images/home/IMG1.png') }}" alt="Prof. Mohammad Zubaid" />
-                   <div class="ourMessageNamePos">
-                    <div class="ourMessageName">Prof. Mohammad Zubaid</div>
-                    <div class="ourMessagePos">Meeting Co-Chair</div>
-                   </div>
-                  </div> -->
+                     <img class="ourMessageImage" src="{{ asset('images/home/IMG1.png') }}" alt="Prof. Mohammad Zubaid" />
+                     <div class="ourMessageNamePos">
+                      <div class="ourMessageName">Prof. Mohammad Zubaid</div>
+                      <div class="ourMessagePos">Meeting Co-Chair</div>
+                     </div>
+                    </div> -->
 
       </div>
       <div class="ourMessageRight">
