@@ -1,6 +1,7 @@
 h1, h2, h3, h4, h5
 {
-  color: #3EA651;
+  color: var(--primary-color-dark);
+  font-family: 'DMSerifDisplayRegular';
 }
 
 body
@@ -47,7 +48,7 @@ body
 .second-title
 {
   text-transform: none;
-  color: #602D90;
+  color: var(--primary-color);
   margin: 0;
   margin-bottom: 5px;
 }
@@ -55,7 +56,7 @@ body
 .fourth-title
 {
   text-transform: none;
-  color: #602D90;
+  color: var(--primary-color);
   font-weight: normal;
   margin: 0;
   margin-bottom: 20px;
@@ -63,17 +64,17 @@ body
 
 .btn-direction
 {
-  background-color: #602D90;
+  background-color: var(--primary-color);
   color: #ffffff;
   border-radius: 7px;
   transition: all 0.3s;
-  border: 1px solid #602D90;
+  border: 1px solid var(--primary-color);
 }
 
 .btn-direction:hover
 {
   background-color: #ffffff;
-  color: #602D90;
+  color: var(--primary-color);
 }
 
 .btn-direction .fa-map

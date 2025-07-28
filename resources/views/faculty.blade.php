@@ -17,7 +17,7 @@
                 <div id="faculty-members">
                     @foreach($categories as $category)
                     <div style="padding: 0 50px;">
-                        <h1 class="section-title" style="margin-bottom: 15px;font-family: CircularBook, sans-serif;font-size: 20px; color: #602D90; font-weight: bold;">{{$category->name}}</h1>
+                        <h1 class="section-title" style="margin-bottom: 15px;font-family: CircularBook, sans-serif;font-size: 20px; color: var(--primary-color); font-weight: bold;">{{$category->name}}</h1>
 
                         <div class="row">
                             @forelse($category->members->sortBy('last_name') as $member)

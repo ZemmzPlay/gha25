@@ -12,7 +12,7 @@
         <div class="row" style="margin-bottom: 5rem;">
             <div class="col-md-12">
 
-                <h1 class="main-title" style="text-transform: none; margin-bottom: 15px;font-family: CircularBook, sans-serif; font-size: 50px; line-height: normal;">Location of the Meeting</h1>
+                <h1 class="main-title" style="text-transform: none; margin-bottom: 15px; font-size: 50px; line-height: normal;">Location of the Meeting</h1>
 
                 <div class="map-container">
                     <div class="map">

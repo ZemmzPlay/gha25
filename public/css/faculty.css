@@ -1,7 +1,7 @@
 h1, h2, h3, h4, h5
 {
-  color: #3EA651;
-  font-family: 'WorkSansBold', sans-serif;
+  color: var(--primary-color-dark);
+  font-family: 'DMSerifDisplayRegular', sans-serif;
 }
 
 body
@@ -68,6 +68,7 @@ body
     min-height: 50px;
     padding-top:4px;
     line-height: normal;
+    color: var(--primary-color);
 }
 .faculty .doctor .doctor-info span {
     display: block;

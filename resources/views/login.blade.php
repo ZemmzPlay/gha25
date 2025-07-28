@@ -18,10 +18,10 @@
         <div class="loginContainer">
             <div class="loginTitle">
                 <div class="loginTitleText">Log in</div>
-                <div class="loginTitleLine"></div>
+                {{-- <div class="loginTitleLine"></div> --}}
             </div>
 
-            <form method="POST" action="{{ url('login') }}">
+            <form method="POST" action="{{ url('login') }}" class="loginForm">
                 @csrf
 
                 @if ($errors->any())
