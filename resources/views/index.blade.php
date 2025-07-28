@@ -3,7 +3,7 @@
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/owl.theme.default.css') }}" />
-  <link rel="stylesheet" href="{{ asset('css/index.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/index.css?ver=1.0.0') }}" />
 @stop
 
 @section('content')
