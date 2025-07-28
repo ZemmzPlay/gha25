@@ -440,7 +440,7 @@
  @media all and (max-width: 500px) {
  	.registerTopTitle {
  		margin-top: 30px;
- 		padding-left: 15px;
+ 		/* padding-left: 15px; */
  	}
 
  	.registerTopTitleText {
@@ -453,7 +453,7 @@
 
  	.registerBottomTitle {
  		font-size: 15px;
- 		padding-left: 15px;
+ 		/* padding-left: 15px; */
  	}
 
  	#CertificateTopTitle {
@@ -881,7 +881,7 @@
  	}
 
  	.registerOneInputValue {
- 		width: calc(100% - 133px) !important;
+ 		/* width: calc(100% - 133px) !important; */
  	}
  }
 
@@ -906,17 +906,22 @@
  	}
 
  	.registerOneInputValue {
- 		width: calc(100% - 98px) !important;
+ 		/* width: calc(100% - 98px) !important; */
  	}
+	
+	.registerInputsContainer {
+		grid-template-columns: repeat(2, 1fr);
+	}
 
  	.twoInputsPhone {
- 		width: calc(100% - 98px);
+ 		/* width: calc(100% - 98px); */
  	}
  }
 
  @media all and (max-width: 500px) {
  	.registerInputsContainer {
  		margin-top: 30px;
+		grid-template-columns: repeat(1, 1fr);
  	}
 
  	.registerOneInputContainer {
@@ -934,11 +939,11 @@
  	}
 
  	.registerOneInputValue {
- 		width: calc(100% - 80px) !important;
+ 		/* width: calc(100% - 80px) !important; */
  	}
 
  	.twoInputsPhone {
- 		width: calc(100% - 80px);
+ 		/* width: calc(100% - 80px); */
  	}
 
  	.twoInputsPhoneSmall {
