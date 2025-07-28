@@ -18,10 +18,10 @@
             $date = str_replace('-', '', substr($slideshow->start_date, 0, 10)) . 'T' . str_replace(':', '', $slideshow->start_time);
             $link = 'https://www.google.com/calendar/render?action=TEMPLATE&text=' . $slideshow->title . '&details=' . $slideshow->details . '&location=' . $slideshow->location . '&dates=' . $date . '/' . $date;
             ?>
-            <a href="{{ $link }}" target="_blank">
+            {{-- <a href="{{ $link }}" target="_blank">
               <button class="oneSlideButton {{ $slideshow->buttonTheme == 2 ? 'oneSlideButtonLight' : '' }}">Add to
                 Calendar <i class="fa-solid fa-calendar-days"></i></button>
-            </a>
+            </a> --}}
           @endif
           <img class="oneSlideImage" src="{{ asset('images/slideshow/' . $slideshow->image) }}" alt="Logo">
           <img class="oneSlideImageMobile" src="{{ asset('images/slideshow/' . $slideshow->image_mobile) }}"
