@@ -8,7 +8,7 @@
   <meta name="keywords" content="">
   
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
-  <link rel="icon" type="image/png" href="{{asset('icons/1Artboard1.png')}}">
+  <link rel="icon" type="image/png" href="{{asset('icons/favicon-32x32.png')}}">
 
 
   <style>
