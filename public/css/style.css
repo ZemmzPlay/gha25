@@ -64,6 +64,13 @@ ul {
     display: block;
 }
 
+.main-content {
+    width: 100%;
+    min-height: calc(100vh - 150px);
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+
 /* ////////////////////////// -------------------- GLOBAL -------------------- ////////////////////////// */
 
 

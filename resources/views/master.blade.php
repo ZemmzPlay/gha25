@@ -153,7 +153,9 @@
     </div>
   </header>
 
+  <div class="main-content">
   @yield('content')
+  </div>
 
 
   <footer>
