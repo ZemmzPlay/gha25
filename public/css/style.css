@@ -386,6 +386,7 @@ footer {
         flex-direction: column-reverse;
         height: auto;
         padding-bottom: 40px;
+        padding-top: 40px;
     }
 
     .footerText {
@@ -395,6 +396,7 @@ footer {
     .byData {
         padding-right: 0px;
         padding-bottom: 10px;
+        gap: 10px;
     }
 }
 
@@ -411,10 +413,11 @@ footer {
 @media all and (max-width: 520px) {
     .footerBottom {
         padding-bottom: 20px;
+        padding-top: 20px;
     }
 
     .organizedBy {
-        padding-right: 15px;
+        /* padding-right: 15px; */
     }
 
     .organizedByText {
@@ -422,7 +425,7 @@ footer {
     }
 
     .organizedBy img {
-        width: 145px;
+        /* width: 145px; */
     }
 
     .builtOnText {
@@ -430,9 +433,9 @@ footer {
     }
 
     .builtOn img {
-        width: 60px;
+        /* width: 60px;
         position: relative;
-        top: -1px;
+        top: -1px; */
     }
 
     .footerText {
@@ -445,11 +448,19 @@ footer {
     .byData {
         padding-bottom: 15px;
     }
+    
+    .builtOn {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
 
     .organizedBy {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        gap: 5px;
     }
 
     .organizedByText {
