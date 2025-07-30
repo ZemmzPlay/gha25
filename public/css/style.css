@@ -80,7 +80,7 @@ ul {
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
-    padding: 20px;
+    padding: 120px;
     padding-top: 30px;
     padding-bottom: 30px;
 }
@@ -187,6 +187,7 @@ ul {
     }
 
     .header-content {
+        padding: 20px;
         padding-top: 20px;
         padding-bottom: 20px;
     }
