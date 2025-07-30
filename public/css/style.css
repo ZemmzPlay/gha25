@@ -187,7 +187,7 @@ ul {
     }
 
     .header-content {
-        padding: 20px;
+        padding: 40px;
         padding-top: 20px;
         padding-bottom: 20px;
     }
@@ -405,6 +405,11 @@ footer {
     }
 }
 
+@media all and (max-width: 719px) {
+    .header-content {
+        padding: 20px;
+    }
+}
 @media all and (max-width: 650px) {
     .footerLogos img:first-child {
         width: 150px;

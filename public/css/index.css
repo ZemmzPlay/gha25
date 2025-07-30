@@ -396,8 +396,10 @@
  }
 
  @media all and (max-width: 719px) {
- 	.registerMiddle {
- 		width: 92%;
+ 	.registerMiddle, .ourMessageContainer {
+ 		/* width: 92%; */
+		padding-left: 20px !important;
+		padding-right: 20px !important;
  	}
  }
 
@@ -1285,13 +1287,14 @@
  	width: 100%;
  	background: #F7F7F7;
  	/*padding-top: 100px;*/
+	padding: 120px;
  	padding-top: 30px;
  	padding-bottom: 70px;
  	overflow: hidden;
  }
 
  .ourMessageMiddleContainer {
- 	margin: auto;
+ 	/* margin: auto; */
  	width: 95%;
  	display: flex;
  	max-width: 1700px;
@@ -1371,7 +1374,14 @@
  }
 
  @media all and (max-width: 1040px) {
+	.registerMiddle {
+		width: 100%;
+		margin: 0;
+		padding-left: 40px;
+		padding-right: 40px;
+	}
  	.ourMessageContainer {
+		padding: 40px;
  		padding-top: 40px;
  		padding-bottom: 40px;
  	}
@@ -1409,7 +1419,7 @@
  	}
 
  	.ourMessageRight {
- 		width: 90%;
+ 		width: 100%;
  		margin-left: 0px;
  	}
 
