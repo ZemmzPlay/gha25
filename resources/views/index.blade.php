@@ -251,22 +251,22 @@
 
             <div class="registerButtonContainerOut">
               <div class="registerButtonContainer" id="registerSubmitButton">
-                <div class="registerButtonLeft">Register & Proceed to Payment</div>
-                <div class="registerButtonRight">
+                <div class="registerButtonLeft">Register</div>
+                {{-- <div class="registerButtonRight"> --}}
                   <?php
-                  $normalPricePayClass = '';
-                  $specialPriceFreeClass = 'hide';
-                  if (old('countryCode') && (old('countryCode') == '+967' || old('countryCode') == '+970')) {
-                      $normalPricePayClass = 'hide';
-                      $specialPriceFreeClass = '';
-                  }
+                  // $normalPricePayClass = '';
+                  // $specialPriceFreeClass = 'hide';
+                  // if (old('countryCode') && (old('countryCode') == '+967' || old('countryCode') == '+970')) {
+                  //     $normalPricePayClass = 'hide';
+                  //     $specialPriceFreeClass = '';
+                  // }
                   ?>
-                  <div class="registerButtonRightText {{ $normalPricePayClass }}" id="normalPricePay">KD <span
+                  {{-- <div class="registerButtonRightText {{ $normalPricePayClass }}" id="normalPricePay">KD <span
                       class="finalRegistrationPrice">{{ old('virtualAccess') && old('virtualAccess') == '1' ? '10' : 20 }}</span>
                   </div>
                   <div class="registerButtonRightText {{ $specialPriceFreeClass }}" id="specialPriceFree">Free</div>
                   <div class="registerButtonRightIcon"><i class="fa-solid fa-chevron-right"></i></div>
-                </div>
+                </div> --}}
               </div>
               <div class="termsText">By registering you agree to the <a href="{{ url('/terms-and-conditions') }}"
                   target="_blank"><u>Terms & Conditions</u></a> of the 3RD GHA - SCAI SHOCK MIDDLE EAST KUWAIT JAN 9-10 2026 registration guidelines.</div>
