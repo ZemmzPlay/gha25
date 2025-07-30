@@ -269,7 +269,7 @@
                 </div>
               </div>
               <div class="termsText">By registering you agree to the <a href="{{ url('/terms-and-conditions') }}"
-                  target="_blank"><u>Terms & Conditions</u></a> of the 15th GHA Meeting registration guidelines.</div>
+                  target="_blank"><u>Terms & Conditions</u></a> of the 3RD GHA - SCAI SHOCK MIDDLE EAST KUWAIT JAN 9-10 2026 registration guidelines.</div>
             </div>
             {{-- <div class="registerCheckboxContainer">
 						<div data-element="" class="registerCheckbox {{(old('receive_updates') && old('receive_updates') == '0') ? '' : 'registerCheckboxChecked'}}"></div> <!-- registerCheckboxChecked -->

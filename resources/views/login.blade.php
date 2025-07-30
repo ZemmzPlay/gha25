@@ -10,10 +10,10 @@
 
 @section('content')
     <div class="loginContainerOut">
-        <div class="topLoginImage">
+        {{-- <div class="topLoginImage">
             <img class="topLoginImageDesktop" src="{{ asset('images/global/Sign_In_Desktop_Banners.png') }}" alt="login-image" />
             <img class="topLoginImageMobile" src="{{ asset('images/global/Sign_In_Mobile_Banners.png') }}" alt="login-image-mobile" />
-        </div>
+        </div> --}}
 
         <div class="loginContainer">
             <div class="loginTitle">
