@@ -27,7 +27,7 @@ class SettingsController extends Controller
             'enablePassword' => 'sometimes|nullable|integer|in:0,1',
             'website_password' => 'sometimes|nullable|min:1|max:255',
             'website_title' => 'required|min:1|max:255',
-            'logo'    => 'sometimes|nullable|image',
+            'logo'    => 'sometimes|nullable|image|mimes:jpeg,jpg,png,gif,svg',
             'facutlyEnableDisable' => 'sometimes|nullable|integer|in:0,1',
             'enableLiveConference' => 'sometimes|nullable|integer|in:0,1',
             'enableLiveConferenceQuestions' => 'sometimes|nullable|integer|in:0,1',
