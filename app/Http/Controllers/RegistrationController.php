@@ -40,9 +40,9 @@ class RegistrationController extends Controller
 
 
         //////// check if free (for yemen and palestine) ////////
-        $freeRegistrationSpecial = false;
-        if(($data['countryCode'] == "+967" || $data['countryCode'] == "+970") && $data['virtualAccess'] == 1)
-            $freeRegistrationSpecial = true;
+        $freeRegistrationSpecial = true;
+        // if(($data['countryCode'] == "+967" || $data['countryCode'] == "+970") && $data['virtualAccess'] == 1)
+        //     $freeRegistrationSpecial = true;
         //////// check if free (for yemen and palestine) ////////
 
 

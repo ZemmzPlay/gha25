@@ -216,7 +216,7 @@
 								<div class="registerCheckboxText">Virtual Access Only<br /><span>By selecting Virtual Access Only, you will <b>exclusively</b> have online access to the meeting</span></div>
 							</div>
 						</div>
-					</div> --}}
+					</div> --}}<input type="hidden" name="virtualAccess" class="registerCheckboxReal" value="{{(old('virtualAccess')) ? old('virtualAccess') : '0'}}" />
 
 
             <div class="workshopSection" style="display: none;">
@@ -252,6 +252,7 @@
             <div class="registerButtonContainerOut">
               <div class="registerButtonContainer" id="registerSubmitButton">
                 <div class="registerButtonLeft">Register</div>
+                <input type="hidden" name="receive_updates" class="registerCheckboxReal" value="{{(old('receive_updates')) ? old('receive_updates') : '1'}}" />
                 {{-- <div class="registerButtonRight"> --}}
                   <?php
                   // $normalPricePayClass = '';
