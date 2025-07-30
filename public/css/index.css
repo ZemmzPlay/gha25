@@ -562,6 +562,7 @@
  	background: white;
  	/*flex-basis: 25%;*/
  	width: 25%;
+	height: 40px;
  }
 
  .twoInputsPhoneNumber {
@@ -575,6 +576,7 @@
  	/*flex-basis: 75%;*/
  	padding-left: 10px;
  	width: 75%;
+	height: 40px;
  }
 
  .missingField {
