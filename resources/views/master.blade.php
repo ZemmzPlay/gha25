@@ -110,7 +110,7 @@
         <nav class="sliding-menu">
           <div class="sliding-menu-in">
             <a class="back-icon" href="#">
-              <i class="fa-solid fa-chevron-left"></i>
+              <i class="fa-solid fa-chevron-right"></i>
             </a>
             <ul>
               @if (!Auth::guard('web')->check())

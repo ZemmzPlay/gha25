@@ -181,6 +181,9 @@
     .loginInputsContainer {
         width: 100%;
     }
+    .oneInputContainer{
+        width: 75%;
+    }
     .loginContainerOut {
         padding-bottom: 50px;
     }
@@ -198,26 +201,27 @@
         width: 60px;
     }
     .oneInputContainer input {
-        width: calc(100% - 70px);
+        /* width: calc(100% - 70px); */
         /*width: 255px;*/
         font-size: 14px;
         height: 40px;
-        border-radius: 7px;
+        /* border-radius: 7px; */
     }
     .phoneContainer {
-        width: calc(100% - 70px);
+        /* width: calc(100% - 70px); */
         /*width: 255px;*/
         height: 40px;
-        border-radius: 7px;
+        /* border-radius: 7px; */
     }
     .phoneContainer select {
         font-size: 14px;
+        width: 35%;
     }
     .phoneContainer input {
         font-size: 14px;
     }
     .submitButton {
-        width: calc(100% - 70px);
-        margin-left: 70px;
+        /* width: calc(100% - 70px); */
+        /* margin-left: 70px; */
     }
 }
