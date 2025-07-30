@@ -85,6 +85,12 @@ ul {
     padding-bottom: 30px;
 }
 
+.fixed-header {
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+}
+
 .logo {
     width: 177px;
     margin-left: 35px;

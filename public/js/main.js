@@ -30,6 +30,14 @@ $(document).ready(function() {
         $(".sliding-menu-in").css("right", "-100%");
         $('.sliding-menu').fadeOut();
     });
+    // on scroll fix the header
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 100) {
+            $('.header-content').addClass('fixed-header');
+        } else {
+            $('.header-content').removeClass('fixed-header');
+        }
+    });
 });
 
 
