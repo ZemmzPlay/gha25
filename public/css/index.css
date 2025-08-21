@@ -267,6 +267,7 @@
  	/* width: 100%; */
  	/* Adjust as needed */
  	height: auto;
+ 	max-width: 300px;
  }
 
  .sponsors-image-container {
@@ -396,10 +397,12 @@
  }
 
  @media all and (max-width: 719px) {
- 	.registerMiddle, .ourMessageContainer {
+
+ 	.registerMiddle,
+ 	.ourMessageContainer {
  		/* width: 92%; */
-		padding-left: 20px !important;
-		padding-right: 20px !important;
+ 		padding-left: 20px !important;
+ 		padding-right: 20px !important;
  	}
  }
 
@@ -564,7 +567,7 @@
  	background: white;
  	/*flex-basis: 25%;*/
  	width: 25%;
-	height: 40px;
+ 	height: 40px;
  }
 
  .twoInputsPhoneNumber {
@@ -578,7 +581,7 @@
  	/*flex-basis: 75%;*/
  	padding-left: 10px;
  	width: 75%;
-	height: 40px;
+ 	height: 40px;
  }
 
  .missingField {
@@ -1119,11 +1122,11 @@
  	justify-content: center;
  	border-radius: 199px;
  	cursor: pointer;
-	transition: all 0.3s;
+ 	transition: all 0.3s;
  }
 
  .registerButtonLeft {
-	 flex-basis: 73%;
+ 	flex-basis: 73%;
  	height: 100%;
  	color: white;
  	font-size: 25px;
@@ -1136,13 +1139,13 @@
  	font-style: normal;
  	font-weight: 600;
  	line-height: 28px;
-	 text-transform: uppercase;
+ 	text-transform: uppercase;
  	/* 140% */
-}
+ }
 
-.registerButtonContainer:hover {
-	background: var(--primary-color-light);
-}
+ .registerButtonContainer:hover {
+ 	background: var(--primary-color-light);
+ }
 
  .registerButtonRight {
  	flex-basis: 27%;
@@ -1287,7 +1290,7 @@
  	width: 100%;
  	background: #F7F7F7;
  	/*padding-top: 100px;*/
-	padding: 120px;
+ 	padding: 120px;
  	padding-top: 30px;
  	padding-bottom: 70px;
  	overflow: hidden;
@@ -1374,14 +1377,15 @@
  }
 
  @media all and (max-width: 1040px) {
-	.registerMiddle {
-		width: 100%;
-		margin: 0;
-		padding-left: 40px;
-		padding-right: 40px;
-	}
+ 	.registerMiddle {
+ 		width: 100%;
+ 		margin: 0;
+ 		padding-left: 40px;
+ 		padding-right: 40px;
+ 	}
+
  	.ourMessageContainer {
-		padding: 40px;
+ 		padding: 40px;
  		padding-top: 40px;
  		padding-bottom: 40px;
  	}
