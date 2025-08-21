@@ -1,0 +1,20 @@
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: var(--primary-color-dark);
+  font-family: 'DMSerifDisplayRegular', sans-serif;
+}
+
+.main-title {
+  text-transform: capitalize;
+  margin-bottom: 15px;
+  /*  font-family: CircularBook, sans-serif;*/
+  font-size: 50px;
+  line-height: normal;
+}
+
+.sponsors-container {
+  padding: 0 !important;
+}

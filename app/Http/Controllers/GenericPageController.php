@@ -14,6 +14,7 @@ use App\Session;
 use App\PageContent;
 use App\BoardCountries;
 use App\BoardMember;
+use App\CaseSubmission;
 use Settings;
 use Image;
 use Mail;
@@ -508,5 +509,58 @@ class GenericPageController extends Controller
 
         return redirect()->route('pages.exhibitors')->with('status', 'Exhibitors Added Successfully');
     }
+
+    public function caseSubmission()
+    {
+        $countries = config('countries');
+        return view('case-submission', compact('countries'));
+    }
     
+    /**
+     * Submit Case Submission
+     */
+    public function submitCaseSubmission(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|max:191',
+            'email' => 'required|email|max:191',
+            'phone_number' => 'required|max:20',
+            'hospital_name' => 'required|max:191',
+            'country' => 'required',
+            'synopsis_case' => 'required|max:5000',
+            'document' => 'nullable|file|max:128000|mimes:pdf,doc,docx',
+        ],
+        [
+            'document.max' => 'The Document must be at least 128MB',
+            'document.mimes' => 'The Document must be a file of type: pdf, doc, docx.'
+        ]);
+
+        $caseSubmission = CaseSubmission::create($request->except('document'));
+
+        if ($request->hasFile('document')) {
+            $file = $request->file('document');
+            $file_name = time() . '-' . $caseSubmission->name . '.' . $file->getClientOriginalExtension();
+            Storage::putFileAs('public/case_submissions/', $file, $file_name);
+            $caseSubmission->document = $file_name;
+            $caseSubmission->save();
+        }
+
+        return redirect()->route('pages.case-submission')->with('status', 'Case Submission Successfully Submitted.');
+    }
+
+    /**
+     * Sponsors Page
+     */
+    public function sponsors()
+    {
+        return view('sponsors');
+    }
+
+    /**
+     * Contact Us Page
+     */
+    public function contactUs()
+    {
+        return view('contact-us');
+    }
 }

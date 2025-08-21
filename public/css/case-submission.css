@@ -1,0 +1,86 @@
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: var(--primary-color-dark);
+  font-family: 'DMSerifDisplayRegular', sans-serif;
+}
+
+.main-title {
+  text-transform: capitalize;
+  margin-bottom: 15px;
+  /*  font-family: CircularBook, sans-serif;*/
+  font-size: 50px;
+  line-height: normal;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-size: 20px;
+  color: var(--primary-color);
+  line-height: 1;
+  margin-bottom: 0px;
+  text-align: left;
+}
+
+input,
+select,
+textarea {
+  /* width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none; */
+
+  width: 100% !important;
+  height: 40px !important;
+  border: 0px !important;
+  border-bottom: 1px solid var(--primary-color) !important;
+  background: white !important;
+}
+
+textarea {
+  height: auto !important;
+  padding: 10px !important;
+  resize: none !important;
+}
+
+.choose-file-btn {
+  display: block;
+  width: max-content;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  color: white !important;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  font-family: 'DMSerifDisplayRegular';
+}
+
+.choose-file-btn:hover {
+  background-color: white;
+  color: var(--primary-color) !important;
+}
+
+.submit-btn {
+    font-family: 'DMSerifDisplayRegular';
+    margin-top: 30px;
+    /* margin-left: 90px; */
+    width: 200px;
+    height: 40px;
+    border-radius: 7px;
+    color: white;
+    background-color: var(--primary-color);
+    transition: all 0.3s;
+    border: 1px solid var(--primary-color);
+}
+.submit-btn:hover {
+    background-color: white;
+    color: var(--primary-color);
+}

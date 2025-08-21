@@ -100,11 +100,12 @@ ul {
     display: flex;
     list-style: none;
     align-items: center;
+    gap: 25px;
 }
 
 #desktop-menu a {
-    margin-left: 20px;
-    margin-right: 20px;
+    /* margin-left: 20px;
+    margin-right: 20px; */
     text-decoration: none;
     color: var(--primary-color);
     text-transform: capitalize;

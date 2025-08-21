@@ -221,11 +221,23 @@ Route::post('/refresh-session', 'RegistrationController@fetchCurrentAndNextSessi
 
 
 /* Blog */
-Route::get('/blog/{word?}', 'BlogController@index')->name('pages.blog');
-Route::get('/post/{slug}', 'BlogController@detail')->name('pages.blog/detail');
-Route::post('/blog/like-a-post', 'BlogController@likePost')->name('pages.likePost');
+// Route::get('/blog/{word?}', 'BlogController@index')->name('pages.blog');
+// Route::get('/post/{slug}', 'BlogController@detail')->name('pages.blog/detail');
+// Route::post('/blog/like-a-post', 'BlogController@likePost')->name('pages.likePost');
 /* Blog */
 
+/* Case Submission */
+Route::get('/case-submission', ['uses' => 'GenericPageController@caseSubmission', 'as' => 'pages.case-submission']);
+Route::post('/case-submission', ['uses' => 'GenericPageController@submitCaseSubmission']);
+/* Case Submission */
+
+/* Sponsors */
+Route::get('/sponsors', ['uses' => 'GenericPageController@sponsors', 'as' => 'pages.sponsors']);
+/* Sponsors */
+
+/* Contact Us */
+Route::get('/contact-us', ['uses' => 'GenericPageController@contactUs', 'as' => 'pages.contact-us']);
+/* Contact Us */
 
 
 Route::get('/program', ['uses' => 'GenericPageController@program', 'as' => 'pages.program']);

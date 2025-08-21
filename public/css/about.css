@@ -23,6 +23,12 @@ body
   padding: 0 15px;
 }
 
+.description ul
+{
+  list-style: inside;
+  padding-left: 20px
+}
+
 .bio-wait
 {
   font-size: 24px;

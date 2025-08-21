@@ -70,12 +70,19 @@
             <li><a href="{{ url('/faculty') }}"
                 class="{{ request()->is('faculty') ? 'menu-active' : '' }}">faculty</a></li>
           @endif
-          <li><a href="{{ url('/blog') }}"
-              class="{{ request()->is('blog') || request()->is('post/*') ? 'menu-active' : '' }}">News</a></li>
-          <li><a href="{{ url('/about') }}" class="{{ request()->is('about') ? 'menu-active' : '' }}">about</a></li>
+          <li><a href="{{ url('/case-submission') }}"
+              class="{{ request()->is('case-submission') ? 'menu-active' : '' }}">Case Submission</a></li>
+          <li><a href="{{ url('/sponsors') }}"
+              class="{{ request()->is('sponsors') ? 'menu-active' : '' }}">Sponsors</a></li>
+          {{-- <li><a href="{{ url('/blog') }}"
+              class="{{ request()->is('blog') || request()->is('post/*') ? 'menu-active' : '' }}">News</a></li> --}}
+          <li><a href="{{ url('/about') }}" class="{{ request()->is('about') ? 'menu-active' : '' }}">about us</a>
+          </li>
           <li><a href="{{ url('/program') }}" class="{{ request()->is('program') ? 'menu-active' : '' }}">program</a>
           </li>
           <li><a href="{{ url('/location') }}" class="{{ request()->is('location') ? 'menu-active' : '' }}">where</a>
+          </li>
+          <li><a href="{{ url('/contact-us') }}" class="{{ request()->is('contact-us') ? 'menu-active' : '' }}">Contact Us</a>
           </li>
           {{-- <li><a href="{{ url('/abstracts') }}" class="{{ request()->is('abstracts') ? 'menu-active' : '' }}">abstracts</a></li> --}}
           <!-- <li><a href="{{ url('/more-info') }}" class="{{ request()->is('more-info') ? 'menu-active' : '' }}">more info</a></li> -->
@@ -124,9 +131,12 @@
                 <li><a href="{{ url('/faculty') }}"
                     class="{{ request()->is('faculty') ? 'menu-active' : '' }}">faculty</a></li>
               @endif
-              <li><a href="{{ url('/blog') }}"
-                  class="{{ request()->is('blog') || request()->is('post/*') ? 'menu-active' : '' }}">News</a></li>
-              <li><a href="{{ url('/about') }}" class="{{ request()->is('about') ? 'menu-active' : '' }}">about</a>
+              <li><a href="{{ url('/case-submission') }}"
+                  class="{{ request()->is('case-submission') ? 'menu-active' : '' }}">Case Submission</a></li>
+              {{-- <li><a href="{{ url('/blog') }}"
+                  class="{{ request()->is('blog') || request()->is('post/*') ? 'menu-active' : '' }}">News</a></li> --}}
+              <li><a href="{{ url('/about') }}" class="{{ request()->is('about') ? 'menu-active' : '' }}">about
+                  us</a>
               </li>
               <li><a href="{{ url('/program') }}"
                   class="{{ request()->is('program') ? 'menu-active' : '' }}">program</a></li>
@@ -154,7 +164,7 @@
   </header>
 
   <div class="main-content">
-  @yield('content')
+    @yield('content')
   </div>
 
 
