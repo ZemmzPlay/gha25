@@ -20,6 +20,7 @@ $(document).ready(function() {
 
     $('body').on('click', '.delete', function() {
         currentRow = $(this).closest('tr');
+        var  model = $(this).data('model') ? $(this).data('model') : "FacultyMember";
         aPos = e.fnGetPosition(currentRow.get(0));
         bootbox.dialog({
             message: "<span style='font-size: larger;'>Are you sure you want to delete this member?</span>",
@@ -41,10 +42,10 @@ $(document).ready(function() {
                             cache: false,
                             data: {
                                 id: id,
-                                model: "FacultyMember"
+                                model: model
                             },
                             success: function(response) {
-                                bootbox.alert("Faculty member has been deleted!");
+                                bootbox.alert(model + " member has been deleted!");
                             }
                         });
                         e.fnDeleteRow(aPos);

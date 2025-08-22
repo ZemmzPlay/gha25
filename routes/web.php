@@ -12,7 +12,7 @@
 */
 
 
-Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
+Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
 
 
     Route::post('/program/{id}/edit', 'ProgramController@postEdit');
@@ -66,6 +66,28 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
     Route::get('/faculty', 'FacultyController@getIndex');
     Route::get('/faculty/{id}/print', 'FacultyController@getPrint');
 
+    // Comittee Category Routes
+    Route::get('/committee/categories', ['uses' => 'CommitteeController@categoryList', 'as' => 'committee.categories']);
+    Route::get('/committee/categories/create', 'CommitteeController@categoryCreate');
+    Route::post('/committee/categories/create', 'CommitteeController@categorySave');
+    Route::get('/committee/categories/{id}', 'CommitteeController@categoryEdit');
+    Route::post('/committee/categories/{id}', 'CommitteeController@categoryUpdate');
+    // End Comittee Category Routes
+
+    // Committee Routes
+    Route::post('/committee/{id}/edit', 'CommitteeController@postEdit');
+    Route::get('/committee/{id}/edit', 'CommitteeController@getEdit');
+    Route::post('/committee/create', 'CommitteeController@postCreate');
+    Route::get('/committee/create', 'CommitteeController@getCreate');
+    Route::get('/committee/{id}', 'CommitteeController@getMember');
+    Route::get('/committee', 'CommitteeController@getIndex');
+    // End Committee Routes
+
+    // Case Submission
+    Route::get('/case-submission', ['uses' => 'CaseSubmissionController@getIndex', 'as' => 'case-submission.index']);
+    Route::get('/case-submission/{id}', ['uses' => 'CaseSubmissionController@getView', 'as' => 'case-submission.view']);
+    Route::get('/case-submission/{id}/download', ['uses' => 'CaseSubmissionController@downloadDocument', 'as' => 'case-submission.download']);
+    // End Case Submission
 
 
     Route::get('/board/countries', ['uses' => 'BoardController@countryList', 'as' => 'board.countries']);
@@ -88,8 +110,8 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
     // Route::post('/abstract', 'AbstractController@getAbstract');
     // Route::get('/abstract/{id}/download', 'AbstractController@download');
 
-    Route::post('message', ['uses'=> 'ContentController@updateMessage', 'as' => 'content.message.update']);
-    Route::get('message', ['uses'=> 'ContentController@messageForm', 'as' => 'content.message.form']);
+    Route::post('message', ['uses' => 'ContentController@updateMessage', 'as' => 'content.message.update']);
+    Route::get('message', ['uses' => 'ContentController@messageForm', 'as' => 'content.message.form']);
 
     Route::get('/registration', 'ContentController@getRegistration');
     Route::post('/registration', 'ContentController@postRegistration');
@@ -182,7 +204,6 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
 
     Route::get('mail', 'TestController@index');
     Route::post('mail', 'TestController@save');
-
 });
 
 Route::get('admin/login', 'AdminController@getLogin');

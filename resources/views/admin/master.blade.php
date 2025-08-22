@@ -88,6 +88,7 @@
 
               <li class="sidebar-category pt-0">Content</li>
               <li><a href="{{url('/admin/faculty')}}" class="{{Request::is('admin/faculty*') ? 'active' : Request::url()}}"><i class="zmdi zmdi-accounts-outline"></i><span>Faculty</span></a></li>
+              <li><a href="{{url('/admin/committee')}}" class="{{Request::is('admin/committee*') ? 'active' : Request::url()}}"><i class="zmdi zmdi-accounts-outline"></i><span>Committee</span></a></li>
 
               <li><a href="{{url('/admin/board')}}" class="{{Request::is('admin/board*') ? 'active' : Request::url()}}"><i class="zmdi zmdi-accounts-outline"></i><span>Board</span></a></li>
 
@@ -103,6 +104,7 @@
             <li><a href="{{url('/admin/page-content')}}" class="{{(Request::is('admin/page-content*')) ? 'active' : Request::url()}}"><i class="zmdi zmdi-format-size"></i><span>Page Content</span></a></li>
 
             <li><a href="{{url('/admin/registrants-bulk')}}" class="{{(Request::is('admin/registrants-bulk*')) ? 'active' : Request::url()}}"><i class="zmdi zmdi-format-size"></i><span>Registrants Bulk</span></a></li>
+            <li><a href="{{url('/admin/case-submission')}}" class="{{Request::is('admin/case-submission*') ? 'active' : Request::url()}}"><i class="zmdi zmdi-file-text"></i><span>Case Submission</span></a></li>
 
           </ul>
 
