@@ -73,16 +73,16 @@ h2,
 h3,
 h4,
 h5 {
-  color: var(--primary-color-dark);
-  font-family: 'DMSerifDisplayRegular', sans-serif;
+    color: var(--primary-color-dark);
+    font-family: 'DMSerifDisplayRegular', sans-serif;
 }
 
 .main-title {
-  text-transform: capitalize;
-  margin-bottom: 15px;
-  /*  font-family: CircularBook, sans-serif;*/
-  font-size: 50px;
-  line-height: normal;
+    text-transform: capitalize;
+    margin-bottom: 15px;
+    /*  font-family: CircularBook, sans-serif;*/
+    font-size: 50px;
+    line-height: normal;
 }
 
 
@@ -119,6 +119,14 @@ h5 {
     list-style: none;
     align-items: center;
     gap: 25px;
+}
+
+.menu-nav {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* width: 65%; */
 }
 
 #desktop-menu a {
@@ -435,6 +443,7 @@ footer {
         padding: 20px;
     }
 }
+
 @media all and (max-width: 650px) {
     .footerLogos img:first-child {
         width: 150px;
@@ -483,7 +492,7 @@ footer {
     .byData {
         padding-bottom: 15px;
     }
-    
+
     .builtOn {
         flex-direction: column;
         align-items: center;

@@ -64,6 +64,7 @@
       @endif
       <nav id="desktop-menu">
         <ul>
+          <div class="menu-nav">
           <li><a href="{{ url('/') }}" class="{{ request()->is('/') ? 'menu-active' : '' }}">home</a></li>
           <!-- <li><a href="{{ url('/terms-and-conditions') }}" class="{{ request()->is('terms-and-conditions') ? 'menu-active' : '' }}">terms & conditions</a></li> -->
           @if (Settings::get('facutlyEnableDisable'))
@@ -88,6 +89,7 @@
           <li><a href="{{ url('/contact-us') }}"
               class="{{ request()->is('contact-us') ? 'menu-active' : '' }}">Contact Us</a>
           </li>
+        </div>
           {{-- <li><a href="{{ url('/abstracts') }}" class="{{ request()->is('abstracts') ? 'menu-active' : '' }}">abstracts</a></li> --}}
           <!-- <li><a href="{{ url('/more-info') }}" class="{{ request()->is('more-info') ? 'menu-active' : '' }}">more info</a></li> -->
           @if (Auth::guard('web')->check())
