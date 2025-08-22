@@ -15,6 +15,7 @@ use App\PageContent;
 use App\BoardCountries;
 use App\BoardMember;
 use App\CaseSubmission;
+use App\CommitteeCategory;
 use Settings;
 use Image;
 use Mail;
@@ -562,5 +563,17 @@ class GenericPageController extends Controller
     public function contactUs()
     {
         return view('contact-us');
+    }
+
+    /**
+     * Committees Page
+     */
+    public function committees()
+    {
+        $categories = CommitteeCategory::with(['committees' => function($query) {
+            $query->orderBy('display_order', 'asc');
+        }])->orderBy('display_order', 'asc')->get();
+
+        return view('committees', compact('categories'));
     }
 }

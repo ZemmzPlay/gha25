@@ -239,6 +239,9 @@ Route::get('/sponsors', ['uses' => 'GenericPageController@sponsors', 'as' => 'pa
 Route::get('/contact-us', ['uses' => 'GenericPageController@contactUs', 'as' => 'pages.contact-us']);
 /* Contact Us */
 
+/* Committees */
+Route::get('/committees', ['uses' => 'GenericPageController@committees', 'as' => 'pages.committees']);
+/* Committees */
 
 Route::get('/program', ['uses' => 'GenericPageController@program', 'as' => 'pages.program']);
 
