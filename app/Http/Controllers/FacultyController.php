@@ -81,22 +81,22 @@ class FacultyController extends Controller
             ["first_name" => "Yahya", "last_name" => "Alansari", "image_file" => "1702565182.jpg"],
         ];
 
-        foreach ($faculty as $fac) {
-            $member = FacultyMember::where('first_name', $fac['first_name'])
-                ->where('last_name', $fac['last_name'])->first();
-            if (!$member) {
-                $member = new FacultyMember();
-                $member->first_name = $fac['first_name'];
-                $member->last_name = $fac['last_name'];
-                if (isset($fac['country']))
-                    $member->country = $fac['country'];
-                if (isset($fac['image_file']))
-                    $member->image_file = $fac['image_file'];
-                $member->faculty_category_id = 1;
-                $member->display_order = 1;
-                $member->save();
-            }
-        }
+        // foreach ($faculty as $fac) {
+        //     $member = FacultyMember::where('first_name', $fac['first_name'])
+        //         ->where('last_name', $fac['last_name'])->first();
+        //     if (!$member) {
+        //         $member = new FacultyMember();
+        //         $member->first_name = $fac['first_name'];
+        //         $member->last_name = $fac['last_name'];
+        //         if (isset($fac['country']))
+        //             $member->country = $fac['country'];
+        //         if (isset($fac['image_file']))
+        //             $member->image_file = $fac['image_file'];
+        //         $member->faculty_category_id = 1;
+        //         $member->display_order = 1;
+        //         $member->save();
+        //     }
+        // }
 
         $members = FacultyMember::all();
         $user = Auth::guard('admin')->user();
