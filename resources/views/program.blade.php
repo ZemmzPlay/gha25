@@ -128,7 +128,8 @@
                                                    <div class="oneSessionTime">{{date('H:i', strtotime($lecture->lecture_start_time))}} - {{date('H:i', strtotime($lecture->lecture_end_time))}}</div>
                                                    <div class="oneSessionDescription"><b>{{$lecture->lecture_title}}</b>
                                                         @if($speakerText != "")
-                                                            <br />{{$speakerText}}
+                                                            <br />
+                                                            <label class="oneSessionSpeaker">{{$speakerText}}</label>
                                                         @endif
                                                         @if($lecture->lecture_parts != "" && $lecture->lecture_parts != null)
                                                             <div class="oneSessionParts">{!!nl2br($lecture->lecture_parts)!!}</div>

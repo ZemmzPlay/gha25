@@ -134,6 +134,9 @@
     font-size: 20px;
     width: calc(100% - 170px);
 }
+.oneSessionSpeaker {
+    font-size: 17px;
+}
 .oneSessionDescription .oneSessionParts {
     font-size: 17px;
     margin-top: 3px;
