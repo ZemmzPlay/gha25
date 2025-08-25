@@ -238,7 +238,7 @@
                                                         ?>
                                                         <div class="oneSessionTimeRow">
                                                            <div class="oneSessionTime">{{date('H:i', strtotime($lecture->lecture_start_time))}} - {{date('H:i', strtotime($lecture->lecture_end_time))}}</div>
-                                                           <div class="oneSessionDescription"><b>{{$lecture->lecture_title}}</b>@if($speakerText != "")<br />{{$speakerText}}@endif</div>
+                                                           <div class="oneSessionDescription"><b>{{$lecture->lecture_title}}</b>@if($speakerText != "")<br /><label class="oneSessionSpeaker">{{$speakerText}}</label>@endif</div>
                                                         </div>
                                                         <?php
                                                     }
@@ -323,7 +323,7 @@
                                                     ?>
                                                     <div class="oneSessionTimeRow">
                                                        <div class="oneSessionTime">{{date('H:i', strtotime($lecture->lecture_start_time))}} - {{date('H:i', strtotime($lecture->lecture_end_time))}}</div>
-                                                       <div class="oneSessionDescription"><b>{{$lecture->lecture_title}}</b>@if($speakerText != "")<br />{{$speakerText}}@endif</div>
+                                                       <div class="oneSessionDescription"><b>{{$lecture->lecture_title}}</b>@if($speakerText != "")<br /><label class="oneSessionSpeaker">{{$speakerText}}</label>@endif</div>
                                                     </div>
                                                     <?php
                                                 }
