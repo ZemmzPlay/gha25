@@ -98,11 +98,11 @@ class FacultyController extends Controller
         //     }
         // }
 
-        $countries = ['KSA' => 'SA', 'UAE' => 'AE', 'Kuwait' => 'KW', 'Oman' => 'OM', 'Qatar' => 'QA', 'Bahrain' => 'BH', 'USA' => 'US', 'Italy' => 'IT', 'Chile' => 'CL', 'Iran' => 'IR'];
+        // $countries = ['KSA' => 'SA', 'UAE' => 'AE', 'Kuwait' => 'KW', 'Oman' => 'OM', 'Qatar' => 'QA', 'Bahrain' => 'BH', 'USA' => 'US', 'Italy' => 'IT', 'Chile' => 'CL', 'Iran' => 'IR'];
 
-        foreach ($countries as $key => $country) {
-            FacultyMember::where('country', $key)->update(['country' => $country]);
-        }
+        // foreach ($countries as $key => $country) {
+        //     FacultyMember::where('country', $key)->update(['country' => $country]);
+        // }
 
         $members = FacultyMember::all();
         $user = Auth::guard('admin')->user();
