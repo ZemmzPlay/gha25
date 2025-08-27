@@ -98,6 +98,12 @@ class FacultyController extends Controller
         //     }
         // }
 
+        // $countries = ['KSA' => 'SA', 'UAE' => 'AE', 'Kuwait' => 'KW', 'Oman' => 'OM', 'Qatar' => 'QA', 'Bahrain' => 'BH', 'USA' => 'US', 'Italy' => 'IT', 'Chile' => 'CL', 'Iran' => 'IR'];
+
+        // foreach ($countries as $key => $country) {
+        //     FacultyMember::where('country', $key)->update(['country' => $country]);
+        // }
+
         $members = FacultyMember::all();
         $user = Auth::guard('admin')->user();
         return view('admin.faculty.members', compact('user', 'members'));
@@ -111,11 +117,13 @@ class FacultyController extends Controller
         $categories = FacultyCategory::all();
         $permissions = Permission::all();
         $selected_permissions = array();
+        $countries = config('countries');
         return view('admin.faculty.member-form', [
             'member'  => $member,
             'method'    => 'post',
             'user'      => $user,
             'categories' => $categories,
+            'countries' => $countries,
             'permissions' => $permissions,
             'selected_permissions' => $selected_permissions,
         ]);
@@ -159,6 +167,7 @@ class FacultyController extends Controller
         $categories = FacultyCategory::all();
         $permissions = Permission::all();
         $selected_permissions = array_pluck($member->permission, 'id');
+        $countries = config('countries');
 
         if (!$member)
             abort(404);
@@ -166,6 +175,7 @@ class FacultyController extends Controller
             'member'    => $member,
             'method'    => 'put',
             'user'      => $user,
+            'countries' => $countries,
             'categories' => $categories,
             'permissions' => $permissions,
             'selected_permissions' => $selected_permissions,

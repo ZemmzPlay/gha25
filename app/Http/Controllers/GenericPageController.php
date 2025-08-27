@@ -155,6 +155,14 @@ class GenericPageController extends Controller
         return view('program', compact('dates'));
     }
 
+    public function downloadProgramPDF() {
+        $programPDF  = 'program.pdf';
+        if(Storage::exists('public/programs/'.$programPDF)) {
+            return Storage::download('public/programs/'.$programPDF, 'GHA Program.pdf');
+        }
+        return redirect()->route('pages.program')->withErrors('Program PDF Not Found!');
+    }
+
     public function venue() {
         return view('venue');
     }

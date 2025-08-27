@@ -23,7 +23,7 @@
                             @forelse($category->members->sortBy('last_name') as $member)
                             <div class="col-md-2 col-sm-4 col-xs-6 doctor-container">
                                 <div class="doctor">
-                                    <a href="#modal-popup" class="modal-member-popup" data-id="{{ $member->id }}">
+                                    <a class="modal-member-popup" data-id="{{ $member->id }}">
                                         <div class="img-container">
                                             <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
                                             @if($member->image_file && file_exists('images/faculty/'.$member->image_file))
@@ -34,6 +34,7 @@
                                         </div>
                                         <div class="doctor-info">
                                             <span>{{$member->name ? $member->name : $member->first_name . " " . $member->last_name}}</span>
+                                            <span class="doctor-country">{{$member->country ? $member->country_name : ''}}</span>
                                         </div>
                                     </a>
                                 </div>

@@ -31,7 +31,7 @@ body
   animation-iteration-count: infinite;
 }
 
-.faculty .doctor-container { margin-bottom: 25px; }
+.faculty .doctor-container { margin-bottom: 25px; min-height: 170px; }
 @media (max-width: 413px) { .faculty .doctor-container {height: 126px;} }
 /*.faculty .container {  padding-top: 50px !important;  }*/
 .faculty .doctor{  /*margin-bottom: 25px;*/ text-align:center; }
@@ -73,6 +73,10 @@ body
 .faculty .doctor .doctor-info span {
     display: block;
     font-size: 13px;
+}
+
+.doctor-country {
+  margin-top: 5px;
 }
 
 .img-container .fa-spinner

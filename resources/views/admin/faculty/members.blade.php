@@ -52,7 +52,7 @@
                         <th style="width:180px;"></th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Category</th>
+                        <th>Country</th>
                         <th>Date Added</th>
                         <th class="text-right">Action</th>
                     </tr>
@@ -72,7 +72,7 @@
                             </td>
                             <td>{{$member->name ? $member->name : $member->first_name}}</td>
                             <td>{{ $member->last_name }}</td>
-                            <td>{{$member->category->name}}</td>
+                            <td>{{$member->country_name}}</td>
                             <td>{{$member->created_at->format('Y-m-d')}}</td>
                             <td class="text-right">
                                 <a href="{{url('admin/faculty/'.$member->id.'/print')}}" class="btn btn-sm btn-default" target="_blank">Print ID</a>

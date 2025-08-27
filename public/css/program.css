@@ -144,6 +144,24 @@
 }
 
 
+.download_program_btn
+{
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.download_program_btn:hover
+{
+    background-color: var(--primary-color-dark);
+    color: white;
+    text-decoration: none;
+}
+
+
 
 @media all and (max-width: 991px) {
     .program_sub_title {

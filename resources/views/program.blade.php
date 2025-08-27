@@ -13,6 +13,10 @@
         <div class="program_middle_container">
             <div class="program_title">The Program</div>
 
+            <div class="text-right">
+                <a href="{{route('downloadProgramPDF')}}" class="download_program_btn" target="_blank"><i class="fa fa-download"></i> Download Program PDF</a>
+            </div>
+
 
             <?php
             $WednesdayNotWorkshop = [];

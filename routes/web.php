@@ -265,6 +265,7 @@ Route::get('/committees', ['uses' => 'GenericPageController@committees', 'as' =>
 /* Committees */
 
 Route::get('/program', ['uses' => 'GenericPageController@program', 'as' => 'pages.program']);
+Route::get('/program/download/pdf', ['uses' => 'GenericPageController@downloadProgramPDF', 'as' => 'downloadProgramPDF']);
 
 Route::post('emails/create', ['uses' => 'GenericPageController@createEmail', 'as' => 'emails.create']);
 Route::get('/registration', ['uses' => 'GenericPageController@registration', 'as' => 'pages.registration']);
