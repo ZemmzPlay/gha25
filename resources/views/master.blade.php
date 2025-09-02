@@ -50,6 +50,8 @@
   <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/colors.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/style.css?ver=1.0.0') }}" />
+  <link rel="stylesheet" href="{{ asset('plugins/flag-icon-css/css/flag-icon.min.css') }}" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
 
   @yield('style')
 </head>
@@ -208,6 +210,55 @@
 
   <script type="text/javascript" src="{{ asset('js/jquery-3.7.0.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+  
+  <script>
+    $(document).ready(function() {
+      // Initialize country dropdown with flags
+      $('.select2-country').select2({
+        placeholder: "Select Country",
+        templateResult: formatCountry,
+        templateSelection: formatCountrySelection,
+        escapeMarkup: function(markup) {
+          return markup;
+        }
+      });
+      
+      // Initialize phone code dropdown with flags
+      $('.select2-phone').select2({
+        placeholder: "Select Country Code",
+        templateResult: formatCountry,
+        templateSelection: formatCountrySelection,
+        escapeMarkup: function(markup) {
+          return markup;
+        }
+      });
+    });
+    
+    function formatCountry(country) {
+      if (!country.id) {
+        return country.text;
+      }
+      
+      var flag = country.element.getAttribute('data-flag');
+      var $country = $(
+        '<span><span class="flag-icon flag-icon-' + flag + '"></span> ' + country.text + '</span>'
+      );
+      return $country;
+    }
+    
+    function formatCountrySelection(country) {
+      if (!country.id) {
+        return country.text;
+      }
+      
+      var flag = country.element.getAttribute('data-flag');
+      var $country = $(
+        '<span><span class="flag-icon flag-icon-' + flag + '"></span> ' + country.text + '</span>'
+      );
+      return $country;
+    }
+  </script>
 
   @yield('scripts')
 

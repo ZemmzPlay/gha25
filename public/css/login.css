@@ -221,7 +221,85 @@
         font-size: 14px;
     }
     .submitButton {
-        /* width: calc(100% - 70px); */
-        /* margin-left: 70px; */
+        width: 200px;
+        margin: 30px auto 0;
+    }
+}
+
+/* Select2 Custom Styles for Login */
+.select2-container {
+    width: 100% !important;
+}
+
+.select2-container .select2-selection--single {
+    height: 40px !important;
+    border: 0px !important;
+    border-bottom: 1px solid var(--primary-color) !important;
+    background: white !important;
+    border-radius: 0 !important;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+    line-height: 40px !important;
+    padding-left: 5px !important;
+    color: #333 !important;
+}
+
+.select2-container .select2-selection--single .select2-selection__arrow {
+    height: 38px !important;
+    right: 5px !important;
+}
+
+.select2-dropdown {
+    border: 1px solid #ccc !important;
+    border-radius: 0 !important;
+}
+
+.select2-results__option {
+    padding: 8px 5px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.select2-results__option--highlighted {
+    background-color: var(--primary-color) !important;
+}
+
+.flag-icon {
+    margin-right: 5px;
+    width: 16px;
+    height: 12px;
+    display: inline-block;
+}
+
+/* Mobile responsive login Select2 dropdown */
+@media all and (max-width: 630px) {
+    .select2-container .select2-selection--single {
+        height: 35px !important;
+    }
+    
+    .select2-container .select2-selection--single .select2-selection__rendered {
+        line-height: 35px !important;
+        font-size: 12px !important;
+    }
+    
+    .select2-container .select2-selection--single .select2-selection__arrow {
+        height: 33px !important;
+    }
+    
+    .select2-results__option {
+        font-size: 12px !important;
+        padding: 6px 5px !important;
+    }
+    
+    .flag-icon {
+        width: 12px;
+        height: 9px;
+        margin-right: 3px;
+    }
+    
+    .phoneContainer select {
+        width: 40% !important;
     }
 }

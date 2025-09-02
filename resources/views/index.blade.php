@@ -92,49 +92,16 @@
               </div>
               <div class="registerOneInputContainer" id="countryInput">
                 <div class="registerOneInputLabel">Country</div>
-                <select name="country" class="registerOneInputValue" required>
+                <select name="country" class="registerOneInputValue select2-country" required>
                   <option value="">* Country</option>
-                  <option value="Kuwait" {{ old('country') && old('country') == 'Kuwait' ? 'selected' : '' }}>Kuwait
-                  </option>
-                  <option value="Saudi Arabia"
-                    {{ old('country') && old('country') == 'Saudi Arabia' ? 'selected' : '' }}>Saudi Arabia</option>
-                  <option value="Iran" {{ old('country') && old('country') == 'Iran' ? 'selected' : '' }}>Iran
-                  </option>
-                  <option value="Egypt" {{ old('country') && old('country') == 'Egypt' ? 'selected' : '' }}>Egypt
-                  </option>
-                  <option value="Qatar" {{ old('country') && old('country') == 'Qatar' ? 'selected' : '' }}>Qatar
-                  </option>
-                  <option value="United Arab Emirates"
-                    {{ old('country') && old('country') == 'United Arab Emirates' ? 'selected' : '' }}>United Arab
-                    Emirates</option>
-                  <option value="Syria" {{ old('country') && old('country') == 'Syria' ? 'selected' : '' }}>Syria
-                  </option>
-                  <option value="Iraq" {{ old('country') && old('country') == 'Iraq' ? 'selected' : '' }}>Iraq
-                  </option>
-                  <option value="Jordan" {{ old('country') && old('country') == 'Jordan' ? 'selected' : '' }}>Jordan
-                  </option>
-                  <option value="Lebanon" {{ old('country') && old('country') == 'Lebanon' ? 'selected' : '' }}>Lebanon
-                  </option>
-                  <option value="Tunisia" {{ old('country') && old('country') == 'Tunisia' ? 'selected' : '' }}>Tunisia
-                  </option>
-                  <option value="Morocco" {{ old('country') && old('country') == 'Morocco' ? 'selected' : '' }}>Morocco
-                  </option>
-                  <option value="Yemen" {{ old('country') && old('country') == 'Yemen' ? 'selected' : '' }}>Yemen
-                  </option>
-                  <option value="Bahrain" {{ old('country') && old('country') == 'Bahrain' ? 'selected' : '' }}>Bahrain
-                  </option>
-                  <option value="Oman" {{ old('country') && old('country') == 'Oman' ? 'selected' : '' }}>Oman
-                  </option>
-                  <option value="Algeria" {{ old('country') && old('country') == 'Algeria' ? 'selected' : '' }}>Algeria
-                  </option>
-                  <option value="Libya" {{ old('country') && old('country') == 'Libya' ? 'selected' : '' }}>Libya
-                  </option>
-                  <option value="Palestine" {{ old('country') && old('country') == 'Palestine' ? 'selected' : '' }}>
-                    Palestine</option>
-                  <option value="Sudan" {{ old('country') && old('country') == 'Sudan' ? 'selected' : '' }}>Sudan
-                  </option>
-                  <option value="Djibouti" {{ old('country') && old('country') == 'Djibouti' ? 'selected' : '' }}>
-                    Djibouti</option>
+                  @php
+                    $countries = config('countries');
+                  @endphp
+                  @foreach($countries as $countryCode => $countryData)
+                    <option value="{{ $countryData['name'] }}" {{ old('country') && old('country') == $countryData['name'] ? 'selected' : '' }} data-flag="{{ strtolower($countryCode) }}">
+                      {{ $countryData['name'] }}
+                    </option>
+                  @endforeach
                 </select>
               </div>
               <div class="registerOneInputContainer" id="cityInput">
@@ -150,47 +117,15 @@
               <div class="registerOneInputContainer" id="numberInput">
                 <div class="registerOneInputLabel">Number</div>
                 <div class="twoInputsPhone">
-                  <select name="countryCode" class="twoInputsPhoneSmall" required>
-                    <option value="+965" {{ old('countryCode') && old('countryCode') == '+965' ? 'selected' : '' }}>
-                      +965 (Kuwait)</option>
-                    <option value="+966" {{ old('countryCode') && old('countryCode') == '+966' ? 'selected' : '' }}>
-                      +966 (Saudi Arabia)</option>
-                    <option value="+98" {{ old('countryCode') && old('countryCode') == '+98' ? 'selected' : '' }}>
-                      +98 (Iran)</option>
-                    <option value="+20" {{ old('countryCode') && old('countryCode') == '+20' ? 'selected' : '' }}>
-                      +20 (Egypt)</option>
-                    <option value="+974" {{ old('countryCode') && old('countryCode') == '+974' ? 'selected' : '' }}>
-                      +974 (Qatar)</option>
-                    <option value="+971" {{ old('countryCode') && old('countryCode') == '+971' ? 'selected' : '' }}>
-                      +971 (United Arab Emirates)</option>
-                    <option value="+963" {{ old('countryCode') && old('countryCode') == '+963' ? 'selected' : '' }}>
-                      +963 (Syria)</option>
-                    <option value="+964" {{ old('countryCode') && old('countryCode') == '+964' ? 'selected' : '' }}>
-                      +964 (Iraq)</option>
-                    <option value="+962" {{ old('countryCode') && old('countryCode') == '+962' ? 'selected' : '' }}>
-                      +962 (Jordan)</option>
-                    <option value="+961" {{ old('countryCode') && old('countryCode') == '+961' ? 'selected' : '' }}>
-                      +961 (Lebanon)</option>
-                    <option value="+216" {{ old('countryCode') && old('countryCode') == '+216' ? 'selected' : '' }}>
-                      +216 (Tunisia)</option>
-                    <option value="+212" {{ old('countryCode') && old('countryCode') == '+212' ? 'selected' : '' }}>
-                      +212 (Morocco)</option>
-                    <option value="+967" {{ old('countryCode') && old('countryCode') == '+967' ? 'selected' : '' }}>
-                      +967 (Yemen)</option>
-                    <option value="+973" {{ old('countryCode') && old('countryCode') == '+973' ? 'selected' : '' }}>
-                      +973 (Bahrain)</option>
-                    <option value="+968" {{ old('countryCode') && old('countryCode') == '+968' ? 'selected' : '' }}>
-                      +968 (Oman)</option>
-                    <option value="+213" {{ old('countryCode') && old('countryCode') == '+213' ? 'selected' : '' }}>
-                      +213 (Algeria)</option>
-                    <option value="+218" {{ old('countryCode') && old('countryCode') == '+218' ? 'selected' : '' }}>
-                      +218 (Libya)</option>
-                    <option value="+970" {{ old('countryCode') && old('countryCode') == '+970' ? 'selected' : '' }}>
-                      +970 (Palestine)</option>
-                    <option value="+249" {{ old('countryCode') && old('countryCode') == '+249' ? 'selected' : '' }}>
-                      +249 (Sudan)</option>
-                    <option value="+253" {{ old('countryCode') && old('countryCode') == '+253' ? 'selected' : '' }}>
-                      +253 (Djibouti)</option>
+                  <select name="countryCode" class="twoInputsPhoneSmall select2-phone" required>
+                    @php
+                      $countries = config('countries');
+                    @endphp
+                    @foreach($countries as $countryCode => $countryData)
+                      <option value="+{{ $countryData['code'] }}" {{ old('countryCode') && old('countryCode') == '+'.$countryData['code'] ? 'selected' : '' }} data-flag="{{ strtolower($countryCode) }}">
+                        +{{ $countryData['code'] }} ({{ $countryData['name'] }})
+                      </option>
+                    @endforeach
                   </select>
                   <input type="text" name="mobile" class="twoInputsPhoneNumber" placeholder="5000 9876"
                     value="{{ old('mobile') }}" required />
@@ -400,9 +335,6 @@
       </div>
       <div class="sponsors-image-div">
         <img class="sponsors-image" src="{{ asset('images/home/endo3.png') }}" alt="Endorsed 2" />
-      </div>
-      <div class="sponsors-image-div">
-        <img class="sponsors-image" src="{{ asset('images/home/endo/GIS-Black.png') }}" alt="Endorsed 3" />
       </div>
       {{-- <div class="sponsors-image-div">
         <img class="sponsors-image" src="{{ asset('images/home/endo/endo4.jpg') }}" alt="Endorsed 4" />

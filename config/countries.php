@@ -2,7 +2,7 @@
 
 return [
   'AD' => array('name' => 'ANDORRA', 'code' => '376'),
-  'AE' => array('name' => 'UNITED ARAB EMIRATES', 'code' => '971'),
+  'AE' => array('name' => 'UAE', 'code' => '971'),
   'AF' => array('name' => 'AFGHANISTAN', 'code' => '93'),
   'AG' => array('name' => 'ANTIGUA AND BARBUDA', 'code' => '1268'),
   'AI' => array('name' => 'ANGUILLA', 'code' => '1264'),

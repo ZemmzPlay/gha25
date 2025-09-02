@@ -21,6 +21,21 @@
     flex-shrink: 0;
     margin-right: 2px;
   }
+  
+  .doctor-info > span:first-child {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    width: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .doctor-info > span:first-child {
+      font-size: 12px;
+      line-height: 1.2;
+    }
+  }
 </style>
 @endsection
 
@@ -37,10 +52,7 @@
                         <h1 class="section-title" style="margin-bottom: 15px;font-family: CircularBook, sans-serif;font-size: 20px; color: var(--primary-color); font-weight: bold;">{{$category->name}}</h1>
 
                         <div class="row">
-                            @forelse($category->members->sortBy(function($member) {
-                                // First sort by whether they have an image (images first), then by creation date (newest first), then by last name
-                                return [$member->image_file ? 0 : 1, -strtotime($member->created_at), $member->last_name];
-                            }) as $member)
+                            @forelse($category->members->sortBy(function($member) { return strtolower($member->first_name . ' ' . $member->last_name); }) as $member)
                             <div class="col-md-2 col-sm-4 col-xs-6 doctor-container">
                                 <div class="doctor">
                                     <a class="modal-member-popup" data-id="{{ $member->id }}">

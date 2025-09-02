@@ -41,30 +41,14 @@
                     <div class="oneInputContainer">
                         <label for="phone_code">Number</label>
                         <div class="phoneContainer">
-                            <select name="phone_code" id="phone_code" required>
-                                @foreach([
-                                    '+965' => 'Kuwait',
-                                    '+966' => 'Saudi Arabia',
-                                    '+98' => 'Iran',
-                                    '+20' => 'Egypt',
-                                    '+974' => 'Qatar',
-                                    '+971' => 'United Arab Emirates',
-                                    '+963' => 'Syria',
-                                    '+964' => 'Iraq',
-                                    '+962' => 'Jordan',
-                                    '+961' => 'Lebanon',
-                                    '+216' => 'Tunisia',
-                                    '+212' => 'Morocco',
-                                    '+967' => 'Yemen',
-                                    '+973' => 'Bahrain',
-                                    '+968' => 'Oman',
-                                    '+213' => 'Algeria',
-                                    '+218' => 'Libya',
-                                    '+970' => 'Palestine',
-                                    '+249' => 'Sudan',
-                                    '+253' => 'Djibouti'
-                                ] as $code => $country)
-                                    <option value="{{ $code }}" {{(OLD('phone_code') && OLD('phone_code') == $code) ? 'selected' : ''}}>{{ $code }} ({{ $country }})</option>
+                            <select name="phone_code" id="phone_code" class="select2-phone" required>
+                                @php
+                                    $countries = config('countries');
+                                @endphp
+                                @foreach($countries as $countryCode => $countryData)
+                                    <option value="+{{ $countryData['code'] }}" {{ old('phone_code') && old('phone_code') == '+'.$countryData['code'] ? 'selected' : '' }} data-flag="{{ strtolower($countryCode) }}">
+                                        +{{ $countryData['code'] }} ({{ $countryData['name'] }})
+                                    </option>
                                 @endforeach
                             </select>
                             <input type="text" id="phone_number" value="{{OLD('phone_number')}}" name="phone_number" placeholder="5000 9876" required>

@@ -176,6 +176,10 @@
     .program_container {
         padding-bottom: 70px;
     }
+    .program_middle_container {
+        width: 95%;
+        padding: 0 15px;
+    }
     .program_title {
         font-size: 30px;
         padding-top: 20px;
@@ -184,6 +188,16 @@
     .program_sub_title {
         font-size: 20px;
         padding-bottom: 30px;
+    }
+    .download_program_btn {
+        font-size: 14px;
+        padding: 8px 12px;
+        display: inline-block;
+        width: auto;
+        max-width: 100%;
+        word-wrap: break-word;
+        margin-top: -10px;
+        margin-bottom: 10px;
     }
     .oneProgram {
         margin-bottom: 20px;

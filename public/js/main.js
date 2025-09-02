@@ -30,6 +30,15 @@ $(document).ready(function() {
         $(".sliding-menu-in").css("right", "-100%");
         $('.sliding-menu').fadeOut();
     });
+
+    // Close mobile menu when clicking outside the menu panel
+    $('.sliding-menu').click(function(e) {
+        // Only close if clicking on the overlay, not on the menu panel itself
+        if (e.target === this) {
+            $(".sliding-menu-in").css("right", "-100%");
+            $('.sliding-menu').fadeOut();
+        }
+    });
     // on scroll fix the header
     $(window).scroll(function() {
         if ($(this).scrollTop() > 100) {
@@ -49,3 +58,5 @@ $(window).on('load', function() {
         }, 1000);
     }
 });
+
+// Select2 dropdowns are now handled in the master template
