@@ -194,7 +194,7 @@
       <div class="byData">
         <div class="organizedBy">
           <div class="organizedByText">Meeting organized by</div>
-          <div><a href="https://zawaya.me/conferences-and-events/" target="_blank" rel="noopener noreferrer"><img src="{{ asset('images/global/Zawaya_white.png') }}" alt="Zawaya Conferences" width="150" height="60" /></a></div>
+          <div><a href="https://zawaya.me/conferences-and-events/" target="_blank" rel="noopener noreferrer"><img src="{{ asset('images/global/Zawaya_white.png') }}" alt="Zawaya Conferences"/></a></div>
         </div>
         <div style="font-size: 25px;">
           |
