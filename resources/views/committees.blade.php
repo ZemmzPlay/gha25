@@ -24,19 +24,26 @@
 
                 <div class="row">
                   @forelse($category->committees->sortBy('last_name') as $member)
-                    <div class="col-md-2 col-sm-4 col-xs-6 doctor-container">
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 doctor-container">
                       <div class="doctor">
                         {{-- <a href="#modal-popup" class="modal-member-popup" data-id="{{ $member->id }}"> --}}
                         <div class="img-container">
                           <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
-                          <img class="member-image" src="{{ asset($member->image_file) }}">
+                          @if($member->image && file_exists('images/committees/'.$member->image))
+                            <img class="member-image" src="{{asset('images/committees/'.$member->image)}}">
+                          @else
+                            <img class="member-image" src="{{asset('images/committees/default_2.jpg')}}">
+                          @endif
                         </div>
                         <div class="doctor-info">
                           <span>{{ $member->name ? $member->name : $member->first_name . ' ' . $member->last_name }}</span>
                           @if ($member->subtitle)
                             <span>{{ $member->subtitle }}</span>
                           @endif
-                          <span>{{ $member->country_name }}</span>
+                          <span>
+                            <span class="flag-icon flag-icon-{{ strtolower($member->country) }}"></span>
+                            {{ $member->country_name }}
+                          </span>
                         </div>
                         {{-- </a> --}}
                       </div>

@@ -30,10 +30,24 @@
     width: 100%;
   }
   
+  /* Better mobile display */
   @media (max-width: 768px) {
     .doctor-info > span:first-child {
-      font-size: 12px;
+      white-space: nowrap;
+      overflow: visible;
+      text-overflow: unset;
       line-height: 1.2;
+      font-size: 12px;
+    }
+  }
+   /* Better mobile display */
+   @media (max-width: 413px) {
+    .doctor-info > span:first-child {
+      white-space: nowrap;
+      overflow: visible;
+      text-overflow: unset;
+      line-height: 1.2;
+      font-size: 10px !important;
     }
   }
 </style>
@@ -47,12 +61,9 @@
 
                 <h1 class="main-title">faculty {{-- - {{ $pageContent->website_title }} --}}</h1>
                 <div id="faculty-members">
-                    @foreach($categories as $category)
                     <div style="padding: 0 50px;">
-                        <h1 class="section-title" style="margin-bottom: 15px;font-family: CircularBook, sans-serif;font-size: 20px; color: var(--primary-color); font-weight: bold;">{{$category->name}}</h1>
-
                         <div class="row">
-                            @forelse($category->members->sortBy(function($member) { return strtolower($member->first_name . ' ' . $member->last_name); }) as $member)
+                            @forelse($allMembers->sortBy('last_name') as $member)
                             <div class="col-md-2 col-sm-4 col-xs-6 doctor-container">
                                 <div class="doctor">
                                     <a class="modal-member-popup" data-id="{{ $member->id }}">
@@ -110,7 +121,6 @@
                             @endforelse
                         </div>
                     </div>
-                    @endforeach
                 </div>
 
                 <div id="modal-popup{{-- {{$member->id}} --}}" class="zoom-anim-dialog mfp-hide col-lg-5 col-md-7 col-sm-7 col-xs-11 center-col bg-white text-center modal-popup-main">
@@ -149,6 +159,52 @@
 @section('scripts')
     <script type="text/javascript" src="{{asset('js/jquery.magnific-popup.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/faculty.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            // Smart name display for mobile screens
+            function adjustNamesForScreen() {
+                $('.doctor-info > span:first-child').each(function() {
+                    var $span = $(this);
+                    var originalText = $span.data('original-text') || $span.text().trim();
+                    
+                    // Store original text if not already stored
+                    if (!$span.data('original-text')) {
+                        $span.data('original-text', originalText);
+                    }
+                    
+                    if (window.innerWidth <= 768) {
+                        // On mobile, show only first part of the name
+                        var words = originalText.split(' ');
+                        
+                        if (words.length >= 3) {
+                            // For 3+ word names, show first 2 words
+                            var displayText = words[0] + ' ' + words[1];
+                            $span.text(displayText);
+                        } else if (words.length === 2) {
+                            // For 2-word names, show first word only
+                            $span.text(words[0]);
+                        } else {
+                            // For single word names, show as is
+                            $span.text(originalText);
+                        }
+                    } else {
+                        // On desktop, show full name
+                        $span.text(originalText);
+                    }
+                });
+            }
+            
+            // Apply on page load with a small delay to ensure DOM is ready
+            setTimeout(function() {
+                adjustNamesForScreen();
+            }, 100);
+            
+            // Apply on window resize
+            $(window).resize(function() {
+                adjustNamesForScreen();
+            });
+        });
+    </script>
 @endsection
 @stop
 

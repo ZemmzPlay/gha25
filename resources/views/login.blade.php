@@ -46,7 +46,7 @@
                                     $countries = config('countries');
                                 @endphp
                                 @foreach($countries as $countryCode => $countryData)
-                                    <option value="+{{ $countryData['code'] }}" {{ old('phone_code') && old('phone_code') == '+'.$countryData['code'] ? 'selected' : '' }} data-flag="{{ strtolower($countryCode) }}">
+                                    <option value="+{{ $countryData['code'] }}" {{ (old('phone_code') && old('phone_code') == '+'.$countryData['code']) || (!old('phone_code') && $countryCode == 'KW') ? 'selected' : '' }} data-flag="{{ strtolower($countryCode) }}">
                                         +{{ $countryData['code'] }} ({{ $countryData['name'] }})
                                     </option>
                                 @endforeach

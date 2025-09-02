@@ -104,7 +104,11 @@ class FacultyController extends Controller
         //     FacultyMember::where('country', $key)->update(['country' => $country]);
         // }
 
-        $members = FacultyMember::all()->sortBy(function($member) { return strtolower($member->first_name . ' ' . $member->last_name); });
+        $members = FacultyMember::all()->sortBy(function($member) { 
+            $firstInitial = strtolower(substr($member->first_name, 0, 1));
+            $lastInitial = strtolower(substr($member->last_name, 0, 1));
+            return $firstInitial . $lastInitial;
+        });
         $user = Auth::guard('admin')->user();
         return view('admin.faculty.members', compact('user', 'members'));
     }

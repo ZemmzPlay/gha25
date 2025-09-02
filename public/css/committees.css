@@ -12,23 +12,195 @@
   animation-iteration-count: infinite;
 }
 
-.committees .doctor-container { margin-bottom: 25px; }
-@media (max-width: 413px) { .committees .doctor-container {height: 126px;} }
+.committees .doctor-container { 
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Responsive styles for small screens */
+@media (max-width: 768px) {
+  .committees .doctor-container {
+    margin-bottom: 25px;
+    padding: 0 5px;
+  }
+  
+  .committees .doctor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .committees .doctor .img-container {
+    max-width: 80px;
+    margin-bottom: 8px;
+  }
+  
+  .committees .doctor .doctor-info {
+    min-height: auto;
+    padding-top: 0;
+    width: 100%;
+    max-width: 120px;
+  }
+  
+  .committees .doctor .doctor-info span {
+    font-size: 11px;
+    line-height: 1.2;
+    margin-bottom: 2px;
+  }
+  
+  .committees .doctor .doctor-info .flag-icon {
+    font-size: 10px;
+    margin-right: 3px;
+  }
+  
+  .member-image {
+    width: 76px;
+    height: 76px;
+  }
+  
+  .committees .section-title {
+    font-size: 18px !important;
+    margin-bottom: 15px !important;
+  }
+  
+  .committees .container {
+    padding: 0 15px;
+  }
+  
+  .committees #committees-members > div {
+    padding: 0 20px !important;
+  }
+  
+  .committees .row {
+    margin: 0 -5px;
+  }
+  
+  .committees .col-lg-2,
+  .committees .col-md-3,
+  .committees .col-sm-4,
+  .committees .col-xs-6 {
+    padding: 0 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .committees .doctor-container {
+    margin-bottom: 20px;
+    padding: 0 3px;
+  }
+  
+  .committees .doctor .img-container {
+    max-width: 70px;
+    margin-bottom: 6px;
+  }
+  
+  .committees .doctor .doctor-info {
+    min-height: auto;
+    max-width: 100px;
+  }
+  
+  .committees .doctor .doctor-info span {
+    font-size: 10px;
+    line-height: 1.1;
+    margin-bottom: 1px;
+  }
+  
+  .committees .doctor .doctor-info .flag-icon {
+    font-size: 9px;
+    margin-right: 2px;
+  }
+  
+  .member-image {
+    width: 66px;
+    height: 66px;
+  }
+  
+  .committees .section-title {
+    font-size: 16px !important;
+    margin-bottom: 12px !important;
+  }
+  
+  .committees #committees-members > div {
+    padding: 0 10px !important;
+  }
+  
+  .committees .row {
+    margin: 0 -3px;
+  }
+  
+  .committees .col-lg-2,
+  .committees .col-md-3,
+  .committees .col-sm-4,
+  .committees .col-xs-6 {
+    padding: 0 3px;
+  }
+}
+
+@media (max-width: 360px) {
+  .committees .doctor-container {
+    margin-bottom: 15px;
+  }
+  
+  .committees .doctor .img-container {
+    max-width: 60px;
+    margin-bottom: 5px;
+  }
+  
+  .committees .doctor .doctor-info {
+    max-width: 90px;
+  }
+  
+  .committees .doctor .doctor-info span {
+    font-size: 9px;
+    line-height: 1.0;
+  }
+  
+  .committees .doctor .doctor-info .flag-icon {
+    font-size: 8px;
+    margin-right: 2px;
+  }
+  
+  .member-image {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .committees .section-title {
+    font-size: 14px !important;
+    margin-bottom: 10px !important;
+  }
+  
+  .committees #committees-members > div {
+    padding: 0 5px !important;
+  }
+}
+
+@media (max-width: 413px) { 
+  .committees .doctor-container {
+    height: auto;
+    min-height: 120px;
+  }
+}
 /*.committees .container {  padding-top: 50px !important;  }*/
-.committees .doctor{  /*margin-bottom: 25px;*/ text-align:center; }
+.committees .doctor{  
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
 .committees .doctor .img-container {
     background:#000000;
     position: relative;
-
-/*    -webkit-clip-path: polygon(50% 0%, 100% 20%, 100% 80%, 50% 100%, 0 80%, 0 20%);*/
-/*    clip-path: polygon(50% 0%, 100% 20%, 100% 80%, 50% 100%, 0 80%, 0 20%);*/
-/*    -webkit-clip-path: circle(50%);*/
     clip-path: circle(50%);
-    margin: 0 auto;
+    margin: 0 auto 10px auto;
     max-width: 100px;
     padding: 2px;
-/*    border-radius: 50%;*/
-/*    border: 1px solid black;*/
+    flex-shrink: 0;
 }
 .committees .doctor .img-container > img {
     display: block;
@@ -46,17 +218,28 @@
     filter: none;
   }
 .committees .doctor .doctor-info {
-    min-height: 50px;
-    padding-top:4px;
+    min-height: auto;
+    padding-top: 0;
     line-height: normal;
     color: var(--primary-color);
     display: flex;
     flex-direction: column;
     gap: 2px;
+    width: 100%;
+    max-width: 150px;
+    flex-grow: 1;
+    justify-content: flex-start;
 }
 .committees .doctor .doctor-info span {
-    display: block;
+    /* display: block; */
     font-size: 13px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.committees .doctor .doctor-info .flag-icon {
+    margin-right: 5px;
+    font-size: 12px;
 }
 
 .img-container .fa-spinner

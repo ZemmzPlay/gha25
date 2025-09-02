@@ -162,7 +162,11 @@
           <label for="image" style="border:1px solid #ddd; display:inline-block; padding: 3px; margin-left: 15px;">
 
             <div class="img-container-list">
-              <img src="{{ asset($member->image_file) }}" id="CommitteeMemberImage" style="width: 200px;">
+              @if($member->image && file_exists(public_path('images/committees/' . $member->image)))
+                <img src="{{ asset('images/committees/' . $member->image) }}" id="CommitteeMemberImage" style="width: 200px;">
+              @else
+                <img src="{{ asset('images/committees/default_2.jpg') }}" id="CommitteeMemberImage" style="width: 200px;">
+              @endif
             </div>
             <input type="file" name="image" id="image" style="display: none;">
           </label>
@@ -196,7 +200,7 @@
       }
     }
 
-    $("#image_file").change(function() {
+    $("#image").change(function() {
       readURL(this);
     });
     $(document).ready(function() {});

@@ -37,13 +37,35 @@ class CommitteeController extends Controller
      */
     public function postCreate(Request $request)
     {
-        $this->validate($request, [
+        // Debug: Check what's being sent
+        \Log::info('Request data:', $request->all());
+        \Log::info('Has file image:', ['has_file' => $request->hasFile('image')]);
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            \Log::info('Image file info:', [
+                'original_name' => $file->getClientOriginalName(),
+                'mime_type' => $file->getMimeType(),
+                'size' => $file->getSize(),
+                'extension' => $file->getClientOriginalExtension(),
+                'is_valid' => $file->isValid(),
+            ]);
+        }
+
+        $validationRules = [
             'first_name'   => 'required|min:1|max:255',
             'last_name'   => 'required|min:1|max:255',
+            'subtitle'     => 'required|min:1|max:255',
             'committee_category_id'   => 'required|exists:committee_categories,id',
             'country'   => 'required|min:1|max:255',
-            'image'   => 'nullable|image|max:2048|mimes:jpeg,png,jpg,gif',
-        ]);
+            'display_order' => 'required|integer',
+        ];
+
+        // Only validate image if it's actually uploaded
+        if ($request->hasFile('image')) {
+            $validationRules['image'] = 'file|max:2048';
+        }
+
+        $this->validate($request, $validationRules);
 
         $member = new Committee();
 
@@ -52,7 +74,7 @@ class CommitteeController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $image_name = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(Committee::imagesFolderPath(), $image_name);
+            $image->move(public_path(Committee::imagesFolder()), $image_name);
 
             $member->image = $image_name;
         }
@@ -82,27 +104,35 @@ class CommitteeController extends Controller
      */
     public function postEdit(Request $request, $id)
     {
-        $this->validate($request, [
+        $validationRules = [
             'first_name'   => 'required|min:1|max:255',
             'last_name'   => 'required|min:1|max:255',
+            'subtitle'     => 'required|min:1|max:255',
             'committee_category_id'   => 'required|exists:committee_categories,id',
             'country'   => 'required|min:1|max:255',
-            'image'   => 'nullable|image|max:2048|mimes:jpeg,png,jpg,gif',
-        ]);
+            'display_order' => 'required|integer',
+        ];
+
+        // Only validate image if it's actually uploaded
+        if ($request->hasFile('image')) {
+            $validationRules['image'] = 'file|max:2048';
+        }
+
+        $this->validate($request, $validationRules);
 
         $member = Committee::findOrFail($id);
         $member->fill($request->all());
         if ($request->hasFile('image')) {
             // Delete old image file
             if ($member->image) {
-                if (file_exists(public_path() . '/' . Committee::imagesFolder() . $member->image))
-                    unlink(public_path() . '/' . Committee::imagesFolder() . $member->image);
-
-                $image = $request->file('image');
-                $image_name = time() . '.' . $image->getClientOriginalExtension();
-                $image->move(Committee::imagesFolderPath(), $image_name);
-                $member->image = $image_name;
+                if (file_exists(public_path(Committee::imagesFolder() . $member->image)))
+                    unlink(public_path(Committee::imagesFolder() . $member->image));
             }
+
+            $image = $request->file('image');
+            $image_name = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path(Committee::imagesFolder()), $image_name);
+            $member->image = $image_name;
         }
 
         $member->save();

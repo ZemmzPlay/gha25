@@ -122,7 +122,7 @@
                       $countries = config('countries');
                     @endphp
                     @foreach($countries as $countryCode => $countryData)
-                      <option value="+{{ $countryData['code'] }}" {{ old('countryCode') && old('countryCode') == '+'.$countryData['code'] ? 'selected' : '' }} data-flag="{{ strtolower($countryCode) }}">
+                      <option value="+{{ $countryData['code'] }}" {{ (old('countryCode') && old('countryCode') == '+'.$countryData['code']) || (!old('countryCode') && $countryCode == 'KW') ? 'selected' : '' }} data-flag="{{ strtolower($countryCode) }}">
                         +{{ $countryData['code'] }} ({{ $countryData['name'] }})
                       </option>
                     @endforeach
@@ -336,12 +336,9 @@
       <div class="sponsors-image-div">
         <img class="sponsors-image" src="{{ asset('images/home/endo3.png') }}" alt="Endorsed 2" />
       </div>
-      {{-- <div class="sponsors-image-div">
-        <img class="sponsors-image" src="{{ asset('images/home/endo/endo4.jpg') }}" alt="Endorsed 4" />
-      </div> --}}
-      {{-- <div class="sponsors-image-div">
-        <img class="sponsors-image" src="{{ asset('images/home/endo/endo5.jpg') }}" alt="Endorsed 5" />
-      </div> --}}
+      <div class="sponsors-image-div">
+        <img class="sponsors-image" src="{{ asset('images/home/endo/endo4.jpg') }}" alt="Endorsed 3" />
+      </div>
     </div>
   </div>
 

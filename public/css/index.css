@@ -264,11 +264,16 @@
  }
 
  .sponsors-image {
- 	/* width: 100%; */
- 	/* Adjust as needed */
- 	height: auto;
- 	max-width: 200px;
- }
+	/* width: 100%; */
+	/* Adjust as needed */
+	height: auto;
+	max-width: 220px;
+}
+
+/* Main sponsor images should be larger */
+.sponsors-container:first-of-type .sponsors-image {
+	max-width: 380px;
+}
 
  .sponsors-image-container {
  	display: flex;

@@ -131,8 +131,8 @@ class GenericPageController extends Controller
     public function faculty() {
         if(!Settings::get('facutlyEnableDisable')) abort(404);
 
-        $categories = FacultyCategory::all();
-        return view('faculty', compact('categories'));
+        $allMembers = FacultyMember::all();
+        return view('faculty', compact('allMembers'));
     }
 
     public function facultyBio(Request $request) {
