@@ -1306,6 +1306,7 @@
  .ourMessageLeft {
  	width: 500px;
  	display: flex;
+	gap: 40px;
  	/* align-items: center; */
  	/* flex-direction: column; */
  }
