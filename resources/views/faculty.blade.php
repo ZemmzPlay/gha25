@@ -23,31 +23,38 @@
   }
   
   .doctor-info > span:first-child {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
     display: block;
     width: 100%;
+    word-wrap: break-word;
+    line-height: 1.2;
   }
   
-  /* Better mobile display */
+  /* Mobile display adjustments */
   @media (max-width: 768px) {
     .doctor-info > span:first-child {
-      white-space: nowrap;
-      overflow: visible;
-      text-overflow: unset;
-      line-height: 1.2;
       font-size: 12px;
+      min-height: 2.4em;
     }
   }
-   /* Better mobile display */
-   @media (max-width: 413px) {
+  
+  /* Extra small mobile devices */
+  @media (max-width: 413px) {
     .doctor-info > span:first-child {
-      white-space: nowrap;
-      overflow: visible;
-      text-overflow: unset;
-      line-height: 1.2;
       font-size: 10px !important;
+      min-height: 2.4em;
+    }
+  }
+  
+  /* Ensure doctor info container can accommodate wrapped text */
+  @media (max-width: 768px) {
+    .doctor-info {
+      min-height: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
   }
 </style>
@@ -161,48 +168,48 @@
     <script type="text/javascript" src="{{asset('js/faculty.js')}}"></script>
     <script>
         $(document).ready(function() {
-            // Smart name display for mobile screens
-            function adjustNamesForScreen() {
-                $('.doctor-info > span:first-child').each(function() {
-                    var $span = $(this);
-                    var originalText = $span.data('original-text') || $span.text().trim();
+            // // Smart name display for mobile screens
+            // function adjustNamesForScreen() {
+            //     $('.doctor-info > span:first-child').each(function() {
+            //         var $span = $(this);
+            //         var originalText = $span.data('original-text') || $span.text().trim();
                     
-                    // Store original text if not already stored
-                    if (!$span.data('original-text')) {
-                        $span.data('original-text', originalText);
-                    }
+            //         // Store original text if not already stored
+            //         if (!$span.data('original-text')) {
+            //             $span.data('original-text', originalText);
+            //         }
                     
-                    if (window.innerWidth <= 768) {
-                        // On mobile, show only first part of the name
-                        var words = originalText.split(' ');
+            //         if (window.innerWidth <= 768) {
+            //             // On mobile, show only first part of the name
+            //             var words = originalText.split(' ');
                         
-                        if (words.length >= 3) {
-                            // For 3+ word names, show first 2 words
-                            var displayText = words[0] + ' ' + words[1];
-                            $span.text(displayText);
-                        } else if (words.length === 2) {
-                            // For 2-word names, show first word only
-                            $span.text(words[0]);
-                        } else {
-                            // For single word names, show as is
-                            $span.text(originalText);
-                        }
-                    } else {
-                        // On desktop, show full name
-                        $span.text(originalText);
-                    }
-                });
-            }
+            //             if (words.length >= 3) {
+            //                 // For 3+ word names, show first 2 words
+            //                 var displayText = words[0] + ' ' + words[1];
+            //                 $span.text(displayText);
+            //             } else if (words.length === 2) {
+            //                 // For 2-word names, show first word only
+            //                 $span.text(words[0]);
+            //             } else {
+            //                 // For single word names, show as is
+            //                 $span.text(originalText);
+            //             }
+            //         } else {
+            //             // On desktop, show full name
+            //             $span.text(originalText);
+            //         }
+            //     });
+            // }
             
-            // Apply on page load with a small delay to ensure DOM is ready
-            setTimeout(function() {
-                adjustNamesForScreen();
-            }, 100);
+            // // Apply on page load with a small delay to ensure DOM is ready
+            // setTimeout(function() {
+            //     adjustNamesForScreen();
+            // }, 100);
             
-            // Apply on window resize
-            $(window).resize(function() {
-                adjustNamesForScreen();
-            });
+            // // Apply on window resize
+            // $(window).resize(function() {
+            //     adjustNamesForScreen();
+            // });
         });
     </script>
 @endsection
