@@ -337,7 +337,7 @@
         <img class="sponsors-image" src="{{ asset('images/home/endo3.png') }}" alt="Endorsed 2" />
       </div>
       <div class="sponsors-image-div">
-        <img class="sponsors-image" src="{{ asset('images/home/endo/endo4.jpg') }}" alt="Endorsed 3" />
+        <img class="sponsors-image" src="{{ asset('images/home/endo/GIS-Black.png') }}" alt="Endorsed 3" />
       </div>
     </div>
   </div>
