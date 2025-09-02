@@ -1,4 +1,27 @@
-{{-- Title sponsor --}}
+  {{-- Main sponsor --}}
+  <div class="sponsors-container">
+    <h1 class="sponsors-text">Main sponsor</h1>
+    <div class="sponsors-image-container">
+      <div class="sponsors-image-div">
+        <img class="sponsors-image" src="{{ asset('images/sponsors/ATC.jpg') }}" alt="ATC" />
+      </div>
+    </div>
+  </div>
+
+  {{-- Platinum sponsor --}}
+  <div class="sponsors-container">
+    <h1 class="sponsors-text">Platinum sponsor</h1>
+    <div class="sponsors-image-container">
+      <div class="sponsors-image-div">
+        <img class="sponsors-image" src="{{ asset('images/sponsors/medvision.png') }}" alt="MedVision" />
+      </div>
+      <div class="sponsors-image-div">
+        <img class="sponsors-image" src="{{ asset('images/sponsors/NBMSEC.jpg') }}" alt="NBMSEC" />
+      </div>
+    </div>
+  </div>
+
+  {{-- Title sponsor --}}
   <div class="sponsors-container">
     <h1 class="sponsors-text">Title sponsor</h1>
     <div class="sponsors-image-container">
@@ -21,6 +44,9 @@
       <div class="sponsors-image-div">
         <img class="sponsors-image" src="{{ asset('images/home/SCAI.png') }}" alt="Organized 2" />
       </div>
+      <div class="sponsors-image-div">
+        <img class="sponsors-image" src="{{ asset('images/sponsors/Beshara_logo.png') }}" alt="Beshara" />
+      </div>
     </div>
   </div>
 
@@ -33,6 +59,9 @@
       </div>
       <div class="sponsors-image-div">
         <img class="sponsors-image" src="{{ asset('images/home/SCAI.png') }}" alt="Organized 2" />
+      </div>
+      <div class="sponsors-image-div">
+        <img class="sponsors-image" src="{{ asset('images/sponsors/italia.png') }}" alt="Italia" />
       </div>
     </div>
   </div>
