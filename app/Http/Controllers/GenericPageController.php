@@ -16,6 +16,7 @@ use App\BoardCountries;
 use App\BoardMember;
 use App\CaseSubmission;
 use App\CommitteeCategory;
+use App\Mail\CaseSubmissionEmail;
 use Settings;
 use Image;
 use Mail;
@@ -552,6 +553,14 @@ class GenericPageController extends Controller
             Storage::putFileAs('public/case_submissions/', $file, $file_name);
             $caseSubmission->document = $file_name;
             $caseSubmission->save();
+        }
+
+        // Send confirmation email to the user
+        try {
+            Mail::to($caseSubmission->email)->send(new CaseSubmissionEmail($caseSubmission));
+        } catch (\Exception $e) {
+            // Log the error but don't fail the submission
+            \Log::error('Failed to send case submission email: ' . $e->getMessage());
         }
 
         return redirect()->route('pages.case-submission')->with('status', 'Case Submission Successfully Submitted.');
