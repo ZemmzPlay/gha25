@@ -5,6 +5,25 @@
 
 @section('style')
 <link rel="stylesheet" href="{{asset('css/admin/members.css')}}" />
+<link rel="stylesheet" href="{{ asset('plugins/flag-icon-css/css/flag-icon.min.css') }}" />
+
+<style>
+  .flag-icon {
+    margin-right: 8px;
+    width: 20px;
+    height: 15px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .select2-results__option .flag-icon {
+    margin-right: 8px;
+  }
+  
+  .select2-selection__rendered .flag-icon {
+    margin-right: 8px;
+  }
+</style>
 @stop
 
 @section('breadcrumps')
@@ -45,6 +64,7 @@
             @endif
 
 
+
             <table id="member-list" style="width: 100%" class="table table-hover dt-responsive nowrap">
 
                 <thead>
@@ -72,7 +92,14 @@
                             </td>
                             <td>{{$member->name ? $member->name : $member->first_name}}</td>
                             <td>{{ $member->last_name }}</td>
-                            <td>{{$member->country_name}}</td>
+                            <td>
+                              @if($member->country)
+                                <span class="flag-icon flag-icon-{{ strtolower($member->country) }}"></span>
+                                {{$member->country_name}}
+                              @else
+                                {{$member->country_name}}
+                              @endif
+                            </td>
                             <td>{{$member->created_at->format('Y-m-d')}}</td>
                             <td class="text-right">
                                 <a href="{{url('admin/faculty/'.$member->id.'/print')}}" class="btn btn-sm btn-default" target="_blank">Print ID</a>
@@ -92,5 +119,7 @@
 
 @section('scripts')
     <script src="{{asset('plugins/bootbox/bootbox.min.js')}}"></script>
+
     <script type="text/javascript" src="{{asset('build/js/page-content/e-commerce/member-list.js')}}"></script>
+
 @stop

@@ -2,6 +2,7 @@
 
 @section('style')
   <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ asset('plugins/flag-icon-css/css/flag-icon.min.css') }}" />
   <style>
     .img-container-list {
       background: #DDDDDC;
@@ -10,6 +11,23 @@
       margin: 0 auto;
       padding: 1px;
       overflow: auto;
+    }
+    
+    /* Country flag styling */
+    .flag-icon {
+      margin-right: 8px;
+      width: 20px;
+      height: 15px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    
+    .select2-results__option .flag-icon {
+      margin-right: 8px;
+    }
+    
+    .select2-selection__rendered .flag-icon {
+      margin-right: 8px;
     }
 
     .img-container-list img {
@@ -126,10 +144,13 @@
         <div class="form-group">
           <label for="country" class="col-sm-3 control-label">Country</label>
           <div class="col-sm-9">
-            <select id="country" name="country" class="form-control">
+            <select id="country" name="country" class="form-control select2">
               @foreach ($countries as $key => $country)
                 <option value="{{ $key }}"
-                  {{ $key == $member->country ? 'selected' : '' }}>{{ $country['name'] }}</option>
+                  {{ $key == $member->country ? 'selected' : '' }}
+                  data-flag="{{ strtolower($key) }}">
+                  {{ $country['name'] }}
+                </option>
               @endforeach
             </select>
           </div>
@@ -223,7 +244,41 @@
       $('#permission_id').select2({
         placeholder: "Select Permission"
       });
+      
+      // Initialize country dropdown with flags
+      $('#country').select2({
+        placeholder: "Select Country",
+        templateResult: formatCountry,
+        templateSelection: formatCountrySelection,
+        escapeMarkup: function(markup) {
+          return markup;
+        }
+      });
     });
+    
+    function formatCountry(country) {
+      if (!country.id) {
+        return country.text;
+      }
+      
+      var flag = country.element.getAttribute('data-flag');
+      var $country = $(
+        '<span><span class="flag-icon flag-icon-' + flag + '"></span> ' + country.text + '</span>'
+      );
+      return $country;
+    }
+    
+    function formatCountrySelection(country) {
+      if (!country.id) {
+        return country.text;
+      }
+      
+      var flag = country.element.getAttribute('data-flag');
+      var $country = $(
+        '<span><span class="flag-icon flag-icon-' + flag + '"></span> ' + country.text + '</span>'
+      );
+      return $country;
+    }
   </script>
 
 @stop

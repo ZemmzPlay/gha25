@@ -104,7 +104,10 @@ class FacultyController extends Controller
         //     FacultyMember::where('country', $key)->update(['country' => $country]);
         // }
 
-        $members = FacultyMember::all();
+        $members = FacultyMember::all()->sortBy(function($member) {
+            // First sort by whether they have an image (images first), then by creation date (newest first), then by last name
+            return [$member->image_file ? 0 : 1, -strtotime($member->created_at), $member->last_name];
+        });
         $user = Auth::guard('admin')->user();
         return view('admin.faculty.members', compact('user', 'members'));
     }

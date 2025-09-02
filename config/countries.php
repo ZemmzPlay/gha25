@@ -106,7 +106,7 @@ return [
   'IN' => array('name' => 'INDIA', 'code' => '91'),
   'IO' => array('name' => 'BRITISH INDIAN OCEAN TERRITORY', 'code' => '086'),
   'IQ' => array('name' => 'IRAQ', 'code' => '964'),
-  'IR' => array('name' => 'IRAN, ISLAMIC REPUBLIC OF', 'code' => '98'),
+  'IR' => array('name' => 'IRAN', 'code' => '98'),
   'IS' => array('name' => 'ICELAND', 'code' => '354'),
   'IT' => array('name' => 'ITALY', 'code' => '39'),
   'JE' => array('name' => 'JERSEY', 'code' => '832'),

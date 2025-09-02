@@ -22,7 +22,7 @@
 
           <p class="description">
             <strong>Email:</strong> <a href="mailto:{{ config('mail.from.address') }}">{{ config('mail.from.address') }}</a><br>
-            <strong>Phone:</strong> <a href="tel:{{ config('mail.from.phone') }}">{{ config('mail.from.phone') }}</a><br>
+            <strong>Phone:</strong> <a href="tel:+96522467780">+965 2246 7780</a><br>
 
         </div>
       </div>

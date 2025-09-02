@@ -5,6 +5,23 @@
 <link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}" />
 <link rel="stylesheet" href="{{asset('css/responsive.css')}}" />
 <link rel="stylesheet" href="{{asset('css/faculty.css')}}" />
+<link rel="stylesheet" href="{{ asset('plugins/flag-icon-css/css/flag-icon.min.css') }}" />
+<style>
+  .doctor-country {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .doctor-country .flag-icon {
+    width: 16px;
+    height: 12px;
+    display: inline-block;
+    vertical-align: middle;
+    flex-shrink: 0;
+    margin-right: 2px;
+  }
+</style>
 @endsection
 
 @section('content')
@@ -20,7 +37,10 @@
                         <h1 class="section-title" style="margin-bottom: 15px;font-family: CircularBook, sans-serif;font-size: 20px; color: var(--primary-color); font-weight: bold;">{{$category->name}}</h1>
 
                         <div class="row">
-                            @forelse($category->members->sortBy('last_name') as $member)
+                            @forelse($category->members->sortBy(function($member) {
+                                // First sort by whether they have an image (images first), then by creation date (newest first), then by last name
+                                return [$member->image_file ? 0 : 1, -strtotime($member->created_at), $member->last_name];
+                            }) as $member)
                             <div class="col-md-2 col-sm-4 col-xs-6 doctor-container">
                                 <div class="doctor">
                                     <a class="modal-member-popup" data-id="{{ $member->id }}">
@@ -34,7 +54,14 @@
                                         </div>
                                         <div class="doctor-info">
                                             <span>{{$member->name ? $member->name : $member->first_name . " " . $member->last_name}}</span>
-                                            <span class="doctor-country">{{$member->country ? $member->country_name : ''}}</span>
+                                            <span class="doctor-country">
+                                              @if($member->country)
+                                                <span class="flag-icon flag-icon-{{ strtolower($member->country) }}"></span>
+                                                {{$member->country_name}}
+                                              @else
+                                                {{$member->country_name}}
+                                              @endif
+                                            </span>
                                         </div>
                                     </a>
                                 </div>
