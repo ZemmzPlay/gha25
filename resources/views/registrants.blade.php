@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', 'Registrants' .(isset($configuration) && isset($configuration->website_title) ? ' - '.$configuration->website_title : ' - 15th GHA Meeting in Collaboration with KHF | Kuwait December 2023'))
+@section('title', 'Registrants' .(isset($configuration) && isset($configuration->website_title) ? ' - '.$configuration->website_title : ' - 3RD GHA - SCAI SHOCK MIDDLE EAST - KUWAIT'))
 @section('style')
 <link rel="stylesheet" href="{{asset('css/registrants.css')}}" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css">

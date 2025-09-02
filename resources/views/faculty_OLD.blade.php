@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', 'Faculty | GHAESC')
+@section('title', '3RD GHA - SCAI SHOCK MIDDLE EAST - KUWAIT')
 
 @section('content')
         <section id="faculty" class="faculty home-section animate slow-mo even fadeIn no-padding-bottom no-padding-top" data-anim-type="fadeIn" data-anim-delay="200">

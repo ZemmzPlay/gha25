@@ -19,7 +19,7 @@
   <meta name="_token" content="{{ csrf_token() }}">
   {{-- <meta property="og:title" content="The Fourth Joint GHA/ESC Meeting" /> --}}
   <meta property="og:title"
-    content="{{ isset($configuration) && isset($configuration->website_title) ? $configuration->website_title : '15th GHA Meeting in Collaboration with KHF | Kuwait December 2023' }}" />
+    content="{{ isset($configuration) && isset($configuration->website_title) ? $configuration->website_title : '3RD GHA - SCAI SHOCK MIDDLE EAST - KUWAIT' }}" />
   {{-- <meta property="og:description" content="Join us at the Fourth Joint GHA/ESC Meeting. October 11-12, 2019."> --}}
   <meta property="og:image" content="{{ asset('images/' . $configuration->logo) }}">
   {{-- <meta property="og:image" content="{{asset('icon/ghaesc-og.png')}}"> --}}
@@ -194,7 +194,7 @@
       <div class="byData">
         <div class="organizedBy">
           <div class="organizedByText">Meeting organized by</div>
-          <div><img src="{{ asset('images/global/Zawaya_white.png') }}" alt="Zawaya Conferences" /></div>
+          <div><a href="https://zawaya.me/conferences-and-events/" target="_blank" rel="noopener noreferrer"><img src="{{ asset('images/global/Zawaya_white.png') }}" alt="Zawaya Conferences" width="150" height="60" /></a></div>
         </div>
         <div style="font-size: 25px;">
           |

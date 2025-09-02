@@ -267,14 +267,14 @@
           <img class="ourMessageImage" src="{{ asset('images/home/chairman.png') }}" alt="Prof. Mohammad Zubaid" />
           <div class="ourMessageNamePos">
             <div class="ourMessageName">Prof. Mohammad Zubaid</div>
-            <div class="ourMessagePos">Meeting Co-Chairs</div>
+            <div class="ourMessagePos">Meeting Co-Chair</div>
           </div>
         </div>
         <div class="onePerson">
-          <img class="ourMessageImage" src="{{ asset('images/home/chairman.png') }}" alt="Prof. Mohammad Zubaid" />
+          <img class="ourMessageImage" src="{{ asset('images/home/doctor.png') }}" alt="Prof. Mohammad Zubaid" />
           <div class="ourMessageNamePos">
-            <div class="ourMessageName">Prof. Mohammad Zubaid</div>
-            <div class="ourMessagePos">Meeting Co-Chairs</div>
+            <div class="ourMessageName">Dr. Babar Basir</div>
+            <div class="ourMessagePos">Meeting Co-Chair</div>
           </div>
         </div>
 

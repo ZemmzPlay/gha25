@@ -1364,6 +1364,7 @@
  	.ourMessageLeft {
  		/* width: 25%; */
  		/* min-width: 500px; */
+		gap: 30px;
  	}
 
  	.ourMessageRight {
@@ -1400,6 +1401,7 @@
  		width: 100%;
  		/* min-width: 360px; */
  		justify-content: center;
+		gap: 20px;
  	}
 
  	.ourMessageImage {
