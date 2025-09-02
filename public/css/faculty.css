@@ -58,6 +58,7 @@ body
     clip-path: circle(50%);
     filter: grayscale(100%);
     transition: all 0.3s;
+    object-fit: cover ;
     /*border-radius: 50%;
     border: 1px solid black;*/
 }
