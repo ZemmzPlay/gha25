@@ -231,10 +231,10 @@
     justify-content: flex-start;
 }
 .committees .doctor .doctor-info span {
-    /* display: block; */
     font-size: 13px;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    align-self: anchor-center;
 }
 
 .committees .doctor .doctor-info .flag-icon {
@@ -242,14 +242,7 @@
     font-size: 12px;
 }
 
-.img-container .fa-spinner
-{
-  position: absolute;
-  top: 35%;
-  left: 35%;
-  z-index: 0;
-  color: white;;
-}
+/* Spinner styles removed - no longer needed */
 
 .member-image
 {

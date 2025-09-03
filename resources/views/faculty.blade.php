@@ -75,7 +75,6 @@
                                 <div class="doctor">
                                     <a class="modal-member-popup" data-id="{{ $member->id }}">
                                         <div class="img-container">
-                                            <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
                                             @if($member->image_file && file_exists('images/faculty/'.$member->image_file))
                                             <img class="member-image" src="{{asset('images/faculty/'.$member->image_file)}}">
                                             @else
