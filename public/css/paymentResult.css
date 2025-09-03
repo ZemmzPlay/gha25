@@ -17,7 +17,7 @@
 .main-title
 {
   font-family: 'BlackerDisplayBold';
-  color: green;
+  color: #4779A9;
   text-transform: none;
   margin: 0;
 }
@@ -38,7 +38,7 @@
 {
   -webkit-clip-path: circle(50%);
   clip-path: circle(50%);
-  background-color: #602D90;
+  background-color: #00274D;
   color: #ffffff;
   width: 50px;
   height: 50px;
@@ -48,7 +48,7 @@
 
 .button-section button:hover
 {
-  background-color: #2e1644;
+  background-color: #001a33;
 }
 
 .registration-id
@@ -73,13 +73,13 @@
 
 .contact a
 {
-  color: green;
+  color: #4779A9;
   text-decoration: underline;
 }
 
 .text-green
 {
-  color: green !important;
+  color: #4779A9 !important;
 }
 
 .contact
@@ -90,12 +90,18 @@
 .contact .btn
 {
   color: #ffffff;
+  background-color: #00274D;
   text-decoration: none;
   transition: all 0.3s;
   border-radius: 10px;
   padding: 10px 25px;
   text-transform: uppercase;
   font-weight: 700;
+}
+
+.contact .btn:hover
+{
+  background-color: #001a33;
 }
 
 h3
