@@ -352,6 +352,135 @@
  	}
  }
 
+/* Mobile-specific sponsors spacing improvements */
+@media (max-width: 768px) {
+	.sponsors-container {
+		margin-top: 40px;
+		margin-bottom: 60px;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	.sponsors-text {
+		font-size: 1.8rem;
+		margin-bottom: 30px;
+		text-align: left;
+	}
+
+	.sponsors-image-container {
+		justify-content: center;
+		gap: 20px;
+		row-gap: 30px;
+	}
+
+	.sponsors-image-div {
+		width: auto;
+		margin-bottom: 15px;
+	}
+
+	.sponsors-image {
+		max-width: 200px;
+		width: 100%;
+		height: auto;
+	}
+}
+
+@media (max-width: 480px) {
+	.sponsors-container {
+		margin-top: 30px;
+		margin-bottom: 50px;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
+	.sponsors-text {
+		font-size: 1.5rem;
+		margin-bottom: 25px;
+	}
+
+	.sponsors-image-container {
+		gap: 15px;
+		row-gap: 25px;
+	}
+
+	.sponsors-image {
+		max-width: 180px;
+	}
+}
+
+/* Additional mobile spacing improvements */
+@media (max-width: 600px) {
+	.sponsors-container {
+		margin-top: 35px;
+		margin-bottom: 55px;
+		padding-left: 18px;
+		padding-right: 18px;
+	}
+
+	.sponsors-text {
+		font-size: 1.6rem;
+		margin-bottom: 28px;
+		line-height: 1.4;
+	}
+
+	.sponsors-image-container {
+		gap: 18px;
+		row-gap: 28px;
+	}
+
+	.sponsors-image {
+		max-width: 190px;
+	}
+}
+
+@media (max-width: 400px) {
+	.sponsors-container {
+		margin-top: 25px;
+		margin-bottom: 45px;
+		padding-left: 12px;
+		padding-right: 12px;
+	}
+
+	.sponsors-text {
+		font-size: 1.3rem;
+		margin-bottom: 22px;
+		line-height: 1.3;
+	}
+
+	.sponsors-image-container {
+		gap: 12px;
+		row-gap: 25px;
+	}
+
+	.sponsors-image {
+		max-width: 160px;
+	}
+}
+
+@media (max-width: 320px) {
+	.sponsors-container {
+		margin-top: 20px;
+		margin-bottom: 40px;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	.sponsors-text {
+		font-size: 1.2rem;
+		margin-bottom: 20px;
+		line-height: 1.2;
+	}
+
+	.sponsors-image-container {
+		gap: 10px;
+		row-gap: 22px;
+	}
+
+	.sponsors-image {
+		max-width: 140px;
+	}
+}
+
 
  @media (max-width: 991px) {
  	.sponsors-container {

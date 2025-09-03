@@ -9,7 +9,7 @@ h5 {
 
 .main-title {
   text-transform: capitalize;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   /*  font-family: CircularBook, sans-serif;*/
   font-size: 50px;
   line-height: normal;
@@ -17,4 +17,89 @@ h5 {
 
 .sponsors-container {
   padding: 0 !important;
+  margin-bottom: 40px;
+}
+
+.sponsors-container:first-of-type {
+  margin-top: 20px;
+}
+
+.sponsors-text {
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.sponsors-image-container {
+  margin-bottom: 20px;
+}
+
+/* Mobile-specific spacing improvements */
+@media (max-width: 768px) {
+  .main-title {
+    margin-bottom: 40px;
+    font-size: 36px;
+    text-align: left;
+  }
+  
+  .sponsors-container {
+    margin-bottom: 50px;
+    padding: 20px !important;
+  }
+  
+  .sponsors-container:first-of-type {
+    margin-top: 30px;
+  }
+  
+  .sponsors-text {
+    margin-bottom: 30px;
+    font-size: 24px;
+    text-align: left;
+  }
+  
+  .sponsors-image-container {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+  
+  .sponsors-image-div {
+    margin-bottom: 15px;
+  }
+  
+  .sponsors-image {
+    max-width: 280px;
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-title {
+    margin-bottom: 35px;
+    font-size: 32px;
+    text-align: left;
+  }
+  
+  .sponsors-container {
+    margin-bottom: 45px;
+    padding: 15px !important;
+  }
+  
+  .sponsors-text {
+    margin-bottom: 25px;
+    font-size: 22px;
+    text-align: left;
+  }
+  
+  .sponsors-image-container {
+    margin-bottom: 25px;
+    gap: 20px;
+  }
+  
+  .sponsors-image {
+    max-width: 250px;
+  }
 }
