@@ -23,7 +23,7 @@
                   {{ $category->name }}</h1>
 
                 <div class="row">
-                  @forelse($category->committees->sortBy('last_name') as $member)
+                  @forelse($category->committees->sortBy('display_order') as $member)
                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 doctor-container">
                       <div class="doctor">
                         {{-- <a href="#modal-popup" class="modal-member-popup" data-id="{{ $member->id }}"> --}}
