@@ -132,7 +132,7 @@
     
     <div class="text-gray closing">
       <strong>Best regards,<br>
-      The GHA SCAI Shock Middle East Meeting Team</strong>
+      3rd GHA SCAI Shock Middle East Meeting</strong>
     </div>
   </div>
 </body>
