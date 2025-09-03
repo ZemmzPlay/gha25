@@ -294,20 +294,8 @@ class RegistrationsController extends Controller
         /////////////// EMAIL PART HERE AFTER PAYMENT SUCCESS ///////////////
         if(!$registration->onlyWorkshop)
         {
-            $qrcode = QrCode::format('png')->size(200)->generate(url('admin/registrations/' . $registration->id . '/print'));
-            Mail::send(
-                'emails.confirmation',
-                [
-                    'registration' => $registration,
-                    'qrCode' => $qrcode
-                ],
-                function ($m) use ($registration) {
-                    $m->to($registration->email, $registration->first_name)
-                    ->subject('Registration Confirmation')
-                    ->from('conferences@zawaya.me', 'GHA');
-
-                }
-            );
+            $qrcode = QrCode::format('svg')->size(200)->generate(url('admin/registrations/' . $registration->id . '/print'));
+            \App\Mail\SimpleEmailService::sendRegistrationEmail($registration, $qrcode);
         }
 
         if($registration->workshop_id)

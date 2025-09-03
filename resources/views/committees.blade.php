@@ -42,7 +42,6 @@
                           @endif
                           <span>
                             <span class="flag-icon flag-icon-{{ strtolower($member->country) }}"></span>
-                            {{ $member->country_name }}
                           </span>
                         </div>
                         {{-- </a> --}}
