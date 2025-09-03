@@ -13,10 +13,11 @@
 }
 
 .committees .doctor-container { 
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   display: flex;
   flex-direction: column;
   height: 100%;
+  min-height: 200px;
 }
 
 /* Responsive styles for small screens */
@@ -234,7 +235,7 @@
     font-size: 13px;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    align-self: anchor-center;
+    text-align: center;
 }
 
 .committees .doctor .doctor-info .flag-icon {
@@ -243,6 +244,21 @@
 }
 
 /* Spinner styles removed - no longer needed */
+
+/* Ensure proper grid layout */
+.committees .row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+.committees .col-lg-2,
+.committees .col-md-3,
+.committees .col-sm-4,
+.committees .col-xs-6 {
+  padding: 0 10px;
+  margin-bottom: 20px;
+}
 
 .member-image
 {
