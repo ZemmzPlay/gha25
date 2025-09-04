@@ -26,7 +26,7 @@
     
     .main-title {
       font-size: 2.5rem;
-      color: #3EA651;
+      color: #4779A9;
       font-weight: 700;
       text-align: center;
       margin: 20px 0;

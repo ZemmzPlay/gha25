@@ -528,12 +528,28 @@ class RegistrationController extends Controller
     private function sendConfirmationEmail($registration)
     {
         /////////////// EMAIL PART HERE AFTER PAYMENT SUCCESS ///////////////
+        
+        // Send welcome email to user after OTP validation is complete
+        try {
+            \Log::info('Attempting to send registration confirmation email to: ' . $registration->email);
+            Mail::to($registration->email)->send(new RegistrationConfirmationEmail($registration));
+            \Log::info('Registration confirmation email sent successfully to: ' . $registration->email);
+        } catch (\Exception $e) {
+            // Log the error but don't fail the registration
+            \Log::error('Failed to send registration confirmation email: ' . $e->getMessage());
+            \Log::error('Registration email error details: ' . $e->getTraceAsString());
+        }
+
+        // Commented out QR code logic as requested
+        /*
         if(!$registration->onlyWorkshop)
         {
             $qrcode = QrCode::format('svg')->size(200)->generate(url('admin/registrations/' . $registration->id . '/print'));
             \App\Mail\SimpleEmailService::sendRegistrationEmail($registration, $qrcode);
         }
+        */
 
+        // Workshop email logic (keeping as is)
         if($registration->workshop_id)
         {
             Mail::send(
