@@ -32,7 +32,7 @@ class RegistrationConfirmationEmail extends Mailable
      */
     public function build()
     {
-
-        return $this->view('emails.confirmation')->subject('Registration Confirmation - The Second Joint GHA/ESC Meeting');
+        return $this->view('emails.confirmation')
+                    ->subject('Thank You for Registering for the 3rd GHA SCAI Shock Middle East Meeting');
     }
 }

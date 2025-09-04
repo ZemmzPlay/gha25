@@ -54,7 +54,7 @@ class CommitteeController extends Controller
         $validationRules = [
             'first_name'   => 'required|min:1|max:255',
             'last_name'   => 'required|min:1|max:255',
-            'subtitle'     => 'required|min:1|max:255',
+            'subtitle'     => 'nullable|max:255',
             'committee_category_id'   => 'required|exists:committee_categories,id',
             'country'   => 'required|min:1|max:255',
             'display_order' => 'required|integer',
@@ -107,7 +107,7 @@ class CommitteeController extends Controller
         $validationRules = [
             'first_name'   => 'required|min:1|max:255',
             'last_name'   => 'required|min:1|max:255',
-            'subtitle'     => 'required|min:1|max:255',
+            'subtitle'     => 'nullable|max:255',
             'committee_category_id'   => 'required|exists:committee_categories,id',
             'country'   => 'required|min:1|max:255',
             'display_order' => 'required|integer',

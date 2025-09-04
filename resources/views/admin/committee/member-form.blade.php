@@ -119,7 +119,7 @@
         <div class="form-group">
           <label for="subtitle" class="col-sm-3 control-label">Subtitle</label>
           <div class="col-sm-9">
-            <input id="subtitle" type="text" class="form-control" name="subtitle" required
+            <input id="subtitle" type="text" class="form-control" name="subtitle"
               value="{{ old('subtitle') ? old('subtitle') : $member->subtitle }}">
           </div>
         </div>
