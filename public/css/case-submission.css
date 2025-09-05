@@ -9,14 +9,14 @@ h5 {
 
 .main-title {
   text-transform: capitalize;
-  margin-bottom: 15px;
+  margin-bottom: 40px;
   /*  font-family: CircularBook, sans-serif;*/
   font-size: 50px;
   line-height: normal;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 35px;
 }
 
 .form-group label {
@@ -49,8 +49,27 @@ textarea {
   resize: none !important;
 }
 
+.file-upload-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+.file-name-display {
+  color: var(--primary-color);
+  font-size: 16px;
+  font-weight: 500;
+  min-width: 200px;
+  padding: 8px 12px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  font-family: 'DMSerifDisplayRegular';
+}
+
 .choose-file-btn {
-  display: block;
+  display: inline-block;
   width: max-content;
   padding: 10px 20px;
   background-color: var(--primary-color);
@@ -59,8 +78,8 @@ textarea {
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 10px;
   font-family: 'DMSerifDisplayRegular';
+  white-space: nowrap;
 }
 
 .choose-file-btn:hover {
@@ -70,12 +89,13 @@ textarea {
 
 .submit-btn {
     font-family: 'DMSerifDisplayRegular';
-    margin-top: 30px;
+    margin-top: 15px;
     /* margin-left: 90px; */
     width: 200px;
     height: 40px;
     border-radius: 7px;
     color: white;
+    margin-bottom: 15px;
     background-color: var(--primary-color);
     transition: all 0.3s;
     border: 1px solid var(--primary-color);
@@ -83,4 +103,23 @@ textarea {
 .submit-btn:hover {
     background-color: white;
     color: var(--primary-color);
+}
+
+/* Responsive design for file upload */
+@media (max-width: 768px) {
+  .file-upload-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .file-name-display {
+    min-width: 100%;
+    width: 100%;
+  }
+  
+  .choose-file-btn {
+    width: 100%;
+    text-align: center;
+  }
 }

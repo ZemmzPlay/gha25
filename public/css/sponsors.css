@@ -17,7 +17,7 @@ h5 {
 
 .sponsors-container {
   padding: 0 !important;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .sponsors-container:first-of-type {
@@ -25,13 +25,14 @@ h5 {
 }
 
 .sponsors-text {
+  color: var(--primary-color);
   margin-bottom: 20px;
   font-size: 28px;
   font-weight: 600;
 }
 
 .sponsors-image-container {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 /* Mobile-specific spacing improvements */

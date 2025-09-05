@@ -84,8 +84,11 @@
 
             <div class="form-group">
               <label for="document">Upload Supporting Documents</label>
-              <label for="document" class="choose-file-btn">Choose File</label>
-              <input type="file" class="form-control-file hidden" id="document" name="document">
+              <div class="file-upload-container">
+                <span id="file-name" class="file-name-display">No file chosen</span>
+                <label for="document" class="choose-file-btn">Choose File</label>
+                <input type="file" class="form-control-file hidden" id="document" name="document" accept=".pdf,.doc,.docx">
+              </div>
               @if ($errors->has('document'))
                 <span class="text-danger">{{ $errors->first('document') }}</span>
               @endif
@@ -98,4 +101,11 @@
       </div>
     </div>
   </div>
+
+  <script>
+    document.getElementById('document').addEventListener('change', function(e) {
+      const fileName = e.target.files[0] ? e.target.files[0].name : 'No file chosen';
+      document.getElementById('file-name').textContent = fileName;
+    });
+  </script>
 @stop
