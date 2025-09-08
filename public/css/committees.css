@@ -25,6 +25,7 @@
   .committees .doctor-container {
     margin-bottom: 25px;
     padding: 0 5px;
+    flex-grow: 1;
   }
   
   .committees .doctor {
@@ -32,6 +33,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    height: 100%;
   }
   
   .committees .doctor .img-container {
@@ -43,13 +45,30 @@
     min-height: auto;
     padding-top: 0;
     width: 100%;
-    max-width: 120px;
+    max-width: 200px;
   }
   
   .committees .doctor .doctor-info span {
     font-size: 11px;
     line-height: 1.2;
     margin-bottom: 2px;
+  }
+  
+  .committees .doctor .doctor-info #doctor-name {
+    font-size: 15px;
+    font-weight: 600 !important;
+    line-height: 1.1;
+    margin-bottom: 1px;
+    display: inline;
+    white-space: nowrap;
+  }
+  .committees .doctor .doctor-info #doctor-subtitle {
+    font-size: 12px;
+    line-height: 1.1;
+    margin-bottom: 1px;
+    display: inline;
+    margin-left: 5px;
+    white-space: nowrap;
   }
   
   .committees .doctor .doctor-info .flag-icon {
@@ -102,13 +121,21 @@
     min-height: auto;
     max-width: 100px;
   }
-  
-  .committees .doctor .doctor-info span {
-    font-size: 10px;
+  .committees .doctor .doctor-info #doctor-name {
+    font-size: 15px;
+    font-weight: 600 !important;
     line-height: 1.1;
     margin-bottom: 1px;
+    display: inline;
   }
-  
+  .committees .doctor .doctor-info #doctor-subtitle {
+    font-size: 12px;
+    line-height: 1.1;
+    margin-bottom: 1px;
+    display: inline;
+    margin-left: 5px;
+    white-space: nowrap;
+  }
   .committees .doctor .doctor-info .flag-icon {
     font-size: 9px;
     margin-right: 2px;
@@ -157,6 +184,22 @@
   .committees .doctor .doctor-info span {
     font-size: 9px;
     line-height: 1.0;
+  }
+  
+  .committees .doctor .doctor-info #doctor-name {
+    font-size: 15px;
+    font-weight: 600 !important;
+    line-height: 1.1;
+    margin-bottom: 1px;
+    display: inline;
+  }
+  .committees .doctor .doctor-info #doctor-subtitle {
+    font-size: 12px;
+    line-height: 1.1;
+    margin-bottom: 1px;
+    display: inline;
+    margin-left: 5px;
+    white-space: nowrap;
   }
   
   .committees .doctor .doctor-info .flag-icon {
@@ -241,6 +284,23 @@
 .committees .doctor .doctor-info .flag-icon {
     margin-right: 5px;
     font-size: 12px;
+}
+
+.committees .doctor .doctor-info #doctor-name {
+  font-size: 15px;
+  font-weight: 600 !important;
+  line-height: 1.1;
+  margin-bottom: 1px;
+  display: inline;
+}
+.committees .doctor .doctor-info #doctor-subtitle {
+  font-size: 12px;
+  line-height: 1.1;
+  margin-bottom: 1px;
+  display: inline;
+  margin-left: 5px;
+  white-space: nowrap;
+  align-self: anchor-center;
 }
 
 /* Spinner styles removed - no longer needed */

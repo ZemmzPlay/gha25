@@ -12,6 +12,9 @@
     align-items: center;
     justify-content: center;
   }
+  .doctor-info #doctor-name {
+    white-space: nowrap;
+  }
   
   .doctor-country .flag-icon {
     width: 16px;
@@ -82,7 +85,7 @@
                                             @endif
                                         </div>
                                         <div class="doctor-info">
-                                            <span>{{$member->name ? $member->name : $member->first_name . " " . $member->last_name}}</span>
+                                            <span id="doctor-name">{{$member->name ? $member->name : $member->first_name . " " . $member->last_name}}</span>
                                             <span class="doctor-country">
                                               @if($member->country)
                                                 <span class="flag-icon flag-icon-{{ strtolower($member->country) }}"></span>
