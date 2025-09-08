@@ -151,12 +151,16 @@
               <div class="registerOneInputContainer" id="workshopInput">
                 <div class="registerOneInputLabel">Workshop</div>
                 <div class="workshops">
-                  @foreach ($workshops as $workshop)
+                  @php $breaks = [0, 3]; @endphp
+                  @foreach ($workshops as $key => $workshop)
                     <label><input type="checkbox" name="workshops[]" value="{{ $workshop->id }}"
                         id="workshop-{{ $workshop->id }}" class="workshop-checkbox"
                         {{ is_array(old('workshops')) && in_array($workshop->id, old('workshops')) ? 'checked' : '' }}
                         {{ $workshop->places_left <= 0 ? 'disabled' : '' }} />
                       {{ $workshop->title }}</label>
+                      @if(in_array($key, $breaks))
+                        <div class="break"></div>
+                      @endif
                   @endforeach
                 </div>
                 {{-- <select name="workshop_id" class="registerOneInputValue">
