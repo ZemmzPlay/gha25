@@ -106,12 +106,12 @@
               <div class="event-detail-item">
                 <i class="fa fa-calendar"></i>
                 <span class="event-label">When:</span>
-                <span class="event-value">24th - 25th January, 2025</span>
+                <span class="event-value">09th - 10th January, 2026</span>
               </div>
               <div class="event-detail-item">
                 <i class="fa fa-map-marker-alt"></i>
                 <span class="event-label">Where:</span>
-                <span class="event-value">Crowne Plaza RDC, Riyadh</span>
+                <span class="event-value">The Regency Hotel, 25 Al-Ta'awen St, Kuwait</span>
               </div>
             </div>
           </div>
@@ -128,9 +128,6 @@
               </div>
               <div class="endorsed-logo">
                 <img src="{{ asset('images/home/endo/GIS-Black.png') }}" alt="Gulf Intervention Society" />
-              </div>
-              <div class="endorsed-logo">
-                <img src="{{ asset('images/home/endo1.png') }}" alt="Support Sponsor" />
               </div>
             </div>
           </div>
