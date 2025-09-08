@@ -75,7 +75,7 @@ class RegistrationController extends Controller
             }
         }
 
-        $workshopDisable = [1 => 4, 2 => 5, 4 => 1, 5 => 2];
+        $workshopDisable = [2 => 5, 3 => 6, 5 => 2, 6 => 3];
 
         foreach($workshops as $workshop_id)
         {

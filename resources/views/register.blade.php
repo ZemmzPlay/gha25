@@ -253,7 +253,7 @@
   <script type="text/javascript" src="{{ asset('js/index.js?ver=1.4') }}"></script>
   <script>
     $(document).ready(function() {
-      var workshopDisable = {1: 4, 2: 5, 4: 1, 5: 2};
+      var workshopDisable = {2: 5, 3: 6, 5: 2, 6: 3};
       checkWorkshops();
       $(document).on('click', '.workshop-checkbox', function() {
         id = $(this).val();
