@@ -583,6 +583,17 @@ class GenericPageController extends Controller
     }
 
     /**
+     * Register Page
+     */
+    public function register()
+    {
+        $workshops = $this->fetchWorkshops();
+        $workshops = json_decode(json_encode($workshops), false);
+        
+        return view('register', compact('workshops'));
+    }
+
+    /**
      * Committees Page
      */
     public function committees()

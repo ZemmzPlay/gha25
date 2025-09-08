@@ -2169,3 +2169,187 @@
 		font-size: 14px;
 	}
 }
+
+/* Who Should Attend & Endorsed By Section */
+.attendees-endorsed-section {
+  padding: 60px 0;
+  background: white;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--primary-color-dark);
+  margin-bottom: 30px;
+  font-family: 'DMSerifDisplayRegular', sans-serif;
+}
+
+.who-should-attend .section-title {
+  font-weight: 900;
+}
+
+.endorsed-by .section-title {
+  text-align: center;
+}
+
+.who-should-attend {
+  padding-right: 30px;
+}
+
+.attendee-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px 0;
+}
+
+.attendee-list li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+}
+
+.attendee-list li:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+}
+
+.event-details {
+  margin-top: 30px;
+}
+
+.event-detail-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.event-detail-item i {
+  color: var(--primary-color);
+  margin-right: 12px;
+  width: 20px;
+  text-align: center;
+}
+
+.event-label {
+  font-weight: 600;
+  color: var(--primary-color-dark);
+  margin-right: 8px;
+}
+
+.event-value {
+  color: #666;
+}
+
+.endorsed-by {
+  padding-left: 30px;
+}
+
+.endorsed-logos-container {
+  background: var(--primary-color-dark);
+  padding: 30px 50px;
+  border-radius: 8px;
+  position: relative;
+  border: 2px solid var(--primary-color-dark);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 100%;
+  max-width: 100%;
+}
+
+.endorsed-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  padding: 5px;
+}
+
+.endorsed-logo img {
+  max-height: 60px;
+  max-width: 120px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  transition: all 0.3s ease;
+}
+
+.endorsed-logo:hover img {
+  transform: scale(1.05);
+  filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255,255,255,0.3));
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .attendees-endorsed-section {
+    padding: 40px 0;
+  }
+  
+  .section-title {
+    font-size: 28px;
+    margin-bottom: 25px;
+  }
+  
+  .who-should-attend {
+    padding-right: 0;
+    margin-bottom: 40px;
+  }
+  
+  .endorsed-by {
+    padding-left: 0;
+  }
+  
+  .endorsed-logos-container {
+    padding: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .endorsed-logo {
+    flex: 0 0 45%;
+    margin: 5px;
+  }
+  
+  .endorsed-logo img {
+    max-height: 50px;
+    max-width: 100px;
+  }
+  
+  .attendee-list li {
+    font-size: 15px;
+  }
+  
+  .event-detail-item {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 24px;
+  }
+  
+  .endorsed-logos-container {
+    padding: 15px;
+  }
+  
+  .endorsed-logo {
+    margin: 5px;
+  }
+  
+  .endorsed-logo img {
+    max-height: 40px;
+    max-width: 80px;
+  }
+}
