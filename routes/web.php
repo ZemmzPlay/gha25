@@ -248,8 +248,8 @@ Route::post('/refresh-session', 'RegistrationController@fetchCurrentAndNextSessi
 /* Blog */
 
 /* Case Submission */
-Route::get('/case-submission', ['uses' => 'GenericPageController@caseSubmission', 'as' => 'pages.case-submission']);
-Route::post('/case-submission', ['uses' => 'GenericPageController@submitCaseSubmission']);
+// Route::get('/case-submission', ['uses' => 'GenericPageController@caseSubmission', 'as' => 'pages.case-submission']);
+// Route::post('/case-submission', ['uses' => 'GenericPageController@submitCaseSubmission']);
 /* Case Submission */
 
 /* Sponsors */
