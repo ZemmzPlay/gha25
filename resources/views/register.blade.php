@@ -4,13 +4,13 @@
   $configuration->website_title : ' - 3RD GHA - SCAI SHOCK MIDDLE EAST - KUWAIT'))
 
 @section('style')
-<link rel="stylesheet" href="{{ asset('css/owl.theme.default.css') }}" />
-<link rel="stylesheet" href="{{ asset('css/index.css?ver=1.0.1') }}" />
+  <link rel="stylesheet" href="{{ asset('css/owl.theme.default.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/index.css?ver=1.0.1') }}" />
 @endsection
 
 @section('content')
 
-@if ((Settings::get('registration_enabled') && !Auth::guard('web')->check()) || Settings::get('certificates_enabled'))
+  @if ((Settings::get('registration_enabled') && !Auth::guard('web')->check()) || Settings::get('certificates_enabled'))
     <div class="registerContainer" id="registerContainer">
       <div class="registerMiddle">
 
@@ -74,8 +74,10 @@
                   @php
                     $countries = config('countries');
                   @endphp
-                  @foreach($countries as $countryCode => $countryData)
-                    <option value="{{ $countryData['name'] }}" {{ old('country') && old('country') == $countryData['name'] ? 'selected' : '' }} data-flag="{{ strtolower($countryCode) }}">
+                  @foreach ($countries as $countryCode => $countryData)
+                    <option value="{{ $countryData['name'] }}"
+                      {{ old('country') && old('country') == $countryData['name'] ? 'selected' : '' }}
+                      data-flag="{{ strtolower($countryCode) }}">
                       {{ $countryData['name'] }}
                     </option>
                   @endforeach
@@ -98,8 +100,10 @@
                     @php
                       $countries = config('countries');
                     @endphp
-                    @foreach($countries as $countryCode => $countryData)
-                      <option value="+{{ $countryData['code'] }}" {{ (old('countryCode') && old('countryCode') == '+'.$countryData['code']) || (!old('countryCode') && $countryCode == 'KW') ? 'selected' : '' }} data-flag="{{ strtolower($countryCode) }}">
+                    @foreach ($countries as $countryCode => $countryData)
+                      <option value="+{{ $countryData['code'] }}"
+                        {{ (old('countryCode') && old('countryCode') == '+' . $countryData['code']) || (!old('countryCode') && $countryCode == 'KW') ? 'selected' : '' }}
+                        data-flag="{{ strtolower($countryCode) }}">
                         +{{ $countryData['code'] }} ({{ $countryData['name'] }})
                       </option>
                     @endforeach
@@ -128,12 +132,13 @@
 								<div class="registerCheckboxText">Virtual Access Only<br /><span>By selecting Virtual Access Only, you will <b>exclusively</b> have online access to the meeting</span></div>
 							</div>
 						</div>
-					</div> --}}<input type="hidden" name="virtualAccess" class="registerCheckboxReal" value="{{(old('virtualAccess')) ? old('virtualAccess') : '0'}}" />
+					</div> --}}<input type="hidden" name="virtualAccess" class="registerCheckboxReal"
+              value="{{ old('virtualAccess') ? old('virtualAccess') : '0' }}" />
 
 
-            <div class="workshopSection" style="display: none;">
-              <div class="workshopTitleSection">Workshop Registration</div>
-              <div class="registerOneInputContainer" id="onlyWorkshopInput">
+            <div class="workshopSection">
+              {{-- <div class="workshopTitleSection">Workshop Registration</div> --}}
+              <div class="registerOneInputContainer hidden" id="onlyWorkshopInput">
                 <div class="onlyWorkshopContainer">
                   <div data-element="onlyWorkshop"
                     class="registerCheckbox {{ old('onlyWorkshop') && old('onlyWorkshop') == '1' ? 'registerCheckboxChecked' : '' }}">
@@ -145,11 +150,17 @@
               </div>
               <div class="registerOneInputContainer" id="workshopInput">
                 <div class="registerOneInputLabel">Workshop</div>
-                <select name="workshop_id" class="registerOneInputValue">
+                <div class="workshops">
+                  @foreach ($workshops as $workshop)
+                    <label><input type="checkbox" name="workshops[]" value="{{ $workshop->id }}"
+                        id="workshop-{{ $workshop->id }}" class="workshop-checkbox"
+                        {{ is_array(old('workshops')) && in_array($workshop->id, old('workshops')) ? 'checked' : '' }}
+                        {{ $workshop->places_left <= 0 ? 'disabled' : '' }} />
+                      {{ $workshop->title }}</label>
+                  @endforeach
+                </div>
+                {{-- <select name="workshop_id" class="registerOneInputValue">
                   <option value="" data-price="0">Select Workshop</option>
-                  <?php
-                  $workshops = [];
-                  ?>
                   @if (count($workshops))
                     @foreach ($workshops as $workshop)
                       <option value="{{ $workshop->id }}" data-price="{{ $workshop->price }}"
@@ -157,24 +168,25 @@
                         {{ $workshop->title }}</option>
                     @endforeach
                   @endif
-                </select>
+                </select> --}}
               </div>
             </div>
 
             <div class="registerButtonContainerOut">
               <div class="registerButtonContainer" id="registerSubmitButton">
                 <div class="registerButtonLeft">Register</div>
-                <input type="hidden" name="receive_updates" class="registerCheckboxReal" value="{{(old('receive_updates')) ? old('receive_updates') : '1'}}" />
+                <input type="hidden" name="receive_updates" class="registerCheckboxReal"
+                  value="{{ old('receive_updates') ? old('receive_updates') : '1' }}" />
                 {{-- <div class="registerButtonRight"> --}}
-                  <?php
-                  // $normalPricePayClass = '';
-                  // $specialPriceFreeClass = 'hide';
-                  // if (old('countryCode') && (old('countryCode') == '+967' || old('countryCode') == '+970')) {
-                  //     $normalPricePayClass = 'hide';
-                  //     $specialPriceFreeClass = '';
-                  // }
-                  ?>
-                  {{-- <div class="registerButtonRightText {{ $normalPricePayClass }}" id="normalPricePay">KD <span
+                <?php
+                // $normalPricePayClass = '';
+                // $specialPriceFreeClass = 'hide';
+                // if (old('countryCode') && (old('countryCode') == '+967' || old('countryCode') == '+970')) {
+                //     $normalPricePayClass = 'hide';
+                //     $specialPriceFreeClass = '';
+                // }
+                ?>
+                {{-- <div class="registerButtonRightText {{ $normalPricePayClass }}" id="normalPricePay">KD <span
                       class="finalRegistrationPrice">{{ old('virtualAccess') && old('virtualAccess') == '1' ? '10' : 20 }}</span>
                   </div>
                   <div class="registerButtonRightText {{ $specialPriceFreeClass }}" id="specialPriceFree">Free</div>
@@ -182,7 +194,8 @@
                 </div> --}}
               </div>
               <div class="termsText">By registering you agree to the <a href="{{ url('/terms-and-conditions') }}"
-                  target="_blank"><u>Terms & Conditions</u></a> of the 3RD GHA - SCAI SHOCK MIDDLE EAST KUWAIT JAN 9-10 2026 registration guidelines.</div>
+                  target="_blank"><u>Terms & Conditions</u></a> of the 3RD GHA - SCAI SHOCK MIDDLE EAST KUWAIT JAN 9-10
+                2026 registration guidelines.</div>
             </div>
             {{-- <div class="registerCheckboxContainer">
 						<div data-element="" class="registerCheckbox {{(old('receive_updates') && old('receive_updates') == '0') ? '' : 'registerCheckboxChecked'}}"></div> <!-- registerCheckboxChecked -->
@@ -232,10 +245,41 @@
 
       </div>
     </div>
-  @endif  
+  @endif
 @stop
 
 @section('scripts')
   <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/index.js?ver=1.4') }}"></script>
+  <script>
+    $(document).ready(function() {
+      var workshopDisable = {1: 4, 2: 5, 4: 1, 5: 2};
+      checkWorkshops();
+      $(document).on('click', '.workshop-checkbox', function() {
+        id = $(this).val();
+
+        if(workshopDisable[id]) {
+          if ($(this).is(':checked') == false) {
+            $('#workshop-' + workshopDisable[id]).attr('disabled', false);
+          } else {
+            $('#workshop-' + workshopDisable[id]).attr('disabled', true);
+          }
+        }
+
+
+      });
+
+      function checkWorkshops() {
+        $('.workshop-checkbox').each(function() {
+          id = $(this).val();
+          if(workshopDisable[id]) {
+            if ($(this).is(':checked')) {
+              $('#workshop-' + workshopDisable[id]).attr('disabled', true);
+            }
+          }
+        });
+      }
+        
+    });
+  </script>
 @stop

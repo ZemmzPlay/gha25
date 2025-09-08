@@ -45,9 +45,19 @@ class Registration extends Authenticatable
         return $this->Payment->where('paid_status', 1);
     }
 
-    public function Workshop()
+    // public function Workshop()
+    // {
+    //     return $this->belongsTo(Workshop::class, 'workshop_id');
+    // }
+
+    public function RegistrationWorkshops()
     {
-        return $this->belongsTo(Workshop::class, 'workshop_id');
+        return $this->hasMany(RegistrationWorkshop::class);
+    }
+
+    public function Workshops()
+    {
+        return $this->belongsToMany(Workshop::class, 'registration_workshops', 'registration_id', 'workshop_id');
     }
 
     public function getBarcodeAttribute() {

@@ -28,6 +28,7 @@ use App\Configuration;
 
 use App\Company;
 use App\Exhibitors;
+use Doctrine\Inflector\Rules\Word;
 
 class GenericPageController extends Controller
 {
@@ -587,8 +588,10 @@ class GenericPageController extends Controller
      */
     public function register()
     {
-        $workshops = $this->fetchWorkshops();
-        $workshops = json_decode(json_encode($workshops), false);
+        // $workshops = $this->fetchWorkshops();
+        // $workshops = json_decode(json_encode($workshops), false);
+
+        $workshops = Workshop::all();
         
         return view('register', compact('workshops'));
     }

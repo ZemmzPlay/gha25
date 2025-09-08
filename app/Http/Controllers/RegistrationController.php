@@ -24,20 +24,23 @@ use App\Workshop;
 use App\Session;
 
 use App\Classes\TwilioVerify;
+use App\RegistrationWorkshop;
 use DateTime;
 
 class RegistrationController extends Controller
 {
-    public function create(CreateRegistrationRequest $request) {
-        if(Auth::guard('web')->check()) return redirect('/');
+    public function create(CreateRegistrationRequest $request)
+    {
+        // return $request->workshops;
+        if (Auth::guard('web')->check()) return redirect('/');
 
         $request['onlyWorkshop'] = 0;
-        $request['workshop_id'] = null;
+        // $request['workshop_id'] = null;
         $data = $request->all();
         $data['onlyWorkshop'] = 0;
         $data['workshop_id'] = null;
-        
 
+        // CREATE TABLE `registration_workshops` (`id` INT NOT NULL AUTO_INCREMENT , `registration_id` INT NOT NULL , `workshop_id` INT NOT NULL , `created_at` TIMESTAMP NOT NULL , `updated_at` TIMESTAMP NOT NULL , PRIMARY KEY (`id`), INDEX `registration` (`registration_id`), INDEX `workshop` (`workshop_id`))
 
         //////// check if free (for yemen and palestine) ////////
         $freeRegistrationSpecial = true;
@@ -48,31 +51,59 @@ class RegistrationController extends Controller
 
         $workshopPrice = 0;
         //////////// check if there is more places on this worshop ////////////
-        if($data['workshop_id'] != null)
-        {
-            $workshop = Workshop::find($data['workshop_id']);
-            $checkReservedPlaces = Registration::where('workshop_id', $data['workshop_id'])
-                                        ->join('payments', 'registrations.payment_id', '=', 'payments.id')
-                                        ->where('payments.paid_status', 1)
-                                        ->get();
+        // if ($data['workshop_id'] != null) {
+        //     $workshop = Workshop::find($data['workshop_id']);
+        //     $checkReservedPlaces = Registration::where('workshop_id', $data['workshop_id'])
+        //         ->join('payments', 'registrations.payment_id', '=', 'payments.id')
+        //         ->where('payments.paid_status', 1)
+        //         ->get();
 
-            if($workshop->places <= count($checkReservedPlaces))
+        //     if ($workshop->places <= count($checkReservedPlaces)) {
+        //         return redirect()->back()->withErrors(['message' => 'No places left for this worshop'])->withInput();
+        //     }
+
+        //     // $workshopPrice = $workshop->price;
+        // }
+        $workshops = $request->workshops ?? [];
+        foreach($workshops as $workshop_id)
+        {
+            $workshop = Workshop::find($workshop_id);
+
+            if($workshop->places_left <= 0)
             {
-                return redirect()->back()->withErrors(['message' => 'No places left for this worshop'])->withInput();
+                return redirect()->back()->withErrors(['message' => 'No places left for the '.$workshop->title.' worshop'])->withInput();
+            }
+        }
+
+        $workshopDisable = [1 => 4, 2 => 5, 4 => 1, 5 => 2];
+
+        foreach($workshops as $workshop_id)
+        {
+            if(array_key_exists($workshop_id, $workshopDisable))
+            {
+                if(in_array($workshopDisable[$workshop_id], $workshops))
+                {
+                    return redirect()->back()->withErrors(['message' => 'You cannot select both workshops'])->withInput();
+                }
             }
 
-            $workshopPrice = $workshop->price;
+            // $workshopPrice += $workshop->price;
         }
+
+        // if(in_array(2, $workshops) && in_array(1, $workshops))
+        // {
+        //     return redirect()->back()->withErrors(['message' => 'You cannot select both workshops'])->withInput();
+        // }
         //////////// check if there is more places on this worshop ////////////
 
 
 
         //// check if email used and paid ////
         $registration = Registration::where('email', $data['email'])->first();
-        if($registration) {
-            if(isset($registration->Payment)) {
+        if ($registration) {
+            if (isset($registration->Payment)) {
                 $paid_status = $registration->Payment->paid_status;
-                if($paid_status == 1) {
+                if ($paid_status == 1) {
                     return redirect()->back()->withErrors(['message' => 'The email has already been taken'])->withInput();
                 }
                 // else {
@@ -86,13 +117,12 @@ class RegistrationController extends Controller
 
         ///////// check payment gateway /////////
         $payment_gateway_id = 0;
-        if(!$freeRegistrationSpecial)
-        {
+        if (!$freeRegistrationSpecial) {
             $configuration = Configuration::find(1);
             $isLive = ($configuration->payment_status == 'live');
             $payment_gateway_id = $configuration->payment_gateway;
             $paymentGateway = $configuration->PaymentGateway;
-            if(!$paymentGateway)
+            if (!$paymentGateway)
                 return redirect()->back()->withErrors(['message' => 'Error, please try again later'])->withInput();
 
             $paymentGatewayCreds = ($isLive) ? $paymentGateway->live_creds : $paymentGateway->test_creds;
@@ -106,17 +136,17 @@ class RegistrationController extends Controller
 
         //// calculate total price ////
         $total = 20;
-        if($data['virtualAccess'] == 1) $total = 10;
+        if ($data['virtualAccess'] == 1) $total = 10;
 
-        if($data['onlyWorkshop'] == 1) $total = $workshopPrice;
-        else if($data['workshop_id'] != null) $total += $workshopPrice;
+        if ($data['onlyWorkshop'] == 1) $total = $workshopPrice;
+        else if ($data['workshop_id'] != null) $total += $workshopPrice;
         //// calculate total price ////
 
         $payment = new Payment;
         $payment->amount_paid = ($freeRegistrationSpecial) ? 0 : $total;
         $payment->payment_gateway = $payment_gateway_id;
 
-        if($freeRegistrationSpecial) {
+        if ($freeRegistrationSpecial) {
             $payment->payment_status = 'OTP NOT VERIFIED';
             $payment->transaction_data = json_encode(['Total' => $total, 'otp_count' => 1]);
         }
@@ -125,7 +155,7 @@ class RegistrationController extends Controller
         $paymentID = $payment->id;
         $data['payment_id'] = $paymentID;
 
-        if(!$registration) $registration = Registration::create($data);
+        if (!$registration) $registration = Registration::create($data);
         else {
             $registration->title = $data['title'];
             $registration->first_name = $data['first_name'];
@@ -137,11 +167,21 @@ class RegistrationController extends Controller
             $registration->mobile = $data['mobile'];
             $registration->receive_updates = $data['receive_updates'];
             $registration->payment_id = $paymentID;
-            $registration->workshop_id = $data['workshop_id'];
+            // $registration->workshop_id = $data['workshop_id'];
             $registration->onlyWorkshop = $data['onlyWorkshop'];
             $registration->virtualAccess = $data['virtualAccess'];
             $registration->save();
         }
+
+        // attach workshops
+        foreach($workshops as $workshop_id)
+        {
+            $registrationWorkshop = new RegistrationWorkshop;
+            $registrationWorkshop->registration_id = $registration->id;
+            $registrationWorkshop->workshop_id = $workshop_id;
+            $registrationWorkshop->save();
+        }
+
 
         $payment->registration_id = $registration->id;
 
@@ -155,11 +195,10 @@ class RegistrationController extends Controller
 
 
         $FINAL_PAYMENT_URL = "";
-        if(!$freeRegistrationSpecial)
-        {
+        if (!$freeRegistrationSpecial) {
             ///////////////////////////////////////////////////////////////////////////////////////////////////
             ////////////////////////////------------------- TAP -------------------////////////////////////////
-            
+
             ///////////////// REQUEST USING THE CHARGE API /////////////////
             $merchantID = $paymentGatewayCreds->merchantID;
             $secret_key = $paymentGatewayCreds->secret_key;
@@ -168,43 +207,43 @@ class RegistrationController extends Controller
             $email = $data['email'];
             $countryCode = str_replace('+', '', $data['countryCode']);
             $mobile = $data['mobile'];
-            $redirectURL = url('/register/payment/'. Crypt::encrypt($paymentID));
+            $redirectURL = url('/register/payment/' . Crypt::encrypt($paymentID));
 
 
             // Request data
             $dataReq = '{
-                "amount": '.$total.',
+                "amount": ' . $total . ',
                 "currency": "KWD",
                 "threeDSecure": true,
                 "save_card": false,
                 "metadata": {
-                    "paymentID": "'.$paymentID.'"
+                    "paymentID": "' . $paymentID . '"
                 },
                 "receipt": {
                     "email": false,
                     "sms": true
                 },
                 "customer": {
-                    "first_name": "'.$first_name.'",
+                    "first_name": "' . $first_name . '",
                     "middle_name": "",
-                    "last_name": "'.$last_name.'",
-                    "email": "'.$email.'",
+                    "last_name": "' . $last_name . '",
+                    "email": "' . $email . '",
                     "phone": {
-                        "country_code": "'.$countryCode.'",
-                        "number": "'.$mobile.'"
+                        "country_code": "' . $countryCode . '",
+                        "number": "' . $mobile . '"
                     }
                 },
                 "merchant": {
-                    "id": "'.$merchantID.'"
+                    "id": "' . $merchantID . '"
                 },
                 "source": {
                     "id": "src_all"
                 },
                 "post": {
-                    "url": "'.$redirectURL.'"
+                    "url": "' . $redirectURL . '"
                 },
                 "redirect": {
-                    "url": "'.$redirectURL.'"
+                    "url": "' . $redirectURL . '"
                 }
             }';
 
@@ -221,7 +260,7 @@ class RegistrationController extends Controller
 
             // Set headers
             $headers = [
-                'Authorization: Bearer '.$secret_key,
+                'Authorization: Bearer ' . $secret_key,
                 'accept: application/json',
                 'content-type: application/json',
             ];
@@ -241,12 +280,11 @@ class RegistrationController extends Controller
                 // echo "cURL Error #:" . $err;
                 // dd($err);
             } else {
-                if($this->isJson($response))
-                {
+                if ($this->isJson($response)) {
                     $response = json_decode($response, true);
-                    if(isset($response['status'])) $payment->payment_status = $response['status'];
+                    if (isset($response['status'])) $payment->payment_status = $response['status'];
 
-                    if(isset($response['transaction']) && isset($response['transaction']['url']))
+                    if (isset($response['transaction']) && isset($response['transaction']['url']))
                         $FINAL_PAYMENT_URL = $response['transaction']['url'];
                 }
             }
@@ -260,17 +298,17 @@ class RegistrationController extends Controller
 
 
 
-        if(!$freeRegistrationSpecial && $FINAL_PAYMENT_URL != "")
+        if (!$freeRegistrationSpecial && $FINAL_PAYMENT_URL != "")
             return redirect()->away($FINAL_PAYMENT_URL);
 
 
-        if($freeRegistrationSpecial) {
-            $phoneNumberFinal = $data['countryCode'].$data['mobile'];
+        if ($freeRegistrationSpecial) {
+            $phoneNumberFinal = $data['countryCode'] . $data['mobile'];
             TwilioVerify::createSMSVerification($phoneNumberFinal, []);
-            return redirect(url('/register/verify-otp/'. Crypt::encrypt($paymentID)));
+            return redirect(url('/register/verify-otp/' . Crypt::encrypt($paymentID)));
         }
 
-        
+
         return redirect()->back()->withErrors(['message' => 'Error, please try again later'])->withInput();
 
         /////////////// OLD JS PROBLEM ///////////////
@@ -301,7 +339,7 @@ class RegistrationController extends Controller
         // ]);
         // }
         /////////////// OLD JS PROBLEM ///////////////
-        
+
 
 
 
@@ -321,11 +359,11 @@ class RegistrationController extends Controller
         }
 
         $paymentData = Payment::find($id);
-        if(!$paymentData) abort(404);
-        if($paymentData->paid_status == 1) abort(404);
-        if($paymentData->payment_gateway != 0) abort(404);
+        if (!$paymentData) abort(404);
+        if ($paymentData->paid_status == 1) abort(404);
+        if ($paymentData->payment_gateway != 0) abort(404);
         $registration = $paymentData->registration;
-        if(!$registration) abort(404);
+        if (!$registration) abort(404);
 
 
         return view('otp.otpVerify', ['registration' => $registration, 'paymentData' => $paymentData]);
@@ -340,33 +378,34 @@ class RegistrationController extends Controller
         }
 
         $paymentData = Payment::find($id);
-        if(!$paymentData) abort(404);
-        if($paymentData->paid_status == 1) abort(404);
-        if($paymentData->payment_gateway != 0) abort(404);
+        if (!$paymentData) abort(404);
+        if ($paymentData->paid_status == 1) abort(404);
+        if ($paymentData->payment_gateway != 0) abort(404);
         $registration = $paymentData->registration;
-        if(!$registration) abort(404);
+        if (!$registration) abort(404);
 
 
         $this->validate($request, [
             'otpCode' => 'required|numeric|integer|digits:6',
         ], [
-            'otpCode.required' => 'OTP Code is required', 
+            'otpCode.required' => 'OTP Code is required',
             'otpCode.numeric' => 'Please enter a valid OTP Code',
             'otpCode.integer' => 'Please enter a valid OTP Code',
             'otpCode.digits' => 'OTP Code should be 6 digits'
         ]);
 
 
-        $phoneNumberFinal = $registration->countryCode.$registration->mobile;
+        $phoneNumberFinal = $registration->countryCode . $registration->mobile;
 
         $verificationRes = false;
         try {
             $verification = TwilioVerify::VerifyOTP($request['otpCode'], $phoneNumberFinal);
-            if($verification->valid) $verificationRes = true;
-        } catch (\Throwable $e) {} catch (\Exception $e) {}
-        
-        if ($verificationRes)
-        {
+            if ($verification->valid) $verificationRes = true;
+        } catch (\Throwable $e) {
+        } catch (\Exception $e) {
+        }
+
+        if ($verificationRes) {
             $paymentData->paid_status = 1;
             $paymentData->payment_status = 'OTP VERIFIED';
             $paymentData->payment_error = null;
@@ -376,10 +415,8 @@ class RegistrationController extends Controller
             $this->sendConfirmationEmail($registration);
             /////////////// EMAIL PART HERE AFTER PAYMENT SUCCESS ///////////////
 
-            return redirect('/register/payment-result/success/'.$registration->id);
-        }
-        else
-        {
+            return redirect('/register/payment-result/success/' . $registration->id);
+        } else {
             $paymentData->paid_status = 2;
             $paymentData->payment_status = 'OTP VERIFICATION FAILED';
             $paymentData->payment_error = 'OTP VERIFICATION FAILED';
@@ -398,16 +435,16 @@ class RegistrationController extends Controller
         }
 
         $paymentData = Payment::find($id);
-        if(!$paymentData) abort(404);
-        if($paymentData->paid_status == 1) abort(404);
-        if($paymentData->payment_gateway != 0) abort(404);
+        if (!$paymentData) abort(404);
+        if ($paymentData->paid_status == 1) abort(404);
+        if ($paymentData->payment_gateway != 0) abort(404);
         $registration = $paymentData->registration;
-        if(!$registration) abort(404);
+        if (!$registration) abort(404);
 
         $this->validate($request, [
             'mobile' => 'required|numeric|integer',
         ], [
-            'mobile.required' => 'Phone number is required', 
+            'mobile.required' => 'Phone number is required',
             'mobile.numeric' => 'Please enter a valid phone number',
             'mobile.integer' => 'Please enter a valid phone number'
         ]);
@@ -415,11 +452,10 @@ class RegistrationController extends Controller
 
         //// check if phone number exists ////
         $checkPhoneNumber = Registration::where('countryCode', $registration->countryCode)
-                                        ->where('mobile', $request['mobile'])
-                                        ->where('id', '!=', $registration->id)
-                                        ->first();
-        if($checkPhoneNumber)
-        {
+            ->where('mobile', $request['mobile'])
+            ->where('id', '!=', $registration->id)
+            ->first();
+        if ($checkPhoneNumber) {
             return redirect()->back()->withErrors(['message' => 'Phone number already used']);
         }
         //// check if phone number exists ////
@@ -433,15 +469,13 @@ class RegistrationController extends Controller
 
         //// send otp if allowed ////
         $transaction_data = $paymentData->transaction_data;
-        if($transaction_data != "" && $this->isJson($transaction_data))
-        {
+        if ($transaction_data != "" && $this->isJson($transaction_data)) {
             $checkOTPCountData = $this->checkOTPCount($transaction_data, $paymentData->updated_at);
             $sendOtp = $checkOTPCountData['sendOtp'];
             $transaction_data = $checkOTPCountData['transaction_data'];
 
-            if($sendOtp)
-            {
-                $phoneNumberFinal = $registration->countryCode.$registration->mobile;
+            if ($sendOtp) {
+                $phoneNumberFinal = $registration->countryCode . $registration->mobile;
                 TwilioVerify::createSMSVerification($phoneNumberFinal, []);
                 $paymentData->transaction_data = json_encode($transaction_data);
                 $paymentData->save();
@@ -449,7 +483,7 @@ class RegistrationController extends Controller
         }
         //// send otp if allowed ////
 
-        
+
         return redirect()->back()->with(['message' => 'Phone number updated successfully']);
     }
 
@@ -463,32 +497,28 @@ class RegistrationController extends Controller
         }
 
         $paymentData = Payment::find($id);
-        if(!$paymentData) abort(404);
-        if($paymentData->paid_status == 1) abort(404);
-        if($paymentData->payment_gateway != 0) abort(404);
+        if (!$paymentData) abort(404);
+        if ($paymentData->paid_status == 1) abort(404);
+        if ($paymentData->payment_gateway != 0) abort(404);
         $registration = $paymentData->registration;
-        if(!$registration) abort(404);
+        if (!$registration) abort(404);
         ////////// Validation part //////////
 
 
         $transaction_data = $paymentData->transaction_data;
-        if($transaction_data != "" && $this->isJson($transaction_data))
-        {
+        if ($transaction_data != "" && $this->isJson($transaction_data)) {
             $checkOTPCountData = $this->checkOTPCount($transaction_data, $paymentData->updated_at);
             $sendOtp = $checkOTPCountData['sendOtp'];
             $transaction_data = $checkOTPCountData['transaction_data'];
 
-            if($sendOtp)
-            {
-                $phoneNumberFinal = $registration->countryCode.$registration->mobile;
+            if ($sendOtp) {
+                $phoneNumberFinal = $registration->countryCode . $registration->mobile;
                 TwilioVerify::createSMSVerification($phoneNumberFinal, []);
                 $paymentData->transaction_data = json_encode($transaction_data);
                 $paymentData->save();
 
                 return redirect()->back()->with(['message' => 'OTP Sent successfully']);
-            }
-            else
-            {
+            } else {
                 return redirect()->back()->withErrors(['message' => 'You have exceeded the maximum number of OTPs allowed per day']);
             }
         }
@@ -498,13 +528,11 @@ class RegistrationController extends Controller
     {
         $sendOtp = false;
         $transaction_data = json_decode($transaction_data, true);
-        if(isset($transaction_data['otp_count']))
-        {
-            if($transaction_data['otp_count'] < 3) {
+        if (isset($transaction_data['otp_count'])) {
+            if ($transaction_data['otp_count'] < 3) {
                 $sendOtp = true;
                 $transaction_data['otp_count'] = $transaction_data['otp_count'] + 1;
-            }
-            else {
+            } else {
                 //// check if 24 hours passed since last otp sent ////
                 $timeNow = date('Y-m-d H:i:s');
                 $updated_at_datetime = new DateTime($updated_at);
@@ -528,7 +556,7 @@ class RegistrationController extends Controller
     private function sendConfirmationEmail($registration)
     {
         /////////////// EMAIL PART HERE AFTER PAYMENT SUCCESS ///////////////
-        
+
         // Send welcome email to user after OTP validation is complete
         try {
             \Log::info('Attempting to send registration confirmation email to: ' . $registration->email);
@@ -550,8 +578,7 @@ class RegistrationController extends Controller
         */
 
         // Workshop email logic (keeping as is)
-        if($registration->workshop_id)
-        {
+        if ($registration->workshop_id) {
             Mail::send(
                 'emails.workshop',
                 [
@@ -559,9 +586,8 @@ class RegistrationController extends Controller
                 ],
                 function ($m) use ($registration) {
                     $m->to($registration->email, $registration->first_name)
-                    ->subject('Workshop Details')
-                    ->from('conferences@zawaya.me', 'GHA');
-
+                        ->subject('Workshop Details')
+                        ->from('conferences@zawaya.me', 'GHA');
                 }
             );
         }
@@ -576,7 +602,7 @@ class RegistrationController extends Controller
         $isLive = ($configuration->payment_status == 'live');
         $payment_gateway_id = $configuration->payment_gateway;
         $paymentGateway = $configuration->PaymentGateway;
-        if(!$paymentGateway) abort(404);
+        if (!$paymentGateway) abort(404);
         $paymentGatewayCreds = ($isLive) ? $paymentGateway->live_creds : $paymentGateway->test_creds;
         $paymentGatewayCreds = json_decode($paymentGatewayCreds);
         ///////// check payment gateway /////////
@@ -589,10 +615,10 @@ class RegistrationController extends Controller
         }
 
         $paymentData = Payment::find($id);
-        if(!$paymentData) abort(404);
+        if (!$paymentData) abort(404);
 
         ///// check if link already used /////
-        if($paymentData->transaction_data != null) abort(404);
+        if ($paymentData->transaction_data != null) abort(404);
         ///// check if link already used /////
 
 
@@ -605,14 +631,14 @@ class RegistrationController extends Controller
         ////------------------- TAP -------------------////
         // if($payment_gateway_id == 1)
         // {
-        if(!isset($request['tap_id'])) abort(404);
+        if (!isset($request['tap_id'])) abort(404);
 
         $secret_key = $paymentGatewayCreds->secret_key;
         $tap_id = $request['tap_id'];
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.tap.company/v2/charges/".$tap_id,
+            CURLOPT_URL => "https://api.tap.company/v2/charges/" . $tap_id,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -621,7 +647,7 @@ class RegistrationController extends Controller
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_POSTFIELDS => "{}",
             CURLOPT_HTTPHEADER => array(
-                "authorization: Bearer ".$secret_key
+                "authorization: Bearer " . $secret_key
             ),
         ));
 
@@ -632,19 +658,17 @@ class RegistrationController extends Controller
         if ($err) {
             // echo "cURL Error #:" . $err;
         } else {
-            if($this->isJson($response))
-            {
+            if ($this->isJson($response)) {
                 $response = json_decode($response, true);
-                if(isset($response['status']))
-                {
+                if (isset($response['status'])) {
                     // INITIATED, IN_PROGRESS, ABANDONED, CANCELLED, FAILED, 
                     // CAPTURED, VOID, TIMEDOUT, UNKNOWN, DECLINED, RESTRICTED
                     $status = $response['status'];
                     $paymentStatus = $status;
                     $paidValue = 2;
-                    if($status == 'INITIATED' || $status == 'IN_PROGRESS') $paidValue = 0;
-                    if($status == 'CAPTURED') $paidValue = 1;
-                    if($paidValue == 2) $paymentError = "transaction ".$status;
+                    if ($status == 'INITIATED' || $status == 'IN_PROGRESS') $paidValue = 0;
+                    if ($status == 'CAPTURED') $paidValue = 1;
+                    if ($paidValue == 2) $paymentError = "transaction " . $status;
                 }
             }
         }
@@ -662,7 +686,7 @@ class RegistrationController extends Controller
 
 
         ///// success payments /////
-        if($paidValue == 1) {
+        if ($paidValue == 1) {
 
             $registration = Registration::find($registration_id);
 
@@ -671,8 +695,7 @@ class RegistrationController extends Controller
             /////////////// EMAIL PART HERE AFTER PAYMENT SUCCESS ///////////////
 
 
-            return redirect('/register/payment-result/success/'.$registration_id);
-
+            return redirect('/register/payment-result/success/' . $registration_id);
         }
         ///// success payments /////
 
@@ -681,14 +704,15 @@ class RegistrationController extends Controller
 
     public function paymentResult($slot, $registration_id = null)
     {
-        if($slot != 'success' && $slot != 'failed') abort(404);
+        if ($slot != 'success' && $slot != 'failed') abort(404);
         if ($slot == 'failed' && $registration_id != null) abort(404);
         if ($slot == 'success' && $registration_id == null) abort(404);
         if ($registration_id != null && !ctype_digit($registration_id)) abort(404);
         return view('payments.paymentResult', ['result' => $slot, 'registration_id' => $registration_id]);
     }
 
-    function isJson($string) {
+    function isJson($string)
+    {
         json_decode($string);
         return json_last_error() === JSON_ERROR_NONE;
     }
@@ -703,7 +727,8 @@ class RegistrationController extends Controller
 
 
 
-    public function completeFailedPayment($id) {
+    public function completeFailedPayment($id)
+    {
 
         try {
             $id = Crypt::decrypt($id);
@@ -711,11 +736,11 @@ class RegistrationController extends Controller
             abort(404);
         }
 
-        
+
         $registration = Registration::where('id', $id)->first();
 
-        if(!$registration) abort(404);
-        if(isset($registration->Payment) && $registration->Payment->paid_status == 1)  abort(404);
+        if (!$registration) abort(404);
+        if (isset($registration->Payment) && $registration->Payment->paid_status == 1)  abort(404);
 
         $virtualAccess = $registration->virtualAccess;
         $workshop_id = $registration->workshop_id;
@@ -728,17 +753,15 @@ class RegistrationController extends Controller
 
         $workshopPrice = 0;
         //////////// check if there is more places on this worshop ////////////
-        if($workshop_id != null)
-        {
+        if ($workshop_id != null) {
             $workshop = Workshop::find($workshop_id);
             $checkReservedPlaces = Registration::where('workshop_id', $workshop_id)
-                                        ->join('payments', 'registrations.payment_id', '=', 'payments.id')
-                                        ->where('payments.paid_status', 1)
-                                        ->get();
+                ->join('payments', 'registrations.payment_id', '=', 'payments.id')
+                ->where('payments.paid_status', 1)
+                ->get();
 
-            if($workshop->places <= count($checkReservedPlaces))
-            {
-                return view('error', ['msg' => 'There are no available slots remaining for the '.$workshop->title.' workshop.'])->render();
+            if ($workshop->places <= count($checkReservedPlaces)) {
+                return view('error', ['msg' => 'There are no available slots remaining for the ' . $workshop->title . ' workshop.'])->render();
             }
 
             $workshopPrice = $workshop->price;
@@ -752,7 +775,7 @@ class RegistrationController extends Controller
         $isLive = ($configuration->payment_status == 'live');
         $payment_gateway_id = $configuration->payment_gateway;
         $paymentGateway = $configuration->PaymentGateway;
-        if(!$paymentGateway) abort(404);
+        if (!$paymentGateway) abort(404);
 
         $paymentGatewayCreds = ($isLive) ? $paymentGateway->live_creds : $paymentGateway->test_creds;
         $paymentGatewayCreds = json_decode($paymentGatewayCreds);
@@ -764,10 +787,10 @@ class RegistrationController extends Controller
         //////////////////////////// PAYMENT PART ////////////////////////////
         //// calculate total price ////
         $total = 20;
-        if($virtualAccess == 1) $total = 10;
+        if ($virtualAccess == 1) $total = 10;
 
-        if($onlyWorkshop == 1) $total = $workshopPrice;
-        else if($workshop_id != null) $total += $workshopPrice;
+        if ($onlyWorkshop == 1) $total = $workshopPrice;
+        else if ($workshop_id != null) $total += $workshopPrice;
         //// calculate total price ////
 
         $payment = new Payment;
@@ -793,48 +816,48 @@ class RegistrationController extends Controller
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////------------------- TAP -------------------////////////////////////////
-        
+
         ///////////////// REQUEST USING THE CHARGE API /////////////////
         $FINAL_PAYMENT_URL = "";
         $merchantID = $paymentGatewayCreds->merchantID;
         $secret_key = $paymentGatewayCreds->secret_key;
-        $redirectURL = url('/register/payment/'. Crypt::encrypt($paymentID));
+        $redirectURL = url('/register/payment/' . Crypt::encrypt($paymentID));
 
 
         // Request data
         $dataReq = '{
-            "amount": '.$total.',
+            "amount": ' . $total . ',
             "currency": "KWD",
             "threeDSecure": true,
             "save_card": false,
             "metadata": {
-                "paymentID": "'.$paymentID.'"
+                "paymentID": "' . $paymentID . '"
             },
             "receipt": {
                 "email": false,
                 "sms": true
             },
             "customer": {
-                "first_name": "'.$first_name.'",
+                "first_name": "' . $first_name . '",
                 "middle_name": "",
-                "last_name": "'.$last_name.'",
-                "email": "'.$email.'",
+                "last_name": "' . $last_name . '",
+                "email": "' . $email . '",
                 "phone": {
-                    "country_code": "'.$countryCode.'",
-                    "number": "'.$mobile.'"
+                    "country_code": "' . $countryCode . '",
+                    "number": "' . $mobile . '"
                 }
             },
             "merchant": {
-                "id": "'.$merchantID.'"
+                "id": "' . $merchantID . '"
             },
             "source": {
                 "id": "src_all"
             },
             "post": {
-                "url": "'.$redirectURL.'"
+                "url": "' . $redirectURL . '"
             },
             "redirect": {
-                "url": "'.$redirectURL.'"
+                "url": "' . $redirectURL . '"
             }
         }';
 
@@ -851,7 +874,7 @@ class RegistrationController extends Controller
 
         // Set headers
         $headers = [
-            'Authorization: Bearer '.$secret_key,
+            'Authorization: Bearer ' . $secret_key,
             'accept: application/json',
             'content-type: application/json',
         ];
@@ -871,12 +894,11 @@ class RegistrationController extends Controller
             // echo "cURL Error #:" . $err;
             // dd($err);
         } else {
-            if($this->isJson($response))
-            {
+            if ($this->isJson($response)) {
                 $response = json_decode($response, true);
-                if(isset($response['status'])) $payment->payment_status = $response['status'];
+                if (isset($response['status'])) $payment->payment_status = $response['status'];
 
-                if(isset($response['transaction']) && isset($response['transaction']['url']))
+                if (isset($response['transaction']) && isset($response['transaction']['url']))
                     $FINAL_PAYMENT_URL = $response['transaction']['url'];
             }
         }
@@ -884,9 +906,9 @@ class RegistrationController extends Controller
 
         $payment->save();
 
-        if($FINAL_PAYMENT_URL != "")
+        if ($FINAL_PAYMENT_URL != "")
             return redirect()->away($FINAL_PAYMENT_URL);
-        
+
         abort(404);
     }
 
@@ -894,29 +916,31 @@ class RegistrationController extends Controller
 
 
 
-    public function verify(VerifyRegistrationRequest $request) {
+    public function verify(VerifyRegistrationRequest $request)
+    {
         $id = $request->get('id');
         $registration = Registration::find($id);
 
 
         ///////////// check if user paid /////////////
         $paid_status = $registration->Payment->paid_status;
-        if($paid_status != 1) {
+        if ($paid_status != 1) {
             return redirect()->back()->withErrors(['message' => 'Your account is not active']);
         }
         ///////////// check if user paid /////////////
 
 
-        if(!$registration->attended) {
+        if (!$registration->attended) {
             return redirect()->back()->withErrors(['message' => 'You have not attended the event.']);
         }
-        if(!$registration->answered) {
+        if (!$registration->answered) {
             return redirect()->route('evaluation.form')->with(['registration' => $registration]);
         }
         return $this->downloadCertificate($registration);
     }
 
-    public function evaluationForm() {
+    public function evaluationForm()
+    {
 
         ///////////////// REMOVE ME LATER /////////////////
         // $registration = Registration::find(1);
@@ -927,12 +951,12 @@ class RegistrationController extends Controller
         ///////////////// REMOVE ME LATER /////////////////
 
 
-        if(session()->has('registration')) {
+        if (session()->has('registration')) {
             $registration = session()->get('registration');
 
             ///////////// check if user paid /////////////
             $paid_status = $registration->Payment->paid_status;
-            if($paid_status != 1) {
+            if ($paid_status != 1) {
                 return redirect()->back()->withErrors(['message' => 'Your account is not active']);
             }
             ///////////// check if user paid /////////////
@@ -941,7 +965,7 @@ class RegistrationController extends Controller
             $questions = Question::whereRaw('id <= 12')->get();
             $questions2 = Question::whereRaw('id > 12')->get();
             $general_questions = GeneralQuestion::all();
-            return view('evaluation', compact('questions','questions2', 'general_questions', 'registration'));
+            return view('evaluation', compact('questions', 'questions2', 'general_questions', 'registration'));
         } else {
             return redirect('/');
         }
@@ -949,7 +973,8 @@ class RegistrationController extends Controller
 
 
 
-    public function evaluate(SubmitEvaluationRequest $request) {
+    public function evaluate(SubmitEvaluationRequest $request)
+    {
         $registration_id        = $request->get('registration_id');
         $answers                = $request->get('answers');
         $questions              = $request->get('questions');
@@ -959,13 +984,13 @@ class RegistrationController extends Controller
 
         ///////////// check if user paid /////////////
         $paid_status = $registration->Payment->paid_status;
-        if($paid_status != 1) {
+        if ($paid_status != 1) {
             abort(404);
         }
         ///////////// check if user paid /////////////
 
 
-        if(!$registration->answered) {
+        if (!$registration->answered) {
             for ($i = 0; $i < count($answers); $i++) {
                 DB::table('question_registration')->insert([
                     'registration_id' => $registration_id,
@@ -974,7 +999,7 @@ class RegistrationController extends Controller
                 ]);
             }
 
-            if($general_questions) {
+            if ($general_questions) {
                 for ($i = 0; $i < count($general_questions); $i++) {
                     DB::table('general_question_registration')->insert([
                         'registration_id' => $registration_id,
@@ -994,7 +1019,8 @@ class RegistrationController extends Controller
         return $this->downloadCertificate($registration);
     }
 
-    private function downloadCertificate(Registration $registration) {
+    private function downloadCertificate(Registration $registration)
+    {
         // $pdf = app()->make('dompdf.wrapper')->setPaper('a4', 'landscape');
         // $pdf->loadHtml("<style>html{margin:0;}</style><div style='text-align: center; margin-top: 0; position: relative;'><h3 style='position: absolute; top: 300px; left: 220px; font-weight: normal; font-size: 26px; width: 60%; font-family: Arial, sans-serif; color: #000000;'>" . ucwords($registration->title . ". " . $registration->first_name . " " . $registration->last_name) . "</h3><img src='".asset('images/certificate.jpg')."' style='width: 93%;'></div>");
         // return $pdf->download('GHAESC2019_cert_'.$registration->id.'.pdf');
@@ -1005,15 +1031,15 @@ class RegistrationController extends Controller
 
         //// check points ////
         $points = 15;
-        if($registration->onlyWorkshop) $points = 6;
-        else if($registration->workshop_id && ($registration->workshop_id == 1 || $registration->workshop_id == 2)) {
+        if ($registration->onlyWorkshop) $points = 6;
+        else if ($registration->workshop_id && ($registration->workshop_id == 1 || $registration->workshop_id == 2)) {
             $points = 21;
         }
         //// check points ////
 
         $pdf = app()->make('dompdf.wrapper')->setPaper('a4', 'landscape');
-        $pdf->loadHtml("<style>html{margin:0;}</style><div style='text-align: center; margin-top: 0; position: relative;'><h3 style='position: absolute; top: 290px; left: 220px; font-weight: normal; font-size: 26px; width: 60%; font-family: Arial, sans-serif; color: #000000;'>" . ucwords($registration->title . ". " . $registration->first_name . " " . $registration->last_name) . "</h3><h3 style='position: absolute;top: 500px;left: 170px;font-weight: normal;font-size: 23px;width: 60%;font-family: Arial, sans-serif;color: #000000;'>".$points."</h3><img src='data:image/jpeg;base64,{$imageDataUri}' style='width: 93%;'></div>");
-        return $pdf->download('GHA23_cert_'.$registration->id.'.pdf');
+        $pdf->loadHtml("<style>html{margin:0;}</style><div style='text-align: center; margin-top: 0; position: relative;'><h3 style='position: absolute; top: 290px; left: 220px; font-weight: normal; font-size: 26px; width: 60%; font-family: Arial, sans-serif; color: #000000;'>" . ucwords($registration->title . ". " . $registration->first_name . " " . $registration->last_name) . "</h3><h3 style='position: absolute;top: 500px;left: 170px;font-weight: normal;font-size: 23px;width: 60%;font-family: Arial, sans-serif;color: #000000;'>" . $points . "</h3><img src='data:image/jpeg;base64,{$imageDataUri}' style='width: 93%;'></div>");
+        return $pdf->download('GHA23_cert_' . $registration->id . '.pdf');
     }
 
 
@@ -1026,12 +1052,13 @@ class RegistrationController extends Controller
     ////// login and watch-live part //////
     public function login()
     {
-        if(Auth::guard('web')->check()) return redirect('/');
+        if (Auth::guard('web')->check()) return redirect('/');
 
         return view('login')->render();
     }
-    public function postLogin(Request $request) {
-        if(Auth::guard('web')->check()) return redirect('/');
+    public function postLogin(Request $request)
+    {
+        if (Auth::guard('web')->check()) return redirect('/');
 
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|max:255',
@@ -1057,28 +1084,30 @@ class RegistrationController extends Controller
         }
 
         $user = Registration::where('email', $request['email'])
-                                ->where('countryCode', $request['phone_code'])
-                                ->where('mobile', $request['phone_number'])
-                                ->where('id', $request['id'])
-                                ->first();
+            ->where('countryCode', $request['phone_code'])
+            ->where('mobile', $request['phone_number'])
+            ->where('id', $request['id'])
+            ->first();
 
-        if(!$user) return back()->withErrors('Login details are incorrect')->withInput();
+        if (!$user) return back()->withErrors('Login details are incorrect')->withInput();
 
         $Payment = $user->Payment;
-        if($Payment->paid_status != 1) return back()->withErrors('Login details are incorrect')->withInput();
+        if ($Payment->paid_status != 1) return back()->withErrors('Login details are incorrect')->withInput();
 
         Auth::guard('web')->login($user);
 
         return redirect('/watch-live');
     }
-    public function logout() {
+    public function logout()
+    {
         Auth::guard('web')->logout();
         return redirect('/');
     }
-    public function watchLive() {
+    public function watchLive()
+    {
         $configuration = Configuration::first();
 
-        if(!$configuration->enableLiveConference) return redirect('/');
+        if (!$configuration->enableLiveConference) return redirect('/');
 
         $currentAndNextSession = $this->fetchCurrentAndNextSession(true);
         $currentSessionDateTime = $currentAndNextSession['currentSessionDateTime'];
@@ -1097,10 +1126,10 @@ class RegistrationController extends Controller
             'nextSessionSeconds' => $nextSessionSeconds
         ])->render();
     }
-    public function sendQuestion(Request $request) {
+    public function sendQuestion(Request $request)
+    {
         $configuration = Configuration::first();
-        if(!$configuration->enableLiveConferenceQuestions)
-        {
+        if (!$configuration->enableLiveConferenceQuestions) {
             $response = [
                 "success" => false,
                 "message" => 'At this time, questions are not allowed.'
@@ -1114,8 +1143,7 @@ class RegistrationController extends Controller
             'question' => 'required'
         ]);
 
-        if ($validator->fails())
-        {
+        if ($validator->fails()) {
             $response = [
                 "success" => false,
                 "message" => 'Question field is required'
@@ -1128,15 +1156,14 @@ class RegistrationController extends Controller
         $question = trim($question);
         $question = strip_tags($question);
 
-        
+
         $allSessions = $this->fetchSessions();
 
         /// fetch current session ///
         // $previousSessionDateTime = null;
         // $prev_session_id = "";
         $session_id = "";
-        foreach ($allSessions as $oneSession)
-        {
+        foreach ($allSessions as $oneSession) {
             $localTime = date('Y-m-d H:i:s');
             $date_time_from = $oneSession['date_time_from'];
             $date_time_to = $oneSession['date_time_to'];
@@ -1169,7 +1196,7 @@ class RegistrationController extends Controller
         /// fetch current session ///
 
 
-        if($session_id == "") {
+        if ($session_id == "") {
             $response = [
                 "success" => false,
                 "message" => 'Session either ended or didn\'t start yet'
@@ -1199,18 +1226,18 @@ class RegistrationController extends Controller
 
         return response()->json($response);
     }
-    public function fetchCurrentAndNextSession($fetchSessions = false) {
+    public function fetchCurrentAndNextSession($fetchSessions = false)
+    {
         $currentSessionDateTime = null;
         $previousSessionDateTime  = null;
         $nextSessionDateTime = null;
         $nextSessionSeconds = null;
 
-        
+
         $allSessions = $this->fetchSessions();
         $largestTimeDiff = -1;
         $smallestTimeDiff = PHP_INT_MAX;
-        foreach ($allSessions as $oneSessionKey => $oneSession)
-        {
+        foreach ($allSessions as $oneSessionKey => $oneSession) {
             $localTime = date('Y-m-d H:i:s');
             $date_time_from = $oneSession['date_time_from'];
             $date_time_to = $oneSession['date_time_to'];
@@ -1243,11 +1270,10 @@ class RegistrationController extends Controller
             }
             //// fetch the next session datetime ////
         }
-        
-        
+
+
         //// fetch the next session in seconds ////
-        if($nextSessionDateTime != null)
-        {
+        if ($nextSessionDateTime != null) {
             $currentDateTime = date('Y-m-d H:i:s');
             $specificTimestamp = strtotime($nextSessionDateTime);
             $currentTimestamp = strtotime($currentDateTime);
@@ -1257,18 +1283,18 @@ class RegistrationController extends Controller
 
 
         /// if session is done then show the last active one ///
-        if($currentSessionDateTime == null)
+        if ($currentSessionDateTime == null)
             $currentSessionDateTime = $previousSessionDateTime;
         /// if session is done then show the last active one ///
 
 
         /// if no session active yet then show the next one ///
-        if($currentSessionDateTime == null)
+        if ($currentSessionDateTime == null)
             $currentSessionDateTime = $nextSessionDateTime;
         /// if no session active yet then show the next one ///
 
 
-        if($currentSessionDateTime != null)
+        if ($currentSessionDateTime != null)
             $currentSessionDateTime = date('Y_m_d_H_i', strtotime($currentSessionDateTime));
 
         $dataToBeReturned = [
@@ -1276,36 +1302,32 @@ class RegistrationController extends Controller
             "nextSessionSeconds" => $nextSessionSeconds
         ];
 
-        if($fetchSessions) $dataToBeReturned['allSessions'] = $allSessions;
+        if ($fetchSessions) $dataToBeReturned['allSessions'] = $allSessions;
 
         return $dataToBeReturned;
     }
-    private function fetchSessions() {
+    private function fetchSessions()
+    {
         $dates = Session::orderBy('session_date')->orderBy('start_time')->get()->groupBy('session_date');
 
         $allSessions = [];
-        foreach ($dates as $date => $sessions)
-        {
-            if($date != '2023-12-13')
-            {
-                if(count($sessions))
-                {
-                    foreach ($sessions as $session)
-                    {
+        foreach ($dates as $date => $sessions) {
+            if ($date != '2023-12-13') {
+                if (count($sessions)) {
+                    foreach ($sessions as $session) {
                         if (
-                            (strpos($session->title, 'Session') !== false) || 
-                            (strpos($session->title, 'session') !== false) || 
-                            (strpos($session->title, 'Awards') !== false) || 
-                            (strpos($session->title, 'awards') !== false) || 
-                            (strpos($session->title, 'Closing') !== false) || 
+                            (strpos($session->title, 'Session') !== false) ||
+                            (strpos($session->title, 'session') !== false) ||
+                            (strpos($session->title, 'Awards') !== false) ||
+                            (strpos($session->title, 'awards') !== false) ||
+                            (strpos($session->title, 'Closing') !== false) ||
                             (strpos($session->title, 'closing') !== false)
-                        )
-                        {
+                        ) {
                             $oneSession = [];
                             $oneSession['id'] = $session->id;
                             $oneSession['date'] = $date;
                             $oneSession['title'] = $session->title;
-                            if(isset($session->moderator)) $oneSession['moderator'] = $session->moderator->name;
+                            if (isset($session->moderator)) $oneSession['moderator'] = $session->moderator->name;
 
 
                             //// get panelist ////
@@ -1313,9 +1335,9 @@ class RegistrationController extends Controller
                             $panelists = $session->panelists;
                             foreach ($panelists as $panelistkey => $panelist) {
                                 $panelistText .= $panelist->name;
-                                if($panelistkey < count($panelists) - 1) $panelistText .= ", ";
+                                if ($panelistkey < count($panelists) - 1) $panelistText .= ", ";
                             }
-                            if($panelistText != "") $oneSession['panelists'] = $panelistText;
+                            if ($panelistText != "") $oneSession['panelists'] = $panelistText;
                             //// get panelist ////
 
 
@@ -1324,17 +1346,14 @@ class RegistrationController extends Controller
                             $lecturesTimes = [];
                             $allLectures = [];
                             $lectures = $session->lectures;
-                            if(count($lectures))
-                            {
-                                foreach ($session->lectures as $lecture)
-                                {
+                            if (count($lectures)) {
+                                foreach ($session->lectures as $lecture) {
                                     //// fetch speakers ////
                                     $speakerText = "";
                                     $speakers = $lecture->speakers;
-                                    foreach ($speakers as $speakerkey => $speaker)
-                                    {
+                                    foreach ($speakers as $speakerkey => $speaker) {
                                         $speakerText .= $speaker->name;
-                                        if($speakerkey < count($speakers) - 1) $speakerText .= ", ";
+                                        if ($speakerkey < count($speakers) - 1) $speakerText .= ", ";
                                     }
                                     //// fetch speakers ////
 
@@ -1342,16 +1361,15 @@ class RegistrationController extends Controller
                                     $oneLecture['lecture_start_time'] = $lecture->lecture_start_time;
                                     $oneLecture['lecture_end_time'] = $lecture->lecture_end_time;
                                     $oneLecture['lecture_title'] = $lecture->lecture_title;
-                                    if($speakerText != "") $oneLecture['speakers'] = $speakerText;
+                                    if ($speakerText != "") $oneLecture['speakers'] = $speakerText;
                                     $allLectures[] = $oneLecture;
 
                                     $lecturesTimes[] = $lecture->lecture_start_time;
                                     $lecturesTimes[] = $lecture->lecture_end_time;
                                 }
                             }
-                            if(count($allLectures)) $oneSession['lectures'] = $allLectures;
-                            if(count($lecturesTimes))
-                            {
+                            if (count($allLectures)) $oneSession['lectures'] = $allLectures;
+                            if (count($lecturesTimes)) {
                                 $oneSession['start_time_from_lectures'] = min($lecturesTimes);
                                 $oneSession['end_time_from_lectures'] = max($lecturesTimes);
                             }
@@ -1361,8 +1379,8 @@ class RegistrationController extends Controller
                             $oneSession['start_time'] = $session->start_time;
                             $oneSession['end_time'] = $session->end_time;
 
-                            $oneSession['date_time_from'] = (isset($oneSession['start_time_from_lectures'])) ? $date.' '.$oneSession['start_time_from_lectures'] : $date.' '.$session->start_time;
-                            $oneSession['date_time_to'] = (isset($oneSession['end_time_from_lectures'])) ? $date.' '.$oneSession['end_time_from_lectures'] : $date.' '.$session->end_time;
+                            $oneSession['date_time_from'] = (isset($oneSession['start_time_from_lectures'])) ? $date . ' ' . $oneSession['start_time_from_lectures'] : $date . ' ' . $session->start_time;
+                            $oneSession['date_time_to'] = (isset($oneSession['end_time_from_lectures'])) ? $date . ' ' . $oneSession['end_time_from_lectures'] : $date . ' ' . $session->end_time;
 
 
                             $allSessions[] = $oneSession;
