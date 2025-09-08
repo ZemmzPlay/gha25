@@ -150,19 +150,16 @@
               </div>
               <div class="registerOneInputContainer" id="workshopInput">
                 <div class="registerOneInputLabel">Workshop</div>
-                <div class="workshops">
-                  @php $breaks = [0, 3]; @endphp
-                  @foreach ($workshops as $key => $workshop)
-                    <label><input type="checkbox" name="workshops[]" value="{{ $workshop->id }}"
-                        id="workshop-{{ $workshop->id }}" class="workshop-checkbox"
-                        {{ is_array(old('workshops')) && in_array($workshop->id, old('workshops')) ? 'checked' : '' }}
-                        {{ $workshop->places_left <= 0 ? 'disabled' : '' }} />
-                      {{ $workshop->title }}</label>
-                      @if(in_array($key, $breaks))
-                        <div class="break"></div>
-                      @endif
+                <select name="workshops[]" id="workshop-multiselect" class="registerOneInputValue workshop-multiselect" multiple>
+                  @foreach ($workshops as $workshop)
+                    <option value="{{ $workshop->id }}" 
+                            {{ is_array(old('workshops')) && in_array($workshop->id, old('workshops')) ? 'selected' : '' }}
+                            {{ $workshop->places_left <= 0 ? 'disabled' : '' }}
+                            data-places="{{ $workshop->places_left }}">
+                      {{ $workshop->title }}{{ $workshop->places_left <= 0 ? ' (Full)' : '' }}
+                    </option>
                   @endforeach
-                </div>
+                </select>
                 {{-- <select name="workshop_id" class="registerOneInputValue">
                   <option value="" data-price="0">Select Workshop</option>
                   @if (count($workshops))
@@ -258,32 +255,58 @@
   <script>
     $(document).ready(function() {
       var workshopDisable = {2: 5, 3: 6, 5: 2, 6: 3};
-      checkWorkshops();
-      $(document).on('click', '.workshop-checkbox', function() {
-        id = $(this).val();
-
-        if(workshopDisable[id]) {
-          if ($(this).is(':checked') == false) {
-            $('#workshop-' + workshopDisable[id]).attr('disabled', false);
+      
+      // Initialize Select2 multiselect
+      $('#workshop-multiselect').select2({
+        placeholder: 'Select workshops...',
+        allowClear: true,
+        width: '100%',
+        closeOnSelect: false
+      });
+      
+      // Handle workshop conflicts
+      $('#workshop-multiselect').on('select2:select', function (e) {
+        var selectedId = e.params.data.id;
+        handleWorkshopConflict(selectedId, true);
+      });
+      
+      $('#workshop-multiselect').on('select2:unselect', function (e) {
+        var unselectedId = e.params.data.id;
+        handleWorkshopConflict(unselectedId, false);
+      });
+      
+      function handleWorkshopConflict(workshopId, isSelected) {
+        if(workshopDisable[workshopId]) {
+          var conflictId = workshopDisable[workshopId];
+          var $conflictOption = $('#workshop-multiselect option[value="' + conflictId + '"]');
+          
+          if (isSelected) {
+            // If current workshop is selected, disable conflicting workshop
+            $conflictOption.prop('disabled', true);
+            // Remove conflicting workshop if it was selected
+            $('#workshop-multiselect').val(function() {
+              return $(this).val().filter(function(val) {
+                return val != conflictId;
+              });
+            }).trigger('change');
           } else {
-            $('#workshop-' + workshopDisable[id]).attr('disabled', true);
+            // If current workshop is unselected, enable conflicting workshop
+            $conflictOption.prop('disabled', false);
           }
         }
-
-
-      });
-
-      function checkWorkshops() {
-        $('.workshop-checkbox').each(function() {
-          id = $(this).val();
-          if(workshopDisable[id]) {
-            if ($(this).is(':checked')) {
-              $('#workshop-' + workshopDisable[id]).attr('disabled', true);
-            }
-          }
-        });
       }
-        
+      
+      // Check initial state
+      checkInitialWorkshops();
+      
+      function checkInitialWorkshops() {
+        var selectedValues = $('#workshop-multiselect').val();
+        if (selectedValues) {
+          selectedValues.forEach(function(workshopId) {
+            handleWorkshopConflict(workshopId, true);
+          });
+        }
+      }
     });
   </script>
 @stop
