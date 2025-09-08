@@ -35,9 +35,9 @@
                           @endif
                         </div>
                         <div class="doctor-info">
-                          <span>{{ $member->name ? $member->name : $member->first_name . ' ' . $member->last_name }}</span>
+                          <span id="doctor-name">{{ $member->name ? $member->name : $member->first_name . ' ' . $member->last_name }}</span>
                           @if ($member->subtitle)
-                            <span>{{ $member->subtitle }}</span>
+                            <span id="doctor-subtitle">{{ $member->subtitle }}</span>
                           @endif
                           <span>
                             <span class="flag-icon flag-icon-{{ strtolower($member->country) }}"></span>
