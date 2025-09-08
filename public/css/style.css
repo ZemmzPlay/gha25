@@ -99,8 +99,8 @@ h5 {
     align-items: center;
     background-color: #fff;
     padding: 120px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     box-shadow: 0 3px 9px 0px #00000080;
 }
 
@@ -111,8 +111,8 @@ h5 {
 }
 
 .logo {
-    width: 177px;
-    margin-left: 35px;
+    width: 217px;
+    /* margin-left: 35px; */
 }
 
 #desktop-menu ul {
