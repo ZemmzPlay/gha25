@@ -300,6 +300,7 @@
   display: inline;
   margin-left: 5px;
   white-space: nowrap;
+  align-self: anchor-center;
 }
 
 /* Spinner styles removed - no longer needed */
