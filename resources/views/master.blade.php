@@ -124,14 +124,12 @@
         </div>
         <nav class="sliding-menu">
           <div class="sliding-menu-in">
-            <a class="back-icon" href="#">
-              <i class="fa-solid fa-chevron-right"></i>
-            </a>
+            <div class="mobile-menu-header">
+              <a class="close-menu-btn" href="#">
+                <i class="fa-solid fa-times"></i>
+              </a>
+            </div>
             <ul>
-              @if (!Auth::guard('web')->check())
-                <li><a href="{{ url('/register') }}">register now</a></li>
-              @endif
-              
               <li><a href="{{ url('/') }}" class="{{ request()->is('/') ? 'menu-active' : '' }}">home</a></li>
               <li><a href="{{ url('/committees') }}"
                   class="{{ request()->is('committees') ? 'menu-active' : '' }}">committees</a>
@@ -150,8 +148,8 @@
               <li><a href="{{ url('/contact-us') }}"
                   class="{{ request()->is('contact-us') ? 'menu-active' : '' }}">Contact Us</a></li>
               <!-- <li><a href="{{ url('/terms-and-conditions') }}" class="{{ request()->is('terms-and-conditions') ? 'menu-active' : '' }}">terms & conditions</a></li> -->
-              <li><a href="{{ url('/case-submission') }}"
-                  class="{{ request()->is('case-submission') ? 'menu-active' : '' }}">Case Submission</a></li>
+              <!-- <li><a href="{{ url('/case-submission') }}"
+                  class="{{ request()->is('case-submission') ? 'menu-active' : '' }}">Case Submission</a></li> -->
               {{-- <li><a href="{{ url('/blog') }}"
                   class="{{ request()->is('blog') || request()->is('post/*') ? 'menu-active' : '' }}">News</a></li> --}}
               <li><a href="{{ url('/location') }}"
@@ -168,6 +166,7 @@
               @else
                 <li><a href="{{ url('/login') }}"
                     class="{{ request()->is('login') ? 'menu-active' : '' }}">login</a></li>
+                <li><a href="{{ url('/register') }}">register now</a></li>
               @endif
 
             </ul>

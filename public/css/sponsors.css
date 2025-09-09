@@ -62,8 +62,9 @@ h5 {
     margin-bottom: 30px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 25px;
+    margin-left: 7px;
   }
   
   .sponsors-image-div {

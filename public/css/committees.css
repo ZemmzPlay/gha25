@@ -13,7 +13,7 @@
 }
 
 .committees .doctor-container { 
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -317,7 +317,7 @@
 .committees .col-sm-4,
 .committees .col-xs-6 {
   padding: 0 10px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .member-image

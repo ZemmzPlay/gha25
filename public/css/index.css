@@ -340,7 +340,8 @@
  	}
 
  	.sponsors-image-container {
- 		justify-content: center;
+ 		justify-content: flex-start;
+		margin-left: 7px;
  	}
  }
 
@@ -368,7 +369,8 @@
  	}
 
  	.sponsors-image-container {
- 		justify-content: center;
+ 		justify-content: flex-start;
+		margin-left: 7px;
  		gap: 20px;
  		row-gap: 30px;
  	}
@@ -450,6 +452,8 @@
  	.sponsors-image-container {
  		gap: 12px;
  		row-gap: 25px;
+		justify-content: flex-start;
+		margin-left: 7px;
  	}
 
  	.sponsors-image {
@@ -474,6 +478,8 @@
  	.sponsors-image-container {
  		gap: 10px;
  		row-gap: 22px;
+		justify-content: flex-start;
+		margin-left: 7px;
  	}
 
  	.sponsors-image {
@@ -2260,6 +2266,15 @@
 
  .event-value {
  	color: #666;
+	@media screen and (max-width: 425px) {
+		font-size: 12px;
+	}
+	@media screen and (max-width: 365px) {
+		font-size: 10px;
+	}
+	@media screen and (max-width: 321px) {
+		font-size: 8px;
+	}
  }
 
  .endorsed-by {

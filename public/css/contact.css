@@ -3,7 +3,7 @@
 /* Main title styling */
 .main-title {
   text-transform: capitalize;
-  margin-bottom: 30px;
+  margin-bottom: 35px;
   font-size: 50px;
   line-height: normal;
   text-align: center;
@@ -30,7 +30,7 @@
   line-height: 1.6;
   color: #666;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 45px;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
@@ -41,7 +41,7 @@
   background: linear-gradient(145deg, #ffffff, #f8f9fa);
   border-radius: 20px;
   padding: 40px;
-  margin: 40px auto;
+  margin: 45px auto;
   max-width: 800px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   border: 1px solid rgba(0,0,0,0.05);
@@ -149,8 +149,8 @@
   background: white;
   border-radius: 15px;
   padding: 30px;
-  margin: 30px auto;
-  max-width: 600px;
+  margin: 35px auto 60px auto;
+  max-width: 800px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.08);
   border: 1px solid rgba(0,0,0,0.05);
   text-align: center;

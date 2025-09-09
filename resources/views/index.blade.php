@@ -150,7 +150,7 @@
   </div>
 
   {{-- endorsement --}}
-  <div class="sponsors-container">
+  <!-- <div class="sponsors-container">
     <h1 class="sponsors-text">endorsed by</h1>
     <div class="sponsors-image-container">
       <div class="sponsors-image-div">
@@ -163,7 +163,7 @@
         <img class="sponsors-image" src="{{ asset('images/home/endo/GIS-Black.png') }}" alt="Endorsed 3" />
       </div>
     </div>
-  </div>
+  </div> -->
 
   @include('all-sponsors')
 

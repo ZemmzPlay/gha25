@@ -11,7 +11,7 @@ $(document).ready(function() {
         }, 200);
     });
 
-    $('.back-icon').click(function(e) {
+    $('.back-icon, .close-menu-btn').click(function(e) {
         e.preventDefault();
         $(".sliding-menu-in").css("right", "-100%");
         $('.sliding-menu').fadeOut();
