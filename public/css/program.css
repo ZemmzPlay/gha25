@@ -173,6 +173,11 @@
     text-decoration: none;
 }
 
+/* Hide mobile download button on desktop */
+.mobile-download-btn {
+    display: none;
+}
+
 
  @media (min-width: 769px) {
     .program_title,
@@ -219,15 +224,39 @@
     .program_sub_title {
         font-size: 18px;
     }
-    .download_program_btn {
+    /* Hide the original download button position on mobile */
+    .text-right {
+        display: none;
+    }
+    /* Keep accordions closed by default on mobile, but allow JavaScript to control the first one */
+    .oneProgramContent {
+        display: none;
+    }
+    /* Ensure first accordion stays closed on mobile even if JavaScript tries to show it */
+    .oneProgram:first-child .oneProgramContent {
+        display: none !important;
+    }
+    /* Add download button after accordion sections on mobile */
+    .all_programs::after {
+        content: '';
+        display: block;
+        margin-top: 20px;
+    }
+    /* Mobile download button styling */
+    .mobile-download-btn {
+        display: block;
+        margin-top: 20px;
+        text-align: left;
+    }
+    .mobile-download-btn .download_program_btn {
         font-size: 14px;
         padding: 8px 16px;
         display: inline-flex;
         width: auto;
         max-width: 100%;
         word-wrap: break-word;
-        margin-top: -10px;
-        margin-bottom: 10px;
+        text-align: left;
+        justify-content: flex-start;
     }
     .oneProgram {
         margin-bottom: 20px;
