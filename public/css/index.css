@@ -2206,9 +2206,14 @@
  	font-weight: 900;
  }
 
- .endorsed-by .section-title {
- 	text-align: center;
- }
+.endorsed-by .section-title {
+	text-align: center;
+}
+
+/* Ensure section titles are in sentence case, not uppercase */
+.section-title {
+	text-transform: none !important;
+}
 
  .who-should-attend {
  	padding-right: 30px;

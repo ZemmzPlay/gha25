@@ -16,6 +16,7 @@ body
 /*  font-family: CircularBook, sans-serif;*/
   font-size: 50px;
   line-height: normal;
+  padding-inline: 13px;
 }
 
 .description

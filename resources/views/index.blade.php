@@ -92,7 +92,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="who-should-attend">
-            <h2 class="section-title">Who Should Attend</h2>
+            <h2 class="section-title">Who should attend</h2>
             <ul class="attendee-list">
               <li>Interventional and General Cardiologist</li>
               <li>Intensivists</li>
@@ -118,7 +118,7 @@
         </div>
         <div class="col-md-6">
           <div class="endorsed-by">
-            <h2 class="section-title">Endorsed By</h2>
+            <h2 class="section-title">Endorsed by</h2>
             <div class="endorsed-logos-container">
               <div class="endorsed-logo">
                 <img src="{{ asset('images/home/endo2.png') }}" alt="Kuwait Heart Foundation" />

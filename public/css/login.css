@@ -1,6 +1,6 @@
 .loginForm
 {
-    text-align: center;
+    text-align: left;
 }
 
 .loginContainerOut {
@@ -48,14 +48,15 @@
     padding-top: 30px;
     padding-bottom: 40px;
     width: 52%;
-    margin: 0 auto 0 auto;
+    margin: 0 0 0 0;
     position: relative;
     left: 0;
 }
 .loginTitleText {
     color: var(--primary-color-dark);
     font-family: 'DMSerifDisplayRegular';
-    font-size: 50px;
+    font-size: 56px;
+    font-weight: 400;
     text-align: left;
     margin-bottom: 20px;
 }
@@ -73,8 +74,8 @@
     /* width: 510px; */
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     gap: 30px;
 }
 .oneInputContainer {
@@ -131,7 +132,7 @@
 }
 .submitButton {
     font-family: 'WorkSansBold', sans-serif;
-    margin: 30px auto 0;
+    margin: 30px 0 0 0;
     width: 200px;
     height: 40px;
     border-radius: 199px;
@@ -234,7 +235,7 @@
     }
     .submitButton {
         width: 200px;
-        margin: 30px auto 0;
+        margin: 30px 0 0 0;
     }
 }
 
