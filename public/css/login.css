@@ -44,14 +44,20 @@
 .loginTitle {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding-top: 30px;
     padding-bottom: 40px;
+    width: 52%;
+    margin: 0 auto 0 auto;
+    position: relative;
+    left: 0;
 }
 .loginTitleText {
-    color: var(--second-color);
+    color: var(--primary-color-dark);
     font-family: 'DMSerifDisplayRegular';
-    font-size: 40px;
+    font-size: 50px;
+    text-align: left;
+    margin-bottom: 20px;
 }
 .loginTitleLine {
     width: calc(100% - 160px);
@@ -84,11 +90,12 @@
     margin-bottom: 0px;
 }
 .oneInputContainer label {
-    font-size: 20px;
-    color: var(--primary-color);
-    line-height: 1;
-    margin-bottom: 0px;
-    width: 80px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary-color-dark);
+    margin-right: 8px;
+    width: 125px;
+    /* text-transform: uppercase; */
     text-align: left;
 }
 .oneInputContainer input {
@@ -108,7 +115,7 @@
     overflow: hidden;
 }
 .phoneContainer select {
-    width: max-content;
+    width: 120px;
     height: 40px;
     outline: none;
     padding: 5px;
@@ -123,20 +130,24 @@
  	border-bottom: 1px solid var(--primary-color);
 }
 .submitButton {
-    font-family: 'DMSerifDisplayRegular';
-    margin-top: 30px;
-    /* margin-left: 90px; */
+    font-family: 'WorkSansBold', sans-serif;
+    margin: 30px auto 0;
     width: 200px;
     height: 40px;
-    border-radius: 7px;
+    border-radius: 199px;
     color: white;
     background-color: var(--primary-color);
     transition: all 0.3s;
     border: 1px solid var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
 }
 .submitButton:hover {
-    background-color: white;
-    color: var(--primary-color);
+    background-color: var(--primary-color-light);
+    color: white;
 }
 
 
@@ -189,9 +200,10 @@
     }
     .loginTitle {
         padding-bottom: 30px;
+        width: 75%;
     }
     .loginTitleLine {
-        display: none;
+        display: none
     }
     .loginTitleText {
         font-weight: bold;
@@ -215,7 +227,7 @@
     }
     .phoneContainer select {
         font-size: 14px;
-        width: 35%;
+        width: 30%;
     }
     .phoneContainer input {
         font-size: 14px;
@@ -228,7 +240,7 @@
 
 /* Select2 Custom Styles for Login */
 .select2-container {
-    width: 100% !important;
+    width: 50% !important;
 }
 
 .select2-container .select2-selection--single {
@@ -302,6 +314,6 @@
     }
     
     .phoneContainer select {
-        width: 40% !important;
+        width: 30% !important;
     }
 }

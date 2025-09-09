@@ -29,6 +29,7 @@ body {
   background: linear-gradient(135deg, #f8fbff 0%, #e8f4fd 100%);
   min-height: 100vh;
   padding: 80px 0;
+  overflow-x: hidden;
 }
 
 /* Hero Section */
@@ -136,6 +137,7 @@ body {
   font-size: 1.4rem;
   margin-bottom: 10px;
   font-weight: 600;
+  text-transform: none;
 }
 
 .info-card p {
@@ -153,6 +155,18 @@ body {
   overflow: hidden;
   position: relative;
   margin-bottom: 40px;
+  contain: layout style paint;
+  isolation: isolate;
+}
+
+/* Prevent map scroll from affecting page */
+.map-container * {
+  scroll-behavior: auto !important;
+}
+
+.map-container iframe {
+  scroll-behavior: auto !important;
+  overscroll-behavior: contain;
 }
 
 .map-header {
@@ -172,12 +186,18 @@ body {
 .map-wrapper {
   position: relative;
   padding: 0;
+  overflow: hidden;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  contain: layout style paint;
+  touch-action: manipulation;
 }
 
 .map {
   width: 100%;
   position: relative;
   min-height: 500px;
+  contain: layout style paint;
+  overflow: hidden;
 }
 
 .map .fa-spinner {
@@ -198,10 +218,37 @@ body {
   height: 500px;
   filter: grayscale(20%) brightness(1.1);
   transition: all 0.3s ease;
+  pointer-events: auto;
+  overflow: hidden;
+  contain: layout style paint;
+  touch-action: pan-x pan-y;
 }
 
 .map-embed:hover {
   filter: grayscale(0%) brightness(1);
+}
+
+/* Additional scroll containment */
+.map-embed {
+  overscroll-behavior: contain;
+  scroll-snap-type: none;
+}
+
+/* Prevent map from capturing scroll events */
+.map-container:focus-within {
+  outline: none;
+}
+
+/* Ensure proper scroll containment on mobile */
+@media (max-width: 768px) {
+  .map-container {
+    touch-action: pan-y;
+  }
+  
+  .map-embed {
+    touch-action: pan-x pan-y;
+    overscroll-behavior: contain;
+  }
 }
 
 /* Action Buttons */
@@ -215,41 +262,24 @@ body {
 }
 
 .btn-direction {
-  background: var(--gradient-primary);
+  background: var(--primary-color);
   color: white;
   border: none;
-  padding: 15px 30px;
-  border-radius: var(--border-radius-small);
-  font-size: 1rem;
-  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 199px;
+  font-size: 16px;
+  font-weight: bold;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   transition: all 0.3s ease;
-  box-shadow: var(--shadow-soft);
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-direction::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: left 0.5s;
-}
-
-.btn-direction:hover::before {
-  left: 100%;
+  font-family: 'WorkSansBold', sans-serif;
+  text-transform: uppercase;
 }
 
 .btn-direction:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-medium);
+  background: var(--primary-color-light);
   color: white;
   text-decoration: none;
 }
@@ -258,22 +288,22 @@ body {
   background: white;
   color: var(--primary-color);
   border: 2px solid var(--primary-color);
-  padding: 15px 30px;
-  border-radius: var(--border-radius-small);
-  font-size: 1rem;
-  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 199px;
+  font-size: 16px;
+  font-weight: bold;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   transition: all 0.3s ease;
+  font-family: 'WorkSansBold', sans-serif;
+  text-transform: uppercase;
 }
 
 .btn-secondary:hover {
   background: var(--primary-color);
   color: white;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-soft);
   text-decoration: none;
 }
 

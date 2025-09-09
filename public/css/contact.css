@@ -122,6 +122,7 @@
   text-align: center;
   margin-bottom: 15px;
   font-family: 'DMSerifDisplayRegular', sans-serif;
+  text-transform: capitalize;
 }
 
 /* Contact item content */
@@ -161,6 +162,7 @@
   font-size: 24px;
   margin-bottom: 20px;
   font-family: 'DMSerifDisplayRegular', sans-serif;
+  text-transform: capitalize;
 }
 
 .additional-info p {
