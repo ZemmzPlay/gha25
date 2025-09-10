@@ -7,6 +7,13 @@
 @endsection
 
 @section('content')
+<!-- Event Banner -->
+<div class="event-banner">
+    <div class="event-banner-content">
+      <h2 class="event-title">3<sup>rd</sup> GHA-SCAI SHOCK MIDDLE EAST KUWAIT - JAN 9-10, 2026</h2>
+    </div>
+</div>
+
   <div id="contact-us"
     class="contact-us home-section animate slow-mo even fadeIn no-padding-bottom no-padding-top"
     data-anim-type="fadeIn" data-anim-delay="200">
