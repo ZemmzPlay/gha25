@@ -69,10 +69,18 @@ class SettingsController extends Controller
     public function saveImageSettings($image, $imageName, $width, $height)
     {
         $image_name = $imageName.'_'.time() . '.' . $image->getClientOriginalExtension();
-        $imageToSave = Image::make($image->getRealPath());
-        $imageToSave->resize($width, $height, function ($constraint) {
-            $constraint->aspectRatio();
-        })->save('images/' . $image_name);
+        
+        // Handle SVG files differently - no resizing needed
+        if ($image->getClientOriginalExtension() === 'svg') {
+            $image->move('images/', $image_name);
+        } else {
+            // Handle raster images (jpg, png, gif) with resizing
+            $imageToSave = Image::make($image->getRealPath());
+            $imageToSave->resize($width, $height, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save('images/' . $image_name);
+        }
+        
         return $image_name;
     }
 }
