@@ -188,7 +188,7 @@
       <img src="{{ asset('images/global/kuwaitHeartFoundation.png') }}" alt="Kuwait Heart Foundation" />
     </div> --}}
     <div class="footerBottom">
-      <div class="footerText">© Gulf Heart Association 2025 -3rd gha scai shock middle east meeting.</div>
+      <div class="footerText">© Gulf Heart Association 2025 - 3rd gha scai shock middle east meeting.</div>
       <div class="byData">
         <div class="organizedBy">
           <div class="organizedByText">Meeting organized by</div>

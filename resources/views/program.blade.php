@@ -75,11 +75,11 @@
                         <div class="oneProgramHeader">
                             <span class="oneProgramDate">{{$workshopTitle}}</span>
                             <div class="oneProgramExCol" id="expandProgram">
-                                <span class="expand-icon">Expand</span>
+                                <!-- <span class="expand-icon">Expand</span> -->
                                 <span class="plus-sign">+</span>
                             </div>
                             <div class="oneProgramExCol hide" id="collapseProgram">
-                                <span class="expand-icon">Collapse</span>
+                                <!-- <span class="expand-icon">Collapse</span> -->
                                 <span class="plus-sign">-</span>
                             </div>
                         </div>
@@ -182,11 +182,11 @@
                                 <div class="oneProgramHeader">
                                     <span class="oneProgramDate">{{date('l F j', strtotime('2023-12-13'))}}</span>
                                     <div class="oneProgramExCol" id="expandProgram">
-                                        <span class="expand-icon">Expand</span>
+                                        <!-- <span class="expand-icon">Expand</span> -->
                                         <span class="plus-sign">+</span>
                                     </div>
                                     <div class="oneProgramExCol hide" id="collapseProgram">
-                                        <span class="expand-icon">Collapse</span>
+                                        <!-- <span class="expand-icon">Collapse</span> -->
                                         <span class="plus-sign">-</span>
                                     </div>
                                 </div>
@@ -266,11 +266,11 @@
                             <div class="oneProgramHeader">
                                 <span class="oneProgramDate">{{date('l F j', strtotime($date))}}</span>
                                 <div class="oneProgramExCol" id="expandProgram">
-                                    <span class="expand-icon">Expand</span>
+                                    <!-- <span class="expand-icon">Expand</span> -->
                                     <span class="plus-sign">+</span>
                                 </div>
                                 <div class="oneProgramExCol hide" id="collapseProgram">
-                                    <span class="expand-icon">Collapse</span>
+                                    <!-- <span class="expand-icon">Collapse</span> -->
                                     <span class="plus-sign">-</span>
                                 </div>
                             </div>
