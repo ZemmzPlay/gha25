@@ -133,6 +133,9 @@ h5 {
     padding: 12px 0;
   }
   
+  .event-banner-content {
+    padding-inline: 10px;
+  }
   
   .event-banner-logo {
     height: 13px;
