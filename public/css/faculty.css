@@ -9,6 +9,10 @@ body
 /*  font-family: 'WorkSansBold', sans-serif;*/
 }
 
+.faculty {
+  background-color: #eee;
+}
+
 .main-title
 {
   text-transform: capitalize;
