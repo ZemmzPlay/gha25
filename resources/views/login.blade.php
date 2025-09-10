@@ -9,6 +9,13 @@
 
 
 @section('content')
+    <!-- Event Banner -->
+    <div class="event-banner">
+        <div class="event-banner-content">
+            <h2 class="event-title">3<sup>rd</sup> GHA-SCAI SHOCK MIDDLE EAST KUWAIT - JAN 9-10, 2026</h2>
+        </div>
+    </div>
+
     <div class="loginContainerOut">
         {{-- <div class="topLoginImage">
             <img class="topLoginImageDesktop" src="{{ asset('images/global/Sign_In_Desktop_Banners.png') }}" alt="login-image" />

@@ -9,6 +9,12 @@
 @endsection
 
 @section('content')
+    <!-- Event Banner -->
+    <div class="event-banner">
+        <div class="event-banner-content">
+            <h2 class="event-title">3<sup>rd</sup> GHA-SCAI SHOCK MIDDLE EAST KUWAIT - JAN 9-10, 2026</h2>
+        </div>
+    </div>
 
   @if ((Settings::get('registration_enabled') && !Auth::guard('web')->check()) || Settings::get('certificates_enabled'))
     <div class="registerContainer" id="registerContainer">
