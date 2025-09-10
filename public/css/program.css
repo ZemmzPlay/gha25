@@ -228,14 +228,14 @@
     .text-right {
         display: none;
     }
-    /* Keep accordions closed by default on mobile, but allow JavaScript to control the first one */
-    .oneProgramContent {
-        display: none;
-    }
-    /* Ensure first accordion stays closed on mobile even if JavaScript tries to show it */
-    .oneProgram:first-child .oneProgramContent {
-        display: none !important;
-    }
+     /* Keep accordions closed by default on mobile, but allow JavaScript to control them */
+     .oneProgramContent {
+         display: none;
+     }
+     /* Allow first accordion to be controlled by JavaScript */
+     .oneProgram:first-child .oneProgramContent.active {
+         display: block;
+     }
     /* Add download button after accordion sections on mobile */
     .all_programs::after {
         content: '';
