@@ -55,7 +55,10 @@ class SettingsController extends Controller
         /////////////// save images ///////////////
         if($request->hasFile('logo'))
         {
-            File::delete('images/' . $configuration->logo);
+            // Delete the old logo file if it exists
+            if ($configuration->logo && File::exists('images/' . $configuration->logo)) {
+                File::delete('images/' . $configuration->logo);
+            }
             $image_name = $this->saveImageSettings($request->file('logo'), 'global/logo', 341, 96);
             $configuration->logo = $image_name;
         }
@@ -70,10 +73,22 @@ class SettingsController extends Controller
     {
         $image_name = $imageName.'_'.time() . '.' . $image->getClientOriginalExtension();
         
-        $imageToSave = Image::make($image->getRealPath());
-        $imageToSave->resize($width, $height, function ($constraint) {
-            $constraint->aspectRatio();
-        })->save('images/' . $image_name);
+        // Handle SVG files differently since GD driver doesn't support them
+        if ($image->getClientOriginalExtension() === 'svg') {
+            // For SVG files, just move the file without resizing
+            // Ensure the directory exists
+            $directory = 'images/' . dirname($imageName);
+            if (!File::exists($directory)) {
+                File::makeDirectory($directory, 0755, true);
+            }
+            $image->move($directory, basename($image_name));
+        } else {
+            // For other image types, use Image class for resizing
+            $imageToSave = Image::make($image->getRealPath());
+            $imageToSave->resize($width, $height, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save('images/' . $image_name);
+        }
 
         
         return $image_name;

@@ -184,6 +184,15 @@ h5 {
 .logo {
     width: 350px;
     /* margin-left: 35px; */
+    height: auto;
+    max-width: 100%;
+}
+
+/* Ensure SVG logos display properly */
+.logo[src$=".svg"] {
+    width: 350px;
+    height: auto;
+    max-width: 100%;
 }
 
 #desktop-menu ul {
@@ -301,6 +310,15 @@ h5 {
         /*width: 150px;*/
         width: 280px;
         margin-left: 0px;
+        height: auto;
+        max-width: 100%;
+    }
+    
+    /* Ensure SVG logos display properly on mobile */
+    .logo[src$=".svg"] {
+        width: 280px;
+        height: auto;
+        max-width: 100%;
     }
 
     #mobile-menu {

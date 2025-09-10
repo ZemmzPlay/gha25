@@ -28,3 +28,9 @@
   AddHandler application/x-httpd-ea-php72 .php .php7 .phtml
 </IfModule>
 # php -- END cPanel-generated handler, do not edit
+
+# Add MIME type for SVG files
+<IfModule mod_mime.c>
+    AddType image/svg+xml .svg
+    AddType image/svg+xml .svgz
+</IfModule>
