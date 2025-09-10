@@ -168,7 +168,7 @@
             <?php
             $paddingBottomSection = (count($workshops)) ? "40px" : "0px";
             ?>
-            <div class="program_sub_title" style="padding-top: {{$paddingBottomSection}};">Scientific Agenda</div>
+            <div class="program_sub_title" style="padding-top: {{$paddingBottomSection}};">Scientific Program</div>
             <div class="all_programs">
                 <?php
                 foreach ($dates as $date => $sessions)

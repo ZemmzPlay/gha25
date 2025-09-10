@@ -44,11 +44,11 @@
   </div>
 
   {{-- support sponsor --}}
-  <div class="sponsors-container">
+  <!-- <div class="sponsors-container">
     <h1 class="sponsors-text">support sponsor</h1>
     <div class="sponsors-image-container">
       <div class="sponsors-image-div">
         <img class="sponsors-image" src="{{ asset('images/home/endo2.png') }}" alt="Support Sponsor" />
       </div>
     </div>
-  </div>
+  </div> -->
