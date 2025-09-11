@@ -13,6 +13,10 @@ body
   background-color: #eee;
 }
 
+.main-content {
+  padding-bottom: 0 !important;
+}
+
 .main-title
 {
   text-transform: capitalize;
