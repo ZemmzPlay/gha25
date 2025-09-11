@@ -29,9 +29,11 @@ $(document).ready(function() {
     $(window).scroll(function() {
         if ($(this).scrollTop() > 100) {
             $('.header-content').addClass('fixed-header');
+            $('.event-banner').addClass('fixed-header');
             $('.main-content').addClass('fixed-main');
         } else {
             $('.header-content').removeClass('fixed-header');
+            $('.event-banner').removeClass('fixed-header');
             $('.main-content').removeClass('fixed-main');
         }
     });
