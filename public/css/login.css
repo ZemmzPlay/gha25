@@ -7,6 +7,10 @@
     width: 100%;
     position: relative;
     padding-bottom: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 200px);
 }
 
 
@@ -38,8 +42,12 @@
 
 
 .loginContainer {
-    width: 80%;
-    margin: auto;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 .loginTitle {
     display: flex;
@@ -47,10 +55,10 @@
     justify-content: flex-start;
     padding-top: 30px;
     padding-bottom: 40px;
-    width: 52%;
-    margin: 0 0 0 0;
+    width: 100%;
+    margin: 0;
     position: relative;
-    left: 0;
+    
 }
 .loginTitleText {
     color: var(--primary-color-dark);
@@ -71,21 +79,19 @@
 
 
 .loginInputsContainer {
-    /* width: 510px; */
+    width: 510px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     gap: 30px;
 }
 .oneInputContainer {
-    width: 50%;
-    /* margin-bottom: 15px; */
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 4px;
-    /* align-items: center; */
-    /* justify-content: space-between; */
+    align-items: flex-start;
 }
 .oneInputContainer:last-child {
     margin-bottom: 0px;
@@ -132,7 +138,7 @@
 }
 .submitButton {
     font-family: 'WorkSansBold', sans-serif;
-    margin: 30px 0 0 0;
+    margin: 30px auto 0 auto;
     width: 200px;
     height: 40px;
     border-radius: 199px;
@@ -186,45 +192,63 @@
 
 
 
-@media all and (max-width: 630px) {
+/* Tablet styles */
+@media all and (max-width: 768px) {
+    .loginContainerOut {
+        padding: 20px;
+        min-height: calc(100vh - 150px);
+    }
     .loginContainer {
-        width: 90%;
+        width: 100%;
+        max-width: 450px;
+    }
+    .loginTitleText {
+        font-size: 50px;
+    }
+}
+
+/* Mobile styles */
+@media all and (max-width: 630px) {
+    .loginContainerOut {
+        padding: 20px;
+        min-height: calc(100vh - 150px);
+    }
+    .loginContainer {
+        width: 100%;
+        max-width: 350px;
     }
     .loginInputsContainer {
         width: 100%;
+        max-width: 100%;
+        /* margin-left: 10px; */
     }
     .oneInputContainer{
-        width: 75%;
-    }
-    .loginContainerOut {
-        padding-bottom: 50px;
+        width: 100%;
     }
     .loginTitle {
         padding-bottom: 30px;
-        width: 75%;
+        width: 100%;
+        justify-content: flex-start;
+        margin-left: -4px;
     }
     .loginTitleLine {
         display: none
     }
     .loginTitleText {
         font-weight: bold;
+        font-size: 48px;
+        text-align: left;
     }
     .oneInputContainer label {
         font-size: 15px;
-        width: 60px;
+        width: auto;
     }
     .oneInputContainer input {
-        /* width: calc(100% - 70px); */
-        /*width: 255px;*/
         font-size: 14px;
         height: 40px;
-        /* border-radius: 7px; */
     }
     .phoneContainer {
-        /* width: calc(100% - 70px); */
-        /*width: 255px;*/
         height: 40px;
-        /* border-radius: 7px; */
     }
     .phoneContainer select {
         font-size: 14px;
@@ -235,13 +259,30 @@
     }
     .submitButton {
         width: 200px;
-        margin: 30px 0 0 0;
+        margin: 30px auto 0 auto;
+    }
+}
+
+/* Small mobile styles */
+@media all and (max-width: 480px) {
+    .loginContainerOut {
+        padding: 15px;
+        min-height: calc(100vh - 120px);
+    }
+    .loginContainer {
+        max-width: 320px;
+    }
+    .loginTitleText {
+        font-size: 42px;
+    }
+    .submitButton {
+        width: 180px;
     }
 }
 
 /* Select2 Custom Styles for Login */
 .select2-container {
-    width: 50% !important;
+    width: 100% !important;
 }
 
 .select2-container .select2-selection--single {
@@ -290,6 +331,10 @@
 
 /* Mobile responsive login Select2 dropdown */
 @media all and (max-width: 630px) {
+    .select2-container {
+        width: 100% !important;
+    }
+    
     .select2-container .select2-selection--single {
         height: 35px !important;
     }
