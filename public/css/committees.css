@@ -8,6 +8,10 @@
   background-color: #eee;
 }
 
+.main-content {
+  padding-bottom: 0 !important;
+}
+
 .bio-wait
 {
   font-size: 24px;
