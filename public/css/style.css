@@ -183,6 +183,10 @@ h5 {
     z-index: 1000; */
 }
 
+.header-content .fixed-header {
+    padding-bottom: 16px;
+}
+
 .fixed-header {
     position: fixed;
     width: 100%;
