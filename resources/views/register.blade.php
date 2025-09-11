@@ -156,29 +156,40 @@
               </div>
               <div class="registerOneInputContainer" id="workshopInput">
                 <div class="registerOneInputLabel">Workshop</div>
-                <div class="workshops">
-                  @php $breaks = [0, 3]; @endphp
-                  @foreach ($workshops as $key => $workshop)
-                    <label><input type="checkbox" name="workshops[]" value="{{ $workshop->id }}"
-                        id="workshop-{{ $workshop->id }}" class="workshop-checkbox"
-                        {{ is_array(old('workshops')) && in_array($workshop->id, old('workshops')) ? 'checked' : '' }}
-                        {{ $workshop->places_left <= 0 ? 'disabled' : '' }} />
-                      {{ $workshop->title }}</label>
-                      @if(in_array($key, $breaks))
-                        <div class="break"></div>
-                      @endif
-                  @endforeach
-                </div>
-                {{-- <select name="workshop_id" class="registerOneInputValue">
-                  <option value="" data-price="0">Select Workshop</option>
-                  @if (count($workshops))
+                <div class="multi-select-dropdown">
+                  <div class="multi-select-input" id="workshopDropdown">
+                    <span class="multi-select-placeholder" id="workshopPlaceholder">Select Workshops</span>
+                    <span class="multi-select-count" id="workshopCount" style="display: none;">0 items selected</span>
+                    <i class="fas fa-chevron-down multi-select-arrow"></i>
+                  </div>
+                  <div class="multi-select-options" id="workshopOptions">
+                    <div class="multi-select-category">Available Workshops</div>
                     @foreach ($workshops as $workshop)
-                      <option value="{{ $workshop->id }}" data-price="{{ $workshop->price }}"
-                        {{ old('workshop_id') && old('workshop_id') == $workshop->id ? 'selected' : '' }}>
-                        {{ $workshop->title }}</option>
+                      <div class="multi-select-option {{ $workshop->places_left <= 0 ? 'disabled' : '' }}" 
+                           data-value="{{ $workshop->id }}" 
+                           data-title="{{ $workshop->title }}">
+                        <span class="option-text">{{ $workshop->title }}</span>
+                        <div class="option-checkbox">
+                          <input type="checkbox" name="workshops[]" value="{{ $workshop->id }}"
+                                 id="workshop-{{ $workshop->id }}" class="workshop-checkbox"
+                                 {{ is_array(old('workshops')) && in_array($workshop->id, old('workshops')) ? 'checked' : '' }}
+                                 {{ $workshop->places_left <= 0 ? 'disabled' : '' }} />
+                        </div>
+                      </div>
                     @endforeach
-                  @endif
-                </select> --}}
+                  </div>
+                </div>
+                <div class="selected-workshops" id="selectedWorkshops">
+                  <div class="selected-header">
+                    <i class="fas fa-clock"></i>
+                    <span>Selected Workshops</span>
+                    <span class="selected-count" id="selectedCount">0</span>
+                    <span class="clear-all" id="clearAllWorkshops">Clear All</span>
+                  </div>
+                  <div class="selected-items" id="selectedItems">
+                    <!-- Selected items will be populated here -->
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -264,32 +275,214 @@
   <script>
     $(document).ready(function() {
       var workshopDisable = {2: 5, 3: 6, 5: 2, 6: 3};
+      var selectedWorkshops = [];
+
+      // Initialize multi-select dropdown
+      initMultiSelectDropdown();
       checkWorkshops();
-      $(document).on('click', '.workshop-checkbox', function() {
-        id = $(this).val();
+      updateSelectedWorkshops();
+
+      // Dropdown toggle functionality
+      $('#workshopDropdown').on('click', function(e) {
+        e.stopPropagation();
+        toggleDropdown();
+      });
+
+      // Close dropdown when clicking outside
+      $(document).on('click', function(e) {
+        if (!$(e.target).closest('.multi-select-dropdown').length) {
+          closeDropdown();
+        }
+      });
+
+      // Option selection
+      $(document).on('click', '.multi-select-option', function(e) {
+        e.stopPropagation();
+        if ($(this).hasClass('disabled')) return;
+        
+        var checkbox = $(this).find('.workshop-checkbox');
+        var isChecked = checkbox.is(':checked');
+        var id = checkbox.val();
+        
+        if (!isChecked) {
+          checkbox.prop('checked', true);
+          $(this).addClass('selected');
+          
+          // Handle workshop conflicts - disable conflicting workshops
+          if(workshopDisable[id]) {
+            $('#workshop-' + workshopDisable[id]).attr('disabled', true);
+            $('#workshop-' + workshopDisable[id]).closest('.multi-select-option').addClass('disabled');
+          }
+        } else {
+          checkbox.prop('checked', false);
+          $(this).removeClass('selected');
+          
+          // Handle workshop conflicts - enable conflicting workshops
+          if(workshopDisable[id]) {
+            $('#workshop-' + workshopDisable[id]).attr('disabled', false);
+            $('#workshop-' + workshopDisable[id]).closest('.multi-select-option').removeClass('disabled');
+          }
+        }
+        
+        handleWorkshopSelection(checkbox);
+        updateSelectedWorkshops();
+      });
+
+      // Clear all functionality
+      $('#clearAllWorkshops').on('click', function(e) {
+        e.stopPropagation();
+        clearAllWorkshops();
+      });
+
+      // Remove individual item
+      $(document).on('click', '.remove-item', function(e) {
+        e.stopPropagation();
+        var workshopId = $(this).data('workshop-id');
+        removeWorkshop(workshopId);
+      });
+
+      // Handle existing workshop checkbox changes
+      $(document).on('change', '.workshop-checkbox', function() {
+        var id = $(this).val();
+        var optionElement = $(this).closest('.multi-select-option');
 
         if(workshopDisable[id]) {
           if ($(this).is(':checked') == false) {
             $('#workshop-' + workshopDisable[id]).attr('disabled', false);
+            $('#workshop-' + workshopDisable[id]).closest('.multi-select-option').removeClass('disabled');
           } else {
             $('#workshop-' + workshopDisable[id]).attr('disabled', true);
+            $('#workshop-' + workshopDisable[id]).closest('.multi-select-option').addClass('disabled');
           }
         }
 
+        if ($(this).is(':checked')) {
+          optionElement.addClass('selected');
+        } else {
+          optionElement.removeClass('selected');
+        }
 
+        handleWorkshopSelection($(this));
+        updateSelectedWorkshops();
       });
+
+      function initMultiSelectDropdown() {
+        // Set initial state for pre-selected workshops
+        $('.workshop-checkbox:checked').each(function() {
+          $(this).closest('.multi-select-option').addClass('selected');
+        });
+      }
+
+      function toggleDropdown() {
+        var dropdown = $('#workshopOptions');
+        var input = $('#workshopDropdown');
+        
+        if (dropdown.hasClass('show')) {
+          closeDropdown();
+        } else {
+          openDropdown();
+        }
+      }
+
+      function openDropdown() {
+        $('#workshopOptions').addClass('show');
+        $('#workshopDropdown').addClass('open');
+      }
+
+      function closeDropdown() {
+        $('#workshopOptions').removeClass('show');
+        $('#workshopDropdown').removeClass('open');
+      }
+
+      function handleWorkshopSelection(checkbox) {
+        var workshopId = checkbox.val();
+        var workshopTitle = checkbox.closest('.multi-select-option').data('title');
+        var isChecked = checkbox.is(':checked');
+
+        if (isChecked) {
+          // Add to selected workshops
+          var existingIndex = selectedWorkshops.findIndex(w => w.id === workshopId);
+          if (existingIndex === -1) {
+            selectedWorkshops.push({
+              id: workshopId,
+              title: workshopTitle
+            });
+          }
+        } else {
+          // Remove from selected workshops
+          selectedWorkshops = selectedWorkshops.filter(w => w.id !== workshopId);
+        }
+      }
+
+      function updateSelectedWorkshops() {
+        var count = selectedWorkshops.length;
+        var itemsContainer = $('#selectedItems');
+        var countElement = $('#selectedCount');
+        var placeholder = $('#workshopPlaceholder');
+        var countDisplay = $('#workshopCount');
+
+        // Update count display
+        countElement.text(count);
+        
+        if (count > 0) {
+          placeholder.hide();
+          countDisplay.text(count + ' item' + (count > 1 ? 's' : '') + ' selected').show();
+        } else {
+          placeholder.show();
+          countDisplay.hide();
+        }
+
+        // Update selected items display
+        if (count === 0) {
+          itemsContainer.html('<div class="empty">No workshops selected</div>');
+        } else {
+          var itemsHtml = '';
+          
+          selectedWorkshops.forEach(function(workshop) {
+            itemsHtml += `
+              <div class="selected-item">
+                <div class="selected-item-info">
+                  <div class="selected-item-title">${workshop.title}</div>
+                </div>
+                <div class="remove-item" data-workshop-id="${workshop.id}">×</div>
+              </div>
+            `;
+          });
+          
+          itemsContainer.html(itemsHtml);
+        }
+      }
+
+      function removeWorkshop(workshopId) {
+        var checkbox = $('#workshop-' + workshopId);
+        checkbox.prop('checked', false);
+        checkbox.closest('.multi-select-option').removeClass('selected');
+        
+        handleWorkshopSelection(checkbox);
+        updateSelectedWorkshops();
+      }
+
+      function clearAllWorkshops() {
+        $('.workshop-checkbox').prop('checked', false);
+        $('.multi-select-option').removeClass('selected');
+        $('.multi-select-option').removeClass('disabled');
+        $('.workshop-checkbox').attr('disabled', false);
+        selectedWorkshops = [];
+        updateSelectedWorkshops();
+      }
 
       function checkWorkshops() {
         $('.workshop-checkbox').each(function() {
-          id = $(this).val();
+          var id = $(this).val();
           if(workshopDisable[id]) {
             if ($(this).is(':checked')) {
               $('#workshop-' + workshopDisable[id]).attr('disabled', true);
+              $('#workshop-' + workshopDisable[id]).closest('.multi-select-option').addClass('disabled');
             }
           }
         });
       }
-        
     });
   </script>
 @stop
+
