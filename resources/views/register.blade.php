@@ -21,10 +21,7 @@
       <div class="registerMiddle">
 
         @if (Settings::get('registration_enabled') && !Auth::guard('web')->check())
-          <div class="registerTopTitle">
-            <div class="registerTopTitleText">Registration</div>
-            {{-- <div class="registerTopTitleLine"></div> --}}
-          </div>
+          <h1 class="main-title">Registration</h1>
           <div class="registerBottomTitle">Personal & Contract Information</div>
 
           @if (count($errors) > 0)
