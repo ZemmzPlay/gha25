@@ -8,6 +8,10 @@
   background-color: #eee;
 }
 
+.committees .section-title {
+  font-family: 'DMSansRegular', 'WorkSansRegular', sans-serif !important;
+}
+
 .main-content {
   padding-bottom: 0 !important;
 }

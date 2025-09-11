@@ -71,6 +71,7 @@ body {
   text-transform: none;
   position: relative;
   display: inline-block;
+  font-family: 'DMSansRegular', 'WorkSansRegular', sans-serif;
 }
 
 .second-title::after {

@@ -1223,7 +1223,7 @@
     .main-banner .text-container .section-title span.date {font-size: 20px;}
     .about .container { padding: 0 !important;}
     .home-faculty .section-title { font-size: 26px !important; }
-    .sponsors-group .section-title { margin-bottom: 10px; font-size: 20px; font-family: 'CircularBook', sans-serif;}
+    .sponsors-group .section-title { margin-bottom: 10px; font-size: 20px; font-family: 'DMSansRegular', 'WorkSansRegular', sans-serif;}
 
 }
 @media (max-width: 549px) {
