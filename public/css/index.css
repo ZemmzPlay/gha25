@@ -800,9 +800,9 @@
  	font-weight: bold;
  }
 
- #workshopInput {
- 	/* width: calc(33.33% - 10px); */
- }
+#workshopInput {
+	width: calc(33.33% - 10px);
+}
 
  #workshopInput .registerOneInputLabel {
  	width: 120px;
@@ -1553,7 +1553,7 @@
  	display: flex;
  	/* margin-left: 132px; */
  	flex-direction: column;
- 	margin-top: 48px;
+ 	margin-top: 20px;
  	width: 100%;
  	align-items: start;
  	/* max-width: 625px; */
@@ -1707,7 +1707,7 @@
  	}
 
  	.registerButtonContainer {
- 		width: 325px;
+ 		width: 100%;
  	}
 
  	.registerButtonLeft {
