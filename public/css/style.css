@@ -96,73 +96,74 @@ h5 {
 
 /* ////////////////////////// -------------------- EVENT BANNER -------------------- ////////////////////////// */
 .event-banner {
-  background: var(--primary-color);
-  padding: 15px 0;
-  text-align: center;
-  position: relative;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: var(--primary-color);
+    padding: 15px 0;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .event-banner-content {
-  display: flex;
-  align-items: center;
-  justify-content: left;
-  padding-inline: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding-inline: 50px;
 }
 
 .event-banner-logo {
-  height: 16px;
-  width: auto;
-  max-width: 100%;
-  object-fit: contain;
+    height: 16px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
 }
 
 /* Responsive Event Banner */
 @media (max-width: 1200px) {
-  .event-banner-logo {
-    height: 16px;
-  }
+    .event-banner-logo {
+        height: 16px;
+    }
 }
 
 @media (max-width: 992px) {
-  .event-banner-logo {
-    height: 13px;
-  }
+    .event-banner-logo {
+        height: 13px;
+    }
 }
 
 @media (max-width: 768px) {
-  .event-banner {
-    padding: 12px 0;
-  }
-  
-  .event-banner-content {
-    padding-inline: 10px;
-  }
-  
-  .event-banner-logo {
-    height: 13px;
-  }
+    .event-banner {
+        padding: 12px 0;
+    }
+
+    .event-banner-content {
+        padding-inline: 10px;
+    }
+
+    .event-banner-logo {
+        height: 13px;
+    }
 }
 
 @media (max-width: 576px) {
-  .event-banner {
-    padding: 10px 0;
-  }
-  
-  .event-banner-logo {
-    height: 25px;
-  }
+    .event-banner {
+        padding: 10px 0;
+    }
+
+    .event-banner-logo {
+        height: 25px;
+    }
 }
 
 @media (max-width: 480px) {
-  .event-banner-logo {
-    height: 22px;
-  }
+    .event-banner-logo {
+        height: 22px;
+    }
 }
+
 @media (max-width: 375px) {
-  .event-banner-logo {
-    height: 20px;
-  }
+    .event-banner-logo {
+        height: 20px;
+    }
 }
 
 /* ////////////////////////// -------------------- HEADER -------------------- ////////////////////////// */
@@ -322,6 +323,10 @@ h5 {
         padding-bottom: 20px;
     }
 
+    .event-banner.fixed-header {
+        top: 103px;
+    }
+
     .logo {
         /*width: 150px;*/
         width: 280px;
@@ -329,7 +334,7 @@ h5 {
         height: auto;
         max-width: 100%;
     }
-    
+
     /* Ensure SVG logos display properly on mobile */
     .logo[src$=".svg"] {
         width: 280px;
