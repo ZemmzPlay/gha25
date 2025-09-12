@@ -14,6 +14,8 @@
   }
   .doctor-info #doctor-name {
     white-space: nowrap;
+    font-size: 15px;
+    font-weight: 600 !important;
   }
   
   .doctor-country .flag-icon {
