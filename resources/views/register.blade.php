@@ -25,9 +25,9 @@
           <h1 class="main-title">Registration</h1>
 
           <div class="register-options">
-            <button class="register-option-button" data-registration="only_workshop">Only Workshop</button>
-            <button class="register-option-button" data-registration="only_conference">Only Conference</button>
-            <button class="register-option-button" data-registration="conference_workshop">Conferenc & Workshop</button>
+            <button class="register-option-button" data-registration="only_workshop">Workshop Registration Only</button>
+            <button class="register-option-button" data-registration="only_conference">Meeting Registration Only</button>
+            <button class="register-option-button" data-registration="conference_workshop">Meeting and Workshop Registration</button>
           </div>
 
           <div class="register-container" style="display: none;">
