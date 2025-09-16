@@ -152,6 +152,10 @@ h5 {
     .event-banner-logo {
         height: 25px;
     }
+
+ 	.fixed-main {
+ 		padding-top: 165px !important;
+ 	}
 }
 
 @media (max-width: 480px) {

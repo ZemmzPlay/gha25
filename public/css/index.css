@@ -804,7 +804,7 @@
  	display: flex;
  	gap: 10px;
  	flex-wrap: wrap;
-	justify-content: center;
+ 	justify-content: center;
  	padding: 10px;
  	border-radius: 10px;
  	box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 30px;
@@ -832,7 +832,7 @@
 
  .register-option-button {
  	box-shadow: rgba(0, 0, 0, 0.08) 0px 5px 15px;
-	width: 325px;
+ 	width: 325px;
  	position: relative;
  	background: var(--primary-color);
  	color: white;
@@ -1191,6 +1191,12 @@
  }
 
  /* Responsive Design */
+ @media (max-width: 476px) {
+ 	.register-option-button {
+ 		width: 100%;
+ 	}
+ }
+
  @media (max-width: 768px) {
  	.multi-select-options {
  		max-height: 250px;
