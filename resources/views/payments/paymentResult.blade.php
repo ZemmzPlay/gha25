@@ -12,7 +12,7 @@
   <div class="container">
     <div class="row result-container">
       <div class="col-md-8">
-        @if($result == 'success')
+        @if($result == 'confirmation')
 
         <div class="main-title-container">
           <div class="">
