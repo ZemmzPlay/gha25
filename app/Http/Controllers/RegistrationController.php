@@ -31,7 +31,7 @@ class RegistrationController extends Controller
 {
     public function create(CreateRegistrationRequest $request)
     {
-        // return $request->workshops;
+        // return $request->all();
         if (Auth::guard('web')->check()) return redirect('/');
 
         $request['onlyWorkshop'] = 0;
@@ -168,7 +168,7 @@ class RegistrationController extends Controller
             $registration->receive_updates = $data['receive_updates'];
             $registration->payment_id = $paymentID;
             // $registration->workshop_id = $data['workshop_id'];
-            $registration->onlyWorkshop = $data['onlyWorkshop'];
+            $registration->onlyWorkshop = $data['only_workshop'] ?? 0;
             $registration->virtualAccess = $data['virtualAccess'];
             $registration->save();
         }

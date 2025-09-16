@@ -36,8 +36,8 @@ class CreateRegistrationRequest extends FormRequest
             'countryCode'      => 'required|max:255',
             'mobile'           => 'required|max:255',
             'receive_updates'  => 'required|in:0,1',
-            'onlyWorkshop'     => 'required|in:0,1',
-            'workshop_id'      => 'sometimes|nullable|exists:workshops,id|required_if:onlyWorkshop,1',
+            // 'onlyWorkshop'     => 'required|in:0,1',
+            // 'workshop_id'      => 'sometimes|nullable|exists:workshops,id|required_if:onlyWorkshop,1',
             'virtualAccess'     => 'required|in:0,1',
         ];
     }
