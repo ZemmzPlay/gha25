@@ -8,7 +8,7 @@
 
 @section('content')
 <section class="main-content animate slow-mo even fadeIn no-padding-top no-padding-bottom" data-anim-type="fadeIn" data-anim-delay="200">
-  <input type="hidden" id="printURL" value="{{ url('/register/payment-result/' . $result . '/' . $registration_id . '/print') }}">
+  <input type="hidden" id="printURL" value="{{ url('/register/' . $result . '/' . $registration_id . '/print') }}">
   <div class="container">
     <div class="row result-container">
       <div class="col-md-8">

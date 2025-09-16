@@ -415,7 +415,7 @@ class RegistrationController extends Controller
             $this->sendConfirmationEmail($registration);
             /////////////// EMAIL PART HERE AFTER PAYMENT SUCCESS ///////////////
 
-            return redirect('/register/payment-result/confirmation/' . $registration->id);
+            return redirect('/register/confirmation/' . $registration->id);
         } else {
             $paymentData->paid_status = 2;
             $paymentData->payment_status = 'OTP VERIFICATION FAILED';
@@ -695,11 +695,11 @@ class RegistrationController extends Controller
             /////////////// EMAIL PART HERE AFTER PAYMENT SUCCESS ///////////////
 
 
-            return redirect('/register/payment-result/confirmation/' . $registration_id);
+            return redirect('/register/confirmation/' . $registration_id);
         }
         ///// success payments /////
 
-        return redirect('/register/payment-result/failed');
+        return redirect('/register/failed');
     }
 
     public function paymentResult($slot, $registration_id = null)

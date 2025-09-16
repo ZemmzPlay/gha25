@@ -226,8 +226,8 @@ Route::post('/register/update-phone-number/{id}', ['uses' => 'RegistrationContro
 Route::get('/register/resend-otp-code/{id}', 'RegistrationController@resendOtpCode');
 
 Route::get('/register/payment/{id}', 'RegistrationController@paymentValidation');
-Route::get('/register/payment-result/{slot}/{registration_id?}', 'RegistrationController@paymentResult');
-Route::post('/register/payment-result/{slot}/{registration_id?}/print', 'RegistrationController@printPaymentResult');
+Route::get('/register/{slot}/{registration_id?}', 'RegistrationController@paymentResult');
+Route::post('/register/{slot}/{registration_id?}/print', 'RegistrationController@printPaymentResult');
 Route::get('/register/complete-payment/{id}', 'RegistrationController@completeFailedPayment');
 ////////// home page register part //////////
 
