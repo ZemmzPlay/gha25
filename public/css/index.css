@@ -803,6 +803,7 @@
  .register-options {
  	display: flex;
  	gap: 10px;
+ 	flex-wrap: wrap;
  	padding: 10px;
  	border-radius: 10px;
  	box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 30px;
@@ -832,7 +833,7 @@
  	box-shadow: rgba(0, 0, 0, 0.08) 0px 5px 15px;
  	position: relative;
  	background: var(--primary-color);
-	color: white;
+ 	color: white;
  	padding: 30px;
  	border-radius: 15px;
  	border-width: 1px;
@@ -841,30 +842,31 @@
  	border-image: initial;
  	transition: 0.3s;
  	overflow: hidden;
-  animation: fadeInUp 0.6s ease-out;
+ 	animation: fadeInUp 0.6s ease-out;
  }
 
  .register-option-button:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+ 	transform: translateY(-5px);
+ 	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
  }
 
  @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+ 	from {
+ 		opacity: 0;
+ 		transform: translateY(30px);
+ 	}
 
-.close-register-container {
-	display: flex;
-	justify-content: flex-end;
-	cursor: pointer;
-}
+ 	to {
+ 		opacity: 1;
+ 		transform: translateY(0);
+ 	}
+ }
+
+ .close-register-container {
+ 	display: flex;
+ 	justify-content: flex-end;
+ 	cursor: pointer;
+ }
 
  #workshopInput {
  	width: calc(33.33% - 10px);

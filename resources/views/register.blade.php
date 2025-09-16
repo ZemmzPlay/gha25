@@ -5,7 +5,7 @@
 
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/owl.theme.default.css') }}" />
-  <link rel="stylesheet" href="{{ asset('css/index.css?ver=1.0.1') }}" />
+  <link rel="stylesheet" href="{{ asset('css/index.css?ver=1.0.2') }}" />
 @endsection
 
 @section('content')
