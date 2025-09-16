@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', 'Payment Result'.(isset($configuration) && isset($configuration->website_title) ? ' - '.$configuration->website_title : ' - 3RD GHA - SCAI SHOCK MIDDLE EAST - KUWAIT'))
+@section('title', 'Registration Success'.(isset($configuration) && isset($configuration->website_title) ? ' - '.$configuration->website_title : ' - 3RD GHA - SCAI SHOCK MIDDLE EAST - KUWAIT'))
 
 @section('style')
 <link rel="stylesheet" href="{{asset('css/paymentResult.css')}}" />
