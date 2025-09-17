@@ -164,7 +164,7 @@ h5 {
     }
 
      .main-content {
-         padding-top: 150px !important; /* Header (165px) + Event Banner (46px) */
+         padding-top: 145px !important; /* Header (165px) + Event Banner (46px) */
      }
      
      /* Home page small mobile - no event banner */
