@@ -1722,13 +1722,13 @@
 
  .termsText {
  	padding-top: 10px;
- 	color: black;
+ 	color: white;
  	font-size: 12px;
  	text-align: left;
  }
 
  .termsText a {
- 	color: black;
+ 	color: white;
  }
 
  @media all and (max-width: 1400px) {
