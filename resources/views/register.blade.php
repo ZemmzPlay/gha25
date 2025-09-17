@@ -10,12 +10,12 @@
 
 @section('content')
   <!-- Event Banner -->
-  <div class="event-banner">
+  {{-- <div class="event-banner">
     <div class="event-banner-content">
       <img src="{{ asset('images/event-banner/3rd-GHA-SCAI-wordmark.svg') }}"
         alt="3rd GHA-SCAI SHOCK MIDDLE EAST KUWAIT - JAN 9-10, 2026" class="event-banner-logo">
     </div>
-  </div>
+  </div> --}}
 
   @if ((Settings::get('registration_enabled') && !Auth::guard('web')->check()) || Settings::get('certificates_enabled'))
     <div class="registerContainer" id="registerContainer">
@@ -27,12 +27,17 @@
           <div class="register-options">
             <button class="register-option-button" data-registration="only_workshop">Workshop Registration Only</button>
             <button class="register-option-button" data-registration="only_conference">Meeting Registration Only</button>
-            <button class="register-option-button" data-registration="conference_workshop">Meeting and Workshop Registration</button>
+            <button class="register-option-button" data-registration="conference_workshop">Meeting and Workshop
+              Registration</button>
           </div>
 
           <div class="register-container" style="display: none;">
-            <div class="close-register-container"><i class="fa fa-close"></i></div>
-            <div class="registerBottomTitle">Personal & Contract Information</div>
+            <div class="close-register-container">
+              <div class="register-close-button">
+                <i class="fa fa-close"></i>
+              </div>
+            </div>
+            <div class="registerBottomTitle">Personal & Contact Information</div>
 
             @if (count($errors) > 0)
               <div class="alert alert-danger"
@@ -299,6 +304,7 @@
       $(document).on('click', '.register-option-button', function() {
         $('.register-container').fadeIn();
         $('.register-options').hide();
+        $('#registerContainer').addClass('bg-color');
         var registrationType = $(this).data('registration');
 
         $('.only-workshop-input').prop('disabled', true);
@@ -314,6 +320,7 @@
       $(document).on('click', '.close-register-container', function() {
         $('.register-container').hide();
         $('.register-options').fadeIn();
+        $('#registerContainer').removeClass('bg-color');
       });
 
       // Dropdown toggle functionality
