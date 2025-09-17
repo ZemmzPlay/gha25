@@ -7,12 +7,6 @@
 @endsection
 
 @section('content')
-<!-- Event Banner -->
-<div class="event-banner">
-    <div class="event-banner-content">
-      <img src="{{ asset('images/event-banner/3rd-GHA-SCAI-wordmark.svg') }}" alt="3rd GHA-SCAI SHOCK MIDDLE EAST KUWAIT - JAN 9-10, 2026" class="event-banner-logo">
-    </div>
-</div>
 
   <div id="contact-us"
     class="contact-us home-section animate slow-mo even fadeIn no-padding-bottom no-padding-top"
