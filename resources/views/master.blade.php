@@ -56,7 +56,7 @@
   @yield('style')
 </head>
 
-<body>
+<body class="{{ request()->is('/') ? 'home-page' : '' }}">
   <header>
     <div class="header-content">
       @if ($configuration->logo != '')
@@ -175,6 +175,15 @@
       </div>
     </div>
   </header>
+
+  <!-- Event Banner - Hidden on home page -->
+  @unless(request()->is('/'))
+    <div class="event-banner">
+      <div class="event-banner-content">
+        <img src="{{ asset('images/event-banner/3rd-GHA-SCAI-wordmark.svg') }}" alt="3rd GHA-SCAI SHOCK MIDDLE EAST KUWAIT - JAN 9-10, 2026" class="event-banner-logo">
+      </div>
+    </div>
+  @endunless
 
   <div class="main-content">
     @yield('content')
