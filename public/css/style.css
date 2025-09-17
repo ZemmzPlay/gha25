@@ -141,9 +141,9 @@ h5 {
 }
 
 @media (max-width: 768px) {
-    .event-banner {
+    /* .event-banner {
         padding: 12px 0;
-    }
+    } */
 
     .event-banner-content {
         padding-inline: 10px;
@@ -155,9 +155,9 @@ h5 {
 }
 
 @media (max-width: 576px) {
-    .event-banner {
+    /* .event-banner {
         padding: 10px 0;
-    }
+    } */
 
     .event-banner-logo {
         height: 25px;
