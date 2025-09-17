@@ -164,7 +164,7 @@ h5 {
     }
 
      .main-content {
-         padding-top: 211px !important; /* Header (165px) + Event Banner (46px) */
+         padding-top: 155px !important; /* Header (165px) + Event Banner (46px) */
      }
      
      /* Home page small mobile - no event banner */
@@ -173,7 +173,7 @@ h5 {
      }
      
      .event-banner {
-         top: 165px !important; /* Position below smaller mobile header */
+         top: 110px !important; /* Position below smaller mobile header */
      }
 }
 
