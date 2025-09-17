@@ -169,7 +169,7 @@ h5 {
      
      /* Home page small mobile - no event banner */
      body.home-page .main-content {
-         padding-top: 165px !important; /* Only header padding */
+         padding-top: 110px !important; /* Only header padding */
      }
      
      .event-banner {
