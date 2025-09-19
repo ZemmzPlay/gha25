@@ -18,6 +18,9 @@
       <div class="sponsors-image-div">
         <img class="sponsors-image" src="{{ asset('images/sponsors/NBMSEC.jpg') }}" alt="NBMSEC" />
       </div>
+      <div class="sponsors-image-div">
+        <img class="sponsors-image" src="{{ asset('images/sponsors/Central-Circle-Logo.jpg') }}" alt="Central Circle" />
+      </div>
     </div>
   </div>
 
@@ -29,6 +32,9 @@
     <div class="sponsors-image-container">
       <div class="sponsors-image-div">
         <img class="sponsors-image" src="{{ asset('images/sponsors/Beshara_logo.png') }}" alt="Beshara" />
+      </div>
+      <div class="sponsors-image-div">
+        <img class="sponsors-image" src="{{ asset('images/sponsors/Emara Logo.jpeg') }}" alt="Emara" />
       </div>
     </div>
   </div>
