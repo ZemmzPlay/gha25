@@ -166,7 +166,7 @@
               @else
                 <li><a href="{{ url('/login') }}"
                     class="{{ request()->is('login') ? 'menu-active' : '' }}">login</a></li>
-                <li><a href="{{ url('/register') }}">register now</a></li>
+                <li class="register-link"><a href="{{ url('/register') }}">register now</a></li>
               @endif
 
             </ul>

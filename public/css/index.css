@@ -525,14 +525,14 @@
  	/* background: #3a9958; */
  	position: relative;
  }
- 
+
  .back-button {
  	cursor: pointer;
  	margin-right: 10px;
  	color: var(--primary-color-dark);
-	display: none;
-	font-size: 24px;
-	vertical-align: middle;
+ 	display: none;
+ 	font-size: 24px;
+ 	vertical-align: middle;
  }
 
  .opened .back-button {
@@ -1476,15 +1476,15 @@
  		flex-basis: 100%;
  	}
 
-	.main-title {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
+ 	.main-title {
+ 		display: flex;
+ 		justify-content: space-between;
+ 		align-items: center;
+ 	}
 
-	.main-title .back-button {
-		order: 2;
-	}
+ 	.main-title .back-button {
+ 		order: 2;
+ 	}
 
  }
 
@@ -1493,6 +1493,7 @@
  		font-size: 19px;
  		width: 90px !important;
  	}
+
  	.registerOneInputValue {
  		/* width: calc(100% - 98px) !important; */
  	}
@@ -1909,6 +1910,10 @@
  	text-align: justify;
  }
 
+ .registration-container {
+ 	display: none;
+ }
+
  @media all and (max-width: 1790px) {
  	.ourMessageLeft {
  		/* width: 25%; */
@@ -1989,6 +1994,30 @@
  		font-size: 14px;
  		-webkit-text-size-adjust: 100%;
  	}
+
+ 	.registration-container {
+ 		display: flex;
+		justify-content: center;
+ 		margin-top: 30px;
+ 	}
+
+	.registration-button {
+		width: 200px;
+		height: 40px;
+		border-radius: 10px;
+		background: var(--primary-color);
+		color: white;
+		outline: none;
+		border: 0px solid;
+		font-family: 'WorkSansBold';
+		font-weight: bold;
+		font-size: 16px;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.3s;
+	}
  }
 
  @media all and (max-width: 550px) {

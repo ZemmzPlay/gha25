@@ -427,6 +427,15 @@ h5 {
         margin-bottom: 20px;
     }
 
+    .register-link {
+        background-color: var(--primary-color);
+        color: white !important;
+    }
+
+    .register-link a{
+        color: white !important;
+    }
+
     .close-menu-btn {
         display: flex;
         align-items: center;

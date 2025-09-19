@@ -174,6 +174,7 @@ class RegistrationController extends Controller
         }
 
         // attach workshops
+        RegistrationWorkshop::where('registration_id', $registration->id)->delete();
         foreach($workshops as $workshop_id)
         {
             $registrationWorkshop = new RegistrationWorkshop;
@@ -303,6 +304,7 @@ class RegistrationController extends Controller
 
 
         if ($freeRegistrationSpecial) {
+            return redirect('/register/confirmation/' . $registration->id);
             $phoneNumberFinal = $data['countryCode'] . $data['mobile'];
             TwilioVerify::createSMSVerification($phoneNumberFinal, []);
             return redirect(url('/register/verify-otp/' . Crypt::encrypt($paymentID)));
