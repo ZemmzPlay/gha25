@@ -54,6 +54,19 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
 
   @yield('style')
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-18P4F2M78L"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-18P4F2M78L');
+  </script>
 </head>
 
 <body class="{{ request()->is('/') ? 'home-page' : '' }}">
@@ -67,31 +80,33 @@
       <nav id="desktop-menu">
         <ul>
           <div class="menu-nav">
-          <li><a href="{{ url('/') }}" class="{{ request()->is('/') ? 'menu-active' : '' }}">home</a></li>
-          <li><a href="{{ url('/committees') }}"
-              class="{{ request()->is('committees') ? 'menu-active' : '' }}">Committees</a>
-          </li>
-          @if (Settings::get('facutlyEnableDisable'))
-            <li><a href="{{ url('/faculty') }}"
-                class="{{ request()->is('faculty') ? 'menu-active' : '' }}">faculty</a></li>
-          @endif
-          <li><a href="{{ url('/program') }}" class="{{ request()->is('program') ? 'menu-active' : '' }}">program</a>
-          </li>
-          <li><a href="{{ url('/sponsors') }}"
-              class="{{ request()->is('sponsors') ? 'menu-active' : '' }}">Sponsors</a></li>
-          <li><a href="{{ url('/about') }}" class="{{ request()->is('about') ? 'menu-active' : '' }}">about us</a>
-          </li>
-          <li><a href="{{ url('/contact-us') }}"
-              class="{{ request()->is('contact-us') ? 'menu-active' : '' }}">Contact Us</a>
-          </li>
-          <!-- <li><a href="{{ url('/terms-and-conditions') }}" class="{{ request()->is('terms-and-conditions') ? 'menu-active' : '' }}">terms & conditions</a></li> -->
-          <!-- <li><a href="{{ url('/case-submission') }}"
+            <li><a href="{{ url('/') }}" class="{{ request()->is('/') ? 'menu-active' : '' }}">home</a></li>
+            <li><a href="{{ url('/committees') }}"
+                class="{{ request()->is('committees') ? 'menu-active' : '' }}">Committees</a>
+            </li>
+            @if (Settings::get('facutlyEnableDisable'))
+              <li><a href="{{ url('/faculty') }}"
+                  class="{{ request()->is('faculty') ? 'menu-active' : '' }}">faculty</a></li>
+            @endif
+            <li><a href="{{ url('/program') }}"
+                class="{{ request()->is('program') ? 'menu-active' : '' }}">program</a>
+            </li>
+            <li><a href="{{ url('/sponsors') }}"
+                class="{{ request()->is('sponsors') ? 'menu-active' : '' }}">Sponsors</a></li>
+            <li><a href="{{ url('/about') }}" class="{{ request()->is('about') ? 'menu-active' : '' }}">about us</a>
+            </li>
+            <li><a href="{{ url('/contact-us') }}"
+                class="{{ request()->is('contact-us') ? 'menu-active' : '' }}">Contact Us</a>
+            </li>
+            <!-- <li><a href="{{ url('/terms-and-conditions') }}" class="{{ request()->is('terms-and-conditions') ? 'menu-active' : '' }}">terms & conditions</a></li> -->
+            <!-- <li><a href="{{ url('/case-submission') }}"
               class="{{ request()->is('case-submission') ? 'menu-active' : '' }}">Case Submission</a></li> -->
-          {{-- <li><a href="{{ url('/blog') }}"
+            {{-- <li><a href="{{ url('/blog') }}"
               class="{{ request()->is('blog') || request()->is('post/*') ? 'menu-active' : '' }}">News</a></li> --}}
-          <li><a href="{{ url('/location') }}" class="{{ request()->is('location') ? 'menu-active' : '' }}">where</a>
-          </li>
-        </div>
+            <li><a href="{{ url('/location') }}"
+                class="{{ request()->is('location') ? 'menu-active' : '' }}">where</a>
+            </li>
+          </div>
           {{-- <li><a href="{{ url('/abstracts') }}" class="{{ request()->is('abstracts') ? 'menu-active' : '' }}">abstracts</a></li> --}}
           <!-- <li><a href="{{ url('/more-info') }}" class="{{ request()->is('more-info') ? 'menu-active' : '' }}">more info</a></li> -->
           @if (Auth::guard('web')->check())
@@ -103,9 +118,8 @@
           @else
             <li><a href="{{ url('/login') }}" class="{{ request()->is('login') ? 'menu-active' : '' }}">login</a>
             </li>
-            <li><a href="{{ url('/register') }}"
-                class="special-menu-last">register now <svg width="23" height="24"
-                  viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <li><a href="{{ url('/register') }}" class="special-menu-last">register now <svg width="23"
+                  height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd"
                     d="M11.7947 5.25096C12.1876 4.858 12.8248 4.858 13.2177 5.25096L19.2552 11.2885C19.6482 11.6814 19.6482 12.3185 19.2552 12.7115L13.2177 18.749C12.8248 19.142 12.1876 19.142 11.7947 18.749C11.4017 18.356 11.4017 17.7189 11.7947 17.326L16.1144 13.0062L4.4562 13.0062C3.90047 13.0062 3.44995 12.5557 3.44995 12C3.44995 11.4442 3.90047 10.9937 4.4562 10.9937H16.1144L11.7947 6.67401C11.4017 6.28105 11.4017 5.64393 11.7947 5.25096Z"
                     fill="white" />
@@ -177,10 +191,11 @@
   </header>
 
   <!-- Event Banner - Hidden on home page -->
-  @unless(request()->is('/'))
+  @unless (request()->is('/'))
     <div class="event-banner">
       <div class="event-banner-content">
-        <img src="{{ asset('images/event-banner/3rd-GHA-SCAI-wordmark.svg') }}" alt="3rd GHA-SCAI SHOCK MIDDLE EAST KUWAIT - JAN 9-10, 2026" class="event-banner-logo">
+        <img src="{{ asset('images/event-banner/3rd-GHA-SCAI-wordmark.svg') }}"
+          alt="3rd GHA-SCAI SHOCK MIDDLE EAST KUWAIT - JAN 9-10, 2026" class="event-banner-logo">
       </div>
     </div>
   @endunless
@@ -201,7 +216,8 @@
       <div class="byData">
         <div class="organizedBy">
           <div class="organizedByText">Meeting organized by</div>
-          <div><a href="https://zawaya.me/conferences-and-events/" target="_blank" rel="noopener noreferrer"><img src="{{ asset('images/global/Zawaya_white.png') }}" alt="Zawaya Conferences"/></a></div>
+          <div><a href="https://zawaya.me/conferences-and-events/" target="_blank" rel="noopener noreferrer"><img
+                src="{{ asset('images/global/Zawaya_white.png') }}" alt="Zawaya Conferences" /></a></div>
         </div>
         <div style="font-size: 25px;">
           |
@@ -218,7 +234,7 @@
   <script type="text/javascript" src="{{ asset('js/jquery-3.7.0.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
-  
+
   <script>
     $(document).ready(function() {
       // Initialize country dropdown with flags
@@ -230,7 +246,7 @@
           return markup;
         }
       });
-      
+
       // Initialize phone code dropdown with flags
       $('.select2-phone').select2({
         placeholder: "Select Country Code",
@@ -241,24 +257,24 @@
         }
       });
     });
-    
+
     function formatCountry(country) {
       if (!country.id) {
         return country.text;
       }
-      
+
       var flag = country.element.getAttribute('data-flag');
       var $country = $(
         '<span><span class="flag-icon flag-icon-' + flag + '"></span> ' + country.text + '</span>'
       );
       return $country;
     }
-    
+
     function formatCountrySelection(country) {
       if (!country.id) {
         return country.text;
       }
-      
+
       var flag = country.element.getAttribute('data-flag');
       var $country = $(
         '<span><span class="flag-icon flag-icon-' + flag + '"></span> ' + country.text + '</span>'
