@@ -27,7 +27,7 @@ class LogRequest
             'url' => $request->fullUrl(),
             'ip_address' => $request->ip(),
             'user_agent' => $request->header('User-Agent'),
-            'request_data' => $request->except(['password', 'confirm_password', 'token']), // Exclude sensitive data
+            'request_data' => json_encode($request->except(['password', 'confirm_password', 'token']), true), // Exclude sensitive data
             'response_data' => json_decode($response->getContent(), true),
             'status_code' => $response->status(),
         ]);
