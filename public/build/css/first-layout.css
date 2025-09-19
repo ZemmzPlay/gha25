@@ -2986,6 +2986,10 @@ header .search-form .form-control:-ms-input-placeholder {
     padding: 20px
 }
 
+.dashboard .widget {
+    min-height: 280px
+}
+
 .widget {
     margin-bottom: 24px;
     border: 1px solid #e6e6e6

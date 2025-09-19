@@ -111,6 +111,7 @@
         <ul class="list-unstyled navigation mb-20">
 
           <li class="sidebar-category pt-0">Settings</li>
+          <li><a href="{{url('/admin/logs')}}" class="{{Request::is('admin/logs*') ? 'active' : Request::url()}}"><i class="zmdi zmdi-file-text"></i><span>Logs</span></a></li>
           <li><a href="{{url('/admin/settings')}}" class="{{Request::is('admin/settings*') ? 'active' : Request::url()}}"><i class="zmdi zmdi-settings"></i><span>Settings</span></a></li>
           <li><a href="{{url('/admin/payment-gateway')}}" class="{{Request::is('admin/payment-gateway*') ? 'active' : Request::url()}}"><i class="zmdi zmdi-settings"></i><span>Payment Gateway</span></a></li>
           <li><a href="{{url('/admin/mail')}}" class="{{Request::is('admin/mail*') ? 'active' : Request::url()}}"><i class="zmdi zmdi-settings"></i><span>Send Mail</span></a></li>

@@ -200,7 +200,9 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::delete('/blog/post/delete', 'AdminBlogController@deletePost')->name('blog.post.delete');
     /* Blog */
 
-
+    /* Logs */
+    Route::get('/logs', 'LogsController@index')->name('logs.index');
+    /* Logs */
 
     Route::get('mail', 'TestController@index');
     Route::post('mail', 'TestController@save');

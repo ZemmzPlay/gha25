@@ -11,7 +11,7 @@
 
 @section('content')
 
-    <div class="row">
+    <div class="row dashboard">
         <div class="col-md-4 col-sm-6">
             <div class="widget text-center">
                 <div class="widget-body">
