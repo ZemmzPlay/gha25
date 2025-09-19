@@ -304,6 +304,7 @@ class RegistrationController extends Controller
 
 
         if ($freeRegistrationSpecial) {
+            $this->sendConfirmationEmail($registration);
             return redirect('/register/confirmation/' . $registration->id);
             $phoneNumberFinal = $data['countryCode'] . $data['mobile'];
             TwilioVerify::createSMSVerification($phoneNumberFinal, []);
