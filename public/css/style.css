@@ -141,9 +141,9 @@ h5 {
 }
 
 @media (max-width: 768px) {
-    .event-banner {
+    /* .event-banner {
         padding: 12px 0;
-    }
+    } */
 
     .event-banner-content {
         padding-inline: 10px;
@@ -155,25 +155,25 @@ h5 {
 }
 
 @media (max-width: 576px) {
-    .event-banner {
+    /* .event-banner {
         padding: 10px 0;
-    }
+    } */
 
     .event-banner-logo {
         height: 25px;
     }
 
      .main-content {
-         padding-top: 155px !important; /* Header (165px) + Event Banner (46px) */
+         padding-top: 145px !important; /* Header (165px) + Event Banner (46px) */
      }
      
      /* Home page small mobile - no event banner */
      body.home-page .main-content {
-         padding-top: 110px !important; /* Only header padding */
+         padding-top: 105px !important; /* Only header padding */
      }
      
      .event-banner {
-         top: 110px !important; /* Position below smaller mobile header */
+         top: 102px !important; /* Position below smaller mobile header */
      }
 }
 
