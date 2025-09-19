@@ -217,14 +217,18 @@ Route::get('/evaluation', ['uses' => 'RegistrationController@evaluationForm', 'a
 Route::post('/certificate/verify', ['uses' => 'RegistrationController@verify', 'as' => 'registration.verify']);
 
 
-////////// home page register part //////////
-Route::post('/register', ['uses' => 'RegistrationController@create', 'as' => 'registrations.create']);
+Route::group(['middleware' => 'logs'], function () {
+    Route::post('/register', ['uses' => 'RegistrationController@create', 'as' => 'registrations.create']);
+    Route::post('/login', 'RegistrationController@postLogin');
+});
 
+////////// home page register part //////////
 Route::get('/register/verify-otp/{id}', 'RegistrationController@otpValidation');
 Route::post('/register/verify-otp/{id}', ['uses' => 'RegistrationController@otpVerifyAction', 'as' => 'registrations.otpVerify']);
 Route::post('/register/update-phone-number/{id}', ['uses' => 'RegistrationController@updatePhoneNumber', 'as' => 'registrations.updatePhoneNumber']);
 Route::get('/register/resend-otp-code/{id}', 'RegistrationController@resendOtpCode');
 
+Route::get('/login', 'RegistrationController@login')->name('login');    
 Route::get('/register/payment/{id}', 'RegistrationController@paymentValidation');
 Route::get('/register/{slot}/{registration_id?}', 'RegistrationController@paymentResult');
 Route::post('/register/{slot}/{registration_id?}/print', 'RegistrationController@printPaymentResult');
@@ -232,8 +236,6 @@ Route::get('/register/complete-payment/{id}', 'RegistrationController@completeFa
 ////////// home page register part //////////
 
 ////// login and watch-live part //////
-Route::get('/login', 'RegistrationController@login')->name('login');
-Route::post('/login', 'RegistrationController@postLogin');
 Route::get('/logout', 'RegistrationController@logout');
 Route::get('/watch-live', 'RegistrationController@watchLive')->middleware('auth:web');
 Route::post('/watch-live', 'RegistrationController@sendQuestion')->middleware('auth:web');

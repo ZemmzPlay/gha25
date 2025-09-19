@@ -1093,8 +1093,8 @@ class RegistrationController extends Controller
 
         if (!$user) return back()->withErrors('Login details are incorrect')->withInput();
 
-        $Payment = $user->Payment;
-        if ($Payment->paid_status != 1) return back()->withErrors('Login details are incorrect')->withInput();
+        // $Payment = $user->Payment;
+        // if ($Payment->paid_status != 1) return back()->withErrors('Login details are incorrect')->withInput();
 
         Auth::guard('web')->login($user);
 
