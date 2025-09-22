@@ -288,6 +288,7 @@ Route::get('/location', ['uses' => 'GenericPageController@location', 'as' => 'pa
 // Route::get('/abstracts/download/template', ['uses' => 'GenericPageController@abstractTemplate']);
 // Route::post('/abstracts', ['uses' => 'GenericPageController@saveAbstract', 'as' => 'pages.saveAbstract']);
 Route::get('/about', ['uses' => 'GenericPageController@about', 'as' => 'pages.about']);
+Route::get('/cme', ['uses' => 'GenericPageController@cme', 'as' => 'pages.cme']);
 
 // Forward
 Route::get('/bulk', ['uses' => 'GenericPageController@registrants', 'as' => 'pages.registrants']);

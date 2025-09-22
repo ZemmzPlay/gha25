@@ -183,6 +183,10 @@ class GenericPageController extends Controller
         return view('location');
     }
 
+    public function cme() {
+        return view('cme');
+    }
+
     public function abstract() {
         $countries = config('countries');
         return view('abstract', compact('countries'));
