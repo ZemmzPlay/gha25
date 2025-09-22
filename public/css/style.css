@@ -175,14 +175,14 @@ body.home-page .main-content {
 
 @media (max-width: 480px) {
     .cme .main-title {
-        font-size: 40px;
+        font-size: 30px;
         padding: 0 5px;
     }
 }
 
 @media (max-width: 375px) {
     .cme .main-title {
-        font-size: 40px;
+        font-size: 30px;
         padding: 0 3px;
     }
 }
