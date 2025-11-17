@@ -31,9 +31,8 @@
     text-transform: uppercase;
 }
 .all_programs {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
+  width: 80%;
+  margin: auto;
 }
 
 .workshopsTitle {
@@ -50,9 +49,8 @@
 
 
 .oneProgram {
-    width: 100%;
-    overflow: hidden;
-    margin-bottom: 35px;
+  width: 100%;
+  margin-bottom: 35px;
 }
 .all_programs .oneProgram:last-child {
     margin-bottom: 0px;
@@ -87,19 +85,21 @@
 }
 
 .oneProgramContent {
-    background-color: #ffffff;
-    color: black;
-    padding-top: 22px;
-    padding-left: 0;
-    padding-right: 40px;
-    display: none;
+  background-color: #ffffff;
+  color: black;
+  padding-top: 22px;
+  padding-left: 0;
+  padding-right: 40px;
+  display: none;
+}
+.oneProgramContent.active {
+  display: block;
 }
 
 
 
 .allSessions {
-    width: 100%;
-    overflow: hidden;
+  width: 100%;
 }
 .oneSession {
     width: 100%;
@@ -230,14 +230,6 @@
     .text-right {
         display: none;
     }
-     /* Keep accordions closed by default on mobile, but allow JavaScript to control them */
-     .oneProgramContent {
-         display: none;
-     }
-     /* Allow first accordion to be controlled by JavaScript */
-     .oneProgram:first-child .oneProgramContent.active {
-         display: block;
-     }
     /* Add download button after accordion sections on mobile */
     .all_programs::after {
         content: '';
