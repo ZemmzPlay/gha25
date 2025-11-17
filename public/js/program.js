@@ -1,5 +1,7 @@
 $(document).ready(function() {
   let hasUserOpenedAccordion = false;
+  const mobileQuery = window.matchMedia('(max-width: 650px)');
+  const desktopQuery = window.matchMedia('(min-width: 651px)');
 
   function toggleIcons($header, isExpanded) {
     const $expandIcon = $header.children('#expandProgram');
@@ -77,7 +79,31 @@ $(document).ready(function() {
   }
 
   handleAccordionState();
-  $(window).on('resize', handleAccordionState);
+  function onBreakpointChange() {
+    handleAccordionState();
+  }
+
+  function attachMediaQueryListener(query) {
+    if (!query) {
+      return;
+    }
+
+    if (typeof query.addEventListener === 'function') {
+      query.addEventListener('change', onBreakpointChange);
+      return;
+    }
+
+    if (typeof query.addListener === 'function') {
+      query.addListener(onBreakpointChange);
+    }
+  }
+
+  attachMediaQueryListener(mobileQuery);
+  attachMediaQueryListener(desktopQuery);
+
+  window.addEventListener('orientationchange', function() {
+    setTimeout(handleAccordionState, 200);
+  });
 
   $('.oneProgramHeader').on('click', function() {
     const $header = $(this);
