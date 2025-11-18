@@ -177,7 +177,7 @@ $(document).ready(function () {
 
                 // Manually submit the form
                 grecaptcha.ready(function () {
-                    grecaptcha.execute('reCAPTCHA_site_key', { action: 'submit' }).then(function (token) {
+                    grecaptcha.execute('6LeMfxAsAAAAACcr9ygWDflHEYvip_iJg1DTUfGw', { action: 'submit' }).then(function (token) {
                         // Add your logic to submit to your backend server here.
                         $("#registerForm").submit();
                     });
