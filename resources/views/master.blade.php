@@ -53,6 +53,8 @@
   <link rel="stylesheet" href="{{ asset('plugins/flag-icon-css/css/flag-icon.min.css') }}" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
 
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+
   @yield('style')
 
   <!-- Google tag (gtag.js) -->
