@@ -279,9 +279,9 @@
 @stop
 
 @section('scripts')
-  <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('js/index.js?ver=1.4') }}"></script>
-  <script src="https://www.google.com/recaptcha/api.js?render=6LeMfxAsAAAAAG4RCvaYjAVAwA9WMJbU15mBvK_V"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LeMfxAsAAAAACcr9ygWDflHEYvip_iJg1DTUfGw"></script>
+<script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/index.js?ver=1.4') }}"></script>
   <script>
     $(document).ready(function() {
       var workshopDisable = {
