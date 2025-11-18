@@ -31,7 +31,6 @@ class RegistrationController extends Controller
 {
     public function create(CreateRegistrationRequest $request)
     {
-        // return $request->all();
         if (Auth::guard('web')->check()) return redirect('/');
 
         $request['onlyWorkshop'] = 0;
