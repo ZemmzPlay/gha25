@@ -103,10 +103,13 @@
               class="{{ request()->is('case-submission') ? 'menu-active' : '' }}">Case Submission</a></li> -->
             {{-- <li><a href="{{ url('/blog') }}"
               class="{{ request()->is('blog') || request()->is('post/*') ? 'menu-active' : '' }}">News</a></li> --}}
-            <li><a href="{{ url('/location') }}"
-                class="{{ request()->is('location') ? 'menu-active' : '' }}">where</a>
-            </li>
-          </div>
+             <li><a href="{{ url('/location') }}"
+                 class="{{ request()->is('location') ? 'menu-active' : '' }}">where</a>
+             </li>
+             <li><a href="{{ url('/cme') }}"
+                 class="{{ request()->is('cme') ? 'menu-active' : '' }}">CME</a>
+             </li>
+           </div>
           {{-- <li><a href="{{ url('/abstracts') }}" class="{{ request()->is('abstracts') ? 'menu-active' : '' }}">abstracts</a></li> --}}
           <!-- <li><a href="{{ url('/more-info') }}" class="{{ request()->is('more-info') ? 'menu-active' : '' }}">more info</a></li> -->
           @if (Auth::guard('web')->check())
@@ -168,6 +171,8 @@
                   class="{{ request()->is('blog') || request()->is('post/*') ? 'menu-active' : '' }}">News</a></li> --}}
               <li><a href="{{ url('/location') }}"
                   class="{{ request()->is('location') ? 'menu-active' : '' }}">where</a></li>
+              <li><a href="{{ url('/cme') }}"
+                  class="{{ request()->is('cme') ? 'menu-active' : '' }}">CME</a></li>
               {{-- <li><a href="{{ url('/abstracts') }}" class="{{ request()->is('abstracts') ? 'menu-active' : '' }}">abstracts</a></li> --}}
               <!-- <li><a href="{{ url('/more-info') }}" class="{{ request()->is('more-info') ? 'menu-active' : '' }}">more info</a></li> -->
 
