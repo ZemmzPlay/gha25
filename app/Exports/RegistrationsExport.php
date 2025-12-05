@@ -90,9 +90,10 @@ class RegistrationsExport implements FromQuery, WithMapping, WithHeadings, Shoul
 
     public function query()
     {
-        return Registration::where('onlyWorkshop', 0)->whereHas('Payment', function($query) {
-            $query->where('paid_status', 1);
-        });
+        // return Registration::where('onlyWorkshop', 0)->whereHas('Payment', function($query) {
+        //     $query->where('paid_status', 1);
+        // });
+        return Registration::all();
     }
 
     public function collection() {
