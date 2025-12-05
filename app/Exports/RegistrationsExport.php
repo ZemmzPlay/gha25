@@ -78,22 +78,7 @@ class RegistrationsExport implements FromQuery, WithMapping, WithHeadings, Shoul
 
 public function query()
     {
-        $query = Registration::query()->select(
-            'registrations.id',
-            'registrations.title',
-            'registrations.first_name',
-            'registrations.last_name',
-            'registrations.email',
-            'registrations.speciality',
-            'registrations.country',
-            'registrations.city',
-            'registrations.countryCode',
-            'registrations.mobile',
-            'registrations.onlyWorkshop',
-            'registrations.virtualAccess',
-            'registrations.attended',
-            'registrations.created_at'
-        );
+        $query = Registration::query();
 
         if ($this->workshopId) {
             // filter via the many-to-many relation using the pivot table
