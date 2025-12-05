@@ -109,20 +109,34 @@ public function query()
     {
         return [
             'ID',
-            'Title',
-            'First Name',
-            'Last Name',
+            'Name',
+            'Phone',
             'Email',
             'Speciality',
-            'Country',
-            'City',
-            'Country Code',
-            'Mobile',
-            'Only Workshop',
+            'Hospital / Center',
+            'Date',
+            'Payment Status',
+            'Registration Type',
             'Virtual Access',
             'Attended',
-            'Registered At'
+            'Certificate Downloaded'
         ];
+        // return [
+        //     'ID',
+        //     'Title',
+        //     'First Name',
+        //     'Last Name',
+        //     'Email',
+        //     'Speciality',
+        //     'Country',
+        //     'City',
+        //     'Country Code',
+        //     'Mobile',
+        //     'Only Workshop',
+        //     'Virtual Access',
+        //     'Attended',
+        //     'Registered At'
+        // ];
     }
 
     public function collection() {
