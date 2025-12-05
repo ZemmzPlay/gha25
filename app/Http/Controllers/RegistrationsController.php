@@ -337,10 +337,10 @@ class RegistrationsController extends Controller
         return view('admin.registrations.print', compact('registration'));
     }
 
-    public function exportRegistrants()
+    public function exportRegistrants($workshopId = null)
     {
         // return Excel::download(new RegistrationsExport, "GHA23 Registrants - " . Carbon::now()->format('Ymd').'.xlsx');
-        $workshopId = request()->query('workshop_id', null);
+        // $workshopId = request()->query('workshop_id', null);
         $fileName = "GHA23 Registrants" . ($workshopId ? " - workshop{$workshopId}" : '') . " - " . Carbon::now()->format('Ymd') . '.xlsx';
         return Excel::download(new RegistrationsExport($workshopId), $fileName);
     }

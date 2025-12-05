@@ -124,7 +124,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('/registrations/export/attendees', ['uses' => 'RegistrationsController@exportAttendees', 'as' => 'registrations.export.attendees']);
     Route::get('/registrations/export/all', ['uses' => 'RegistrationsController@exportAttendees', 'as' => 'registrations.export.all']);
     Route::get('/registrations/export/workshop/{id}', ['uses' => 'RegistrationsController@exportWorkshop', 'as' => 'registrations.export.workshop']);
-    Route::get('/registrations/export/allReg', ['uses' => 'RegistrationsController@exportRegistrants', 'as' => 'registrations.export.allReg']);
+    Route::get('/registrations/export/allReg/{workshopId?}', ['uses' => 'RegistrationsController@exportRegistrants', 'as' => 'registrations.export.allReg']);
 
     Route::post('/registrations/import', 'RegistrationsController@postImport');
     Route::get('/registrations/import', 'RegistrationsController@getImport');
