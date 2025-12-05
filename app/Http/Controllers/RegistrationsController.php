@@ -356,7 +356,8 @@ class RegistrationsController extends Controller
                 abort(404, "Workshop not found");
             }
         }
-        $fileName = "GHA23 Registrants" . ($workshopId ? " - workshop{$workshop->title}" : '') . " - " . Carbon::now()->format('Ymd') . '.xlsx';
+        $workshopName = $workshopId ? str_replace('/', '-', $workshop->title) : '';
+        $fileName = "GHA23 Registrants" . ($workshopId ? " - workshop{$workshopName}" : '') . " - " . Carbon::now()->format('Ymd') . '.xlsx';
         return Excel::download(new RegistrationsExport($workshopId), $fileName);
     }
 
