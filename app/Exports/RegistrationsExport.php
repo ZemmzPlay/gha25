@@ -12,6 +12,12 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
 class RegistrationsExport implements FromQuery, WithMapping, WithHeadings, ShouldAutoSize
 {
+    protected $workshopId;
+
+    public function __construct($workshopId = null)
+    {
+        $this->workshopId = $workshopId;
+    }
 
     public function map($registration): array
     {
@@ -70,30 +76,53 @@ class RegistrationsExport implements FromQuery, WithMapping, WithHeadings, Shoul
         ];
     }
 
+public function query()
+    {
+        $query = Registration::query()->select(
+            'registrations.id',
+            'registrations.title',
+            'registrations.first_name',
+            'registrations.last_name',
+            'registrations.email',
+            'registrations.speciality',
+            'registrations.country',
+            'registrations.city',
+            'registrations.countryCode',
+            'registrations.mobile',
+            'registrations.onlyWorkshop',
+            'registrations.virtualAccess',
+            'registrations.attended',
+            'registrations.created_at'
+        );
+
+        if ($this->workshopId) {
+            // filter via the many-to-many relation using the pivot table
+            $query->whereHas('Workshops', function($q) {
+                $q->where('workshops.id', $this->workshopId);
+            });
+        }
+
+        return $query;
+    }
+
     public function headings(): array
     {
         return [
             'ID',
-            'Name',
-            'Phone',
+            'Title',
+            'First Name',
+            'Last Name',
             'Email',
             'Speciality',
-            'Hospital / Center',
-            'Date',
-            'Payment Status',
-            'Registration Type',
+            'Country',
+            'City',
+            'Country Code',
+            'Mobile',
+            'Only Workshop',
             'Virtual Access',
             'Attended',
-            'Certificate Downloaded'
+            'Registered At'
         ];
-    }
-
-    public function query()
-    {
-        // return Registration::where('onlyWorkshop', 0)->whereHas('Payment', function($query) {
-        //     $query->where('paid_status', 1);
-        // });
-        return Registration::where('id', '>', 0);
     }
 
     public function collection() {

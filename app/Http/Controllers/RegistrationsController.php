@@ -339,7 +339,10 @@ class RegistrationsController extends Controller
 
     public function exportRegistrants()
     {
-        return Excel::download(new RegistrationsExport, "GHA23 Registrants - " . Carbon::now()->format('Ymd').'.xlsx');
+        // return Excel::download(new RegistrationsExport, "GHA23 Registrants - " . Carbon::now()->format('Ymd').'.xlsx');
+        $workshopId = request()->query('workshop_id', null);
+        $fileName = "GHA23 Registrants" . ($workshopId ? " - workshop{$workshopId}" : '') . " - " . Carbon::now()->format('Ymd') . '.xlsx';
+        return Excel::download(new RegistrationsExport($workshopId), $fileName);
     }
 
     public function exportAttendees() {
