@@ -21,9 +21,17 @@ use Mail;
 class RegistrationsController extends Controller
 {
     public function getRegistrations() {
-        $registrations = Registration::all();
+        $workshops = Workshop::all();
+        // apply filters by workshop
+        if(request()->has('workshop_id') && request()->get('workshop_id') != '') {
+            $registrations = Registration::whereHas('Workshops', function($query) {
+                $query->where('workshop_id', request()->get('workshop_id'));
+            })->get();
+        } else {
+            $registrations = Registration::all();
+        }
         $user = Auth::guard('admin')->user();
-        return view('admin.registrations.registrations', compact('user','registrations'));
+        return view('admin.registrations.registrations', compact('user','registrations', 'workshops'));
     }
 
     public function getCreate() {
@@ -341,7 +349,14 @@ class RegistrationsController extends Controller
     {
         // return Excel::download(new RegistrationsExport, "GHA23 Registrants - " . Carbon::now()->format('Ymd').'.xlsx');
         // $workshopId = request()->query('workshop_id', null);
-        $fileName = "GHA23 Registrants" . ($workshopId ? " - workshop{$workshopId}" : '') . " - " . Carbon::now()->format('Ymd') . '.xlsx';
+        // $workshop = null;
+        if($workshopId) {
+            $workshop = Workshop::find($workshopId);
+            if(!$workshop) {
+                abort(404, "Workshop not found");
+            }
+        }
+        $fileName = "GHA23 Registrants" . ($workshopId ? " - workshop{$workshop->title}" : '') . " - " . Carbon::now()->format('Ymd') . '.xlsx';
         return Excel::download(new RegistrationsExport($workshopId), $fileName);
     }
 

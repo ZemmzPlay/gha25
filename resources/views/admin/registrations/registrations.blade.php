@@ -30,12 +30,32 @@
                         </ul>
                     </div>
                     <div class="btn-group">
-                        <a href="{{url('admin/registrations/export/allReg')}}" class="btn btn-success btn-lg">Export</a>
+                        <a href="{{url('admin/registrations/export/allReg/' . request()->query('workshop_id') ?? '')}}" class="btn btn-success btn-lg">Export</a>
                     </div>
                 </div>
                     @endif
             </div>
         </div>
+
+        {{-- Filter by Workshop --}}
+        <div class="row">
+            <div class="col-md-4 col-md-offset-8 text-right" style="margin-bottom: 10px;">
+                <form method="get" action="{{url('admin/registrations')}}">
+                    <div class="input-group">
+                        <select name="workshop_id" class="form-control">
+                            <option value="">-- Filter by Workshop --</option>
+                            @foreach($workshops as $workshop)
+                                <option value="{{$workshop->id}}" {{ request()->query('workshop_id') == $workshop->id ? 'selected' : '' }}>{{$workshop->title}}</option>
+                            @endforeach
+                        </select>
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit">Filter</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {{-- Filter by Workshop --}}
 
 
         <div class="widget-body">
