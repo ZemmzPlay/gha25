@@ -357,7 +357,7 @@ class RegistrationsController extends Controller
             }
         }
         $workshopName = $workshopId ? str_replace('/', '-', $workshop->title) : '';
-        $fileName = ($workshopId ? " - workshop{$workshopName}" : 'Registrants') . " - " . Carbon::now()->format('Ymd') . '.xlsx';
+        $fileName = ($workshopId ? "Workshop{$workshopName}" : 'Registrants') . " - " . Carbon::now()->format('Ymd') . '.xlsx';
         return Excel::download(new RegistrationsExport($workshopId), $fileName);
     }
 
