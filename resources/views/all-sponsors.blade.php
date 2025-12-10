@@ -22,7 +22,7 @@
         <img class="sponsors-image" src="{{ asset('images/sponsors/Central-Circle-Logo.jpg') }}" alt="Central Circle" />
       </div>
       <div class="sponsors-image-div">
-        <img class="sponsors-image" src="{{ asset('images/sponsors/HCD LogoAsset.pngg') }}" alt="HealthCare Dynamics Company" />
+        <img class="sponsors-image" src="{{ asset('images/sponsors/HCD LogoAsset.png') }}" alt="HealthCare Dynamics Company" />
       </div>
     </div>
   </div>
