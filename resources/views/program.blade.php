@@ -312,13 +312,6 @@
                                             <div class="oneSessionTitle">{{$session->title}}</div>
                                             @if(isset($session->moderator))
                                             <div class="oneSessionText">Moderator: {{$session->moderator->name}}</div>
-                                            @elseif(isset($session->facilitated))
-                                            <div class="oneSessionText">Facilitator:
-                                                @php $facilitatorsIds = json_decode($session->facilitated); @endphp
-                                            @foreach(getFacilitators($facilitatorsIds) as $key => $facilitator)
-                                                {{$facilitator->name}}
-                                                @if(count($facilitatorsIds) > $key + 1), @endif
-                                            @endforeach
                                             @endif
                                             @if($panelistText != "")
                                             <div class="oneSessionText">Panelists: {{$panelistText}}</div>
@@ -352,6 +345,15 @@
                                                 }
                                                 ?>
                                             </div>
+                                            @endif
+                                            
+                                            @if(isset($session->facilitated))
+                                            <div class="oneSessionText">Facilitated By
+                                                @php $facilitatorsIds = json_decode($session->facilitated); @endphp
+                                            @foreach(getFacilitators($facilitatorsIds) as $key => $facilitator)
+                                                {{$facilitator->name}}
+                                                @if(count($facilitatorsIds) > $key + 1) & @endif
+                                            @endforeach
                                             @endif
 
 
