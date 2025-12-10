@@ -104,6 +104,14 @@
                                         <div class="oneSessionTitle">{{$workshopSession->title}}</div>
                                         @if(isset($workshopSession->moderator))
                                         <div class="oneSessionText">Moderator: {{$workshopSession->moderator->name}}</div>
+                                        @elseif(isset($workshopSession->facilitated))
+                                        <div class="oneSessionText">Facilitator:
+                                            @php $facilitatorsIds = json_decode($workshopSession->facilitated); @endphp
+                                        @foreach(getFacilitators($facilitatorsIds) as $key => $facilitator)
+                                            {{$facilitator->name}}
+                                            @if(count($facilitatorsIds) > $key + 1), @endif
+                                        @endforeach
+                                        </div>
                                         @endif
                                         @if($panelistText != "")
                                         <div class="oneSessionText">Panelists: {{$panelistText}}</div>
@@ -211,6 +219,7 @@
                                                 @if(isset($session->moderator))
                                                 <div class="oneSessionText">Moderator: {{$session->moderator->name}}</div>
                                                 @endif
+                                                {{ $session->facilitated }}
                                                 @if($panelistText != "")
                                                 <div class="oneSessionText">Panelists: {{$panelistText}}</div>
                                                 @endif

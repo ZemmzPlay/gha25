@@ -8,5 +8,9 @@ $(document).ready(function() {
 	$('#panelist').select2({
         placeholder: "Select Panelist"
     });
+
+	$('#facilitated').select2({
+        placeholder: "Select Facilitated"
+    });
     
 });

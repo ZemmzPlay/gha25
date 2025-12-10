@@ -21,6 +21,9 @@
       <div class="sponsors-image-div">
         <img class="sponsors-image" src="{{ asset('images/sponsors/Central-Circle-Logo.jpg') }}" alt="Central Circle" />
       </div>
+      <div class="sponsors-image-div">
+        <img class="sponsors-image" src="{{ asset('images/sponsors/HCD LogoAsset.pngg') }}" alt="HealthCare Dynamics Company" />
+      </div>
     </div>
   </div>
 
@@ -45,6 +48,9 @@
     <div class="sponsors-image-container">
       <div class="sponsors-image-div">
         <img class="sponsors-image" src="{{ asset('images/sponsors/italia.png') }}" alt="Italia" />
+      </div>
+      <div class="sponsors-image-div">
+        <img class="sponsors-image" src="{{ asset('images/sponsors/Warba.jpg') }}" alt="Warba" />
       </div>
     </div>
   </div>

@@ -120,6 +120,17 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="facilitated" class="col-sm-3 control-label">facilitated</label>
+                    <div class="col-sm-9">
+                        <select id="facilitated" name="facilitated[]" class="form-control" multiple="multiple">
+                            @foreach($moderators as $moderator)
+                                <option value="{{$moderator->id}}" {{(in_array($moderator->id,$selected_facilitated)) ? "selected" : ""}}>{{$moderator->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label for="panelist" class="col-sm-3 control-label">Panelist</label>
                     <div class="col-sm-9">
                         <select id="panelist" name="panelist_id[]" class="form-control" multiple="multiple">

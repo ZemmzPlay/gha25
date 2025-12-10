@@ -20,9 +20,11 @@ class ProgramController extends Controller
         $moderators = Moderator::all();
         $panelists = Panelist::all();
         $selected_panelist = array();
+        $selected_facilitated = array();
 
         return view('admin.program.add-edit-form', [
             'selected_panelist'    => $selected_panelist,
+            'selected_facilitated' => $selected_facilitated,
             'moderators'           => $moderators,
             'panelists'            => $panelists,
             'method'               => "post"
@@ -71,9 +73,11 @@ class ProgramController extends Controller
         $moderators = Moderator::all();
         $panelists = Panelist::all();
         $selected_panelist = array_pluck($session->panelists, 'id');
+        $selected_facilitated = $session->facilitated != null ? json_decode($session->facilitated) : [];
 
         return view('admin.program.add-edit-form', [
             'selected_panelist' => $selected_panelist,
+            'selected_facilitated' => $selected_facilitated,
             'lectures'          => $lectures,
             'speakers'          => $speakers,
             'session'           => $session,
@@ -93,6 +97,8 @@ class ProgramController extends Controller
             'start_time'      => 'required|date_format:H:i',
             'end_time'        => 'required|date_format:H:i',
             'moderator_id'    => 'sometimes|nullable|integer|exists:moderators,id',
+            'facilitated'     => 'sometimes|nullable|array',
+            'facilitated.*'   => 'sometimes|nullable|integer|exists:moderators,id',
             'panelist_id'     => 'sometimes|nullable|array',
             'panelist_id.*'   => 'sometimes|nullable|integer|exists:panelist,id'
         ]);
@@ -103,6 +109,8 @@ class ProgramController extends Controller
 
         $request['total_lecture'] = "2";
         $request['lecture_duration'] = "30";
+
+        $request['facilitated'] = isset($request['facilitated']) ? json_encode($request['facilitated']) : null;
         
         // $session->update($request->all());
         $session->update($request->except('panelist_id'));

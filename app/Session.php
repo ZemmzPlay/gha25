@@ -12,7 +12,8 @@ class Session extends Model
         'session_date', 
         'start_time', 
         'end_time', 
-        'moderator_id', 
+        'moderator_id',
+        'facilitated',
         'total_lecture', 
         'lecture_duration'
     ];
