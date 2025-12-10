@@ -354,6 +354,7 @@
                                                 {{$facilitator->name}}
                                                 @if(count($facilitatorsIds) > $key + 1) & @endif
                                             @endforeach
+                                            </div>
                                             @endif
 
 
