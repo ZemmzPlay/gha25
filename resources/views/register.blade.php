@@ -6,6 +6,7 @@
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/owl.theme.default.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/index.css?ver=1.0.2') }}" />
+  <script src="https://www.google.com/recaptcha/enterprise.js?render=6LcAmCssAAAAABubK5B_7SXNMWv7DHGpDxjk3mKS"></script>
 @endsection
 
 @section('content')
@@ -279,9 +280,9 @@
 @stop
 
 @section('scripts')
-<script src="https://www.google.com/recaptcha/api.js?render=6LeMfxAsAAAAACcr9ygWDflHEYvip_iJg1DTUfGw"></script>
-<script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/index.js?ver=1.4') }}"></script>
+  {{-- <script src="https://www.google.com/recaptcha/api.js?render=6LeMfxAsAAAAACcr9ygWDflHEYvip_iJg1DTUfGw"></script> --}}
+  <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/index.js?ver=1.4') }}"></script>
   <script>
     $(document).ready(function() {
       var workshopDisable = {
@@ -296,6 +297,15 @@
       initMultiSelectDropdown();
       checkWorkshops();
       updateSelectedWorkshops();
+
+      function onClick(e) {
+        e.preventDefault();
+        grecaptcha.enterprise.ready(async () => {
+          const token = await grecaptcha.enterprise.execute('6LcAmCssAAAAABubK5B_7SXNMWv7DHGpDxjk3mKS', {
+            action: 'Register'
+          });
+        });
+      }
 
       $(document).on('click', '.register-option-button', function() {
         $('.register-container').fadeIn();
