@@ -45,7 +45,15 @@
       </div>
 
       <button type="submit" class="btn btn-primary btn-sm mr-2">Filter</button>
-      <a href="{{ url('admin/logs') }}" class="btn btn-default btn-sm">Reset</a>
+      <a href="{{ url('admin/logs') }}" class="btn btn-default btn-sm mr-2">Reset</a>
+
+      @php
+        $qs = request()->getQueryString();
+        $exportUrlCsv = url('admin/logs/export') . ($qs ? '?'.$qs : '');
+        $exportUrlXlsx = url('admin/logs/export-xlsx') . ($qs ? '?'.$qs : '');
+      @endphp
+      <a href="{{ $exportUrlCsv }}" class="btn btn-success btn-sm" title="Export request_data as CSV">Export CSV</a>
+      <a href="{{ $exportUrlXlsx }}" class="btn btn-primary btn-sm" title="Export request_data as Excel">Export XLSX</a>
     </form>
 
     {{-- Counts: filtered total + selected --}}

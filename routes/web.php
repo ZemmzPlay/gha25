@@ -202,6 +202,8 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
 
     /* Logs */
     Route::get('/logs', 'LogsController@index')->name('logs.index');
+    Route::get('/logs/export', 'LogsController@export')->name('logs.export');
+    Route::get('/logs/export-xlsx', 'LogsController@exportXlsx')->name('logs.export.xlsx');
     Route::get('/logs/{id}', 'LogsController@getDetails')->name('logs.details');
     /* Logs */
 
