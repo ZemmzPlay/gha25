@@ -187,8 +187,18 @@ class GenericPageController extends Controller
 
         foreach ($logs as $log) {
             $requestData = json_decode($log->request_data, true);
+            $emails = [];
             if(isset($requestData['first_name']) && strlen($requestData['first_name']) < 50)
-                echo $requestData['first_name'] . " " . $requestData['last_name'] . "<br/>";
+            {
+               echo $requestData['first_name'] . " " . $requestData['last_name'] . " " . $requestData['email'] . "<br/>";
+               if(isset($requestData['email']) && filter_var($requestData['email'], FILTER_VALIDATE_EMAIL))
+               {
+                   $emails[] = [
+                       'name' => $requestData['first_name'] . " " . $requestData['last_name'],
+                       'email' => $requestData['email']
+                   ];
+               }
+            }
         }
     }
 
