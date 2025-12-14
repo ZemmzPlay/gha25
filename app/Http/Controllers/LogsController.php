@@ -32,10 +32,10 @@ class LogsController extends Controller
             } catch (\Exception $e) {}
         }
 
-        // keyword in response_data
+        // keyword in request_data
         if ($request->filled('response_keyword')) {
             $keyword = $request->response_keyword;
-            $query->where('response_data', 'like', '%' . $keyword . '%');
+            $query->where('request_data', 'like', '%' . $keyword . '%');
         }
 
         $logs = $query->orderBy('created_at', 'desc')->paginate(25);
