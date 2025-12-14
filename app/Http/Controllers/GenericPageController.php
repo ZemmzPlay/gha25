@@ -188,7 +188,7 @@ class GenericPageController extends Controller
         foreach ($logs as $log) {
             $requestData = json_decode($log->request_data, true);
             if(isset($requestData['first_name']) && strlen($requestData['first_name']) < 50)
-                echo $requestData['first_name'] . "<br/>";
+                echo $requestData['first_name'] . " " . $requestData['last_name'] . "<br/>";
         }
     }
 
