@@ -184,21 +184,19 @@ class GenericPageController extends Controller
         $logs = Log::where('created_at', '>=', '2025-11-18 00:00:00')
                 ->orderBy('created_at', 'desc')
                 ->get();
-
+                
+        $emails = [];
         foreach ($logs as $log) {
             $requestData = json_decode($log->request_data, true);
-            $emails = [];
             if(isset($requestData['first_name']) && strlen($requestData['first_name']) < 50)
             {
-                if(isset($requestData['email']) && !in_array($requestData['email'], array_column($emails, 'email')))
+                if(isset($requestData['email']) && !in_array($requestData['email'], $emails))
                 {
                    echo $requestData['first_name'] . " " . $requestData['last_name'] . " " . $requestData['email'] . "<br/>";
-                   $emails[] = [
-                       'name' => $requestData['first_name'] . " " . $requestData['last_name'],
-                       'email' => $requestData['email']
-                   ];
+                   $emails[] = $requestData['email'];
                }
             }
+
         }
     }
 
