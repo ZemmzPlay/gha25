@@ -202,6 +202,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
 
     /* Logs */
     Route::get('/logs', 'LogsController@index')->name('logs.index');
+    Route::get('/logs/{id}', 'LogsController@getDetails')->name('logs.details');
     /* Logs */
 
     Route::get('mail', 'TestController@index');
