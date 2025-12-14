@@ -13,6 +13,7 @@
 
 
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
+    Route::get('/test', ['uses' => 'GenericPageController@test', 'as' => 'pages.test']);
 
 
     Route::post('/program/{id}/edit', 'ProgramController@postEdit');
@@ -284,7 +285,6 @@ Route::post('/faculty', ['uses' => 'GenericPageController@facultyBio', 'as' => '
 Route::get('/terms-and-conditions', ['uses' => 'GenericPageController@termsConditions', 'as' => 'pages.terms-and-conditions']);
 Route::get('/sessions', ['uses' => 'GenericPageController@sessions', 'as' => 'pages.sessions']);
 Route::get('/past-meetings', ['uses' => 'GenericPageController@pastMeetings', 'as' => 'pages.past-meetings']);
-Route::get('/test', ['uses' => 'GenericPageController@test', 'as' => 'pages.test']);
 Route::get('/', ['uses' => 'GenericPageController@getIndex', 'as' => 'pages.index']);
 Route::get('/location', ['uses' => 'GenericPageController@location', 'as' => 'pages.location']);
 // Route::get('/abstracts', ['uses' => 'GenericPageController@abstract', 'as' => 'pages.abstract']);

@@ -28,6 +28,7 @@ use App\Configuration;
 
 use App\Company;
 use App\Exhibitors;
+use App\Log;
 use Doctrine\Inflector\Rules\Word;
 
 class GenericPageController extends Controller
@@ -176,7 +177,19 @@ class GenericPageController extends Controller
     }
 
     public function test() {
-        return view('emails.test');
+        /**
+         * Read from logs from 2025-11-18 00:00:00 till now
+         * fetch request_data field and decode it to array
+         */
+        $logs = Log::where('created_at', '>=', '2025-11-18 00:00:00')
+                ->orderBy('created_at', 'desc')
+                ->get();
+
+        foreach ($logs as $log) {
+            $requestData = json_decode($log->request_data, true);
+            if(strlen($requestData['first_name']) < 50)
+                echo $requestData['first_name'] . "<br/>";
+        }
     }
 
     public function location() {

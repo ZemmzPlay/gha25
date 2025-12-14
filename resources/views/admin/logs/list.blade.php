@@ -40,7 +40,7 @@
       </div>
 
       <div class="form-group mr-2">
-        <input type="text" name="response_keyword" class="form-control" placeholder="Keyword in response_data"
+        <input type="text" name="response_keyword" class="form-control" placeholder="Keyword in request_data"
                value="{{ request('response_keyword') }}">
       </div>
 
