@@ -31,7 +31,7 @@ class RegistrationController extends Controller
 {
     public function create(CreateRegistrationRequest $request)
     {
-        return $request->first_name;
+        // return $request->first_name;
         if (Auth::guard('web')->check()) return redirect('/');
 
         $request['onlyWorkshop'] = 0;
@@ -349,8 +349,8 @@ class RegistrationController extends Controller
 
 
 
-        // Mail::to($registration->email)->send(new RegistrationConfirmationEmail($registration));
-        // return redirect()->back()->with(['message' => 'Thank you for your registration', 'id' => $registration->id]);
+        Mail::to($registration->email)->send(new RegistrationConfirmationEmail($registration));
+        return redirect()->back()->with(['message' => 'Thank you for your registration', 'id' => $registration->id]);
     }
 
     public function otpValidation($id)
