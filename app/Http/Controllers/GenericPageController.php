@@ -190,9 +190,9 @@ class GenericPageController extends Controller
             $emails = [];
             if(isset($requestData['first_name']) && strlen($requestData['first_name']) < 50)
             {
-               echo $requestData['first_name'] . " " . $requestData['last_name'] . " " . $requestData['email'] . "<br/>";
-               if(isset($requestData['email']) && !in_array($requestData['email'], array_column($emails, 'email')))
-               {
+                if(isset($requestData['email']) && !in_array($requestData['email'], array_column($emails, 'email')))
+                {
+                   echo $requestData['first_name'] . " " . $requestData['last_name'] . " " . $requestData['email'] . "<br/>";
                    $emails[] = [
                        'name' => $requestData['first_name'] . " " . $requestData['last_name'],
                        'email' => $requestData['email']
