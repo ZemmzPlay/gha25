@@ -54,6 +54,13 @@
       </tbody>
 
     </table>
+
+    {{-- add link --}}
+    <div class="row">
+      <div class="col-md-12 text-center">
+        {{ $logs->links() }}
+      </div>
+    </div>
   </div>
 
 @stop

@@ -10,7 +10,8 @@ class LogsController extends Controller
 {
     public function index()
     {
-        $logs = Log::all();
+        // return logs with pagination
+        $logs = Log::orderBy('created_at', 'desc')->paginate(50);
 
         return view('admin.logs.list', compact('logs'));
     }
