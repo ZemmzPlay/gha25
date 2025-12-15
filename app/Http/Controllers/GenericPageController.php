@@ -201,59 +201,68 @@ class GenericPageController extends Controller
                     echo $requestData['email'] . "<br/>";
                     // check if email already exists in registrations table
                     $existingRegistration = Registration::where('email', $requestData['email'])->first();
-                    if(!$existingRegistration && isset($requestData['email']) && $requestData['email'] != '')
-                    {
-                        $workshops = $requestData['workshops'] ?? [];
-                        // $workshops = $request->workshops ?? [];
-                        foreach($workshops as $workshop_id)
+                    // check if it is a valid email
+                    if(!$requestData['email'] || !filter_var($requestData['email'], FILTER_VALIDATE_EMAIL))
                         {
-                            $workshop = Workshop::find($workshop_id);
-
-                            if($workshop->places_left <= 0)
-                            {
-                                // return redirect()->back()->withErrors(['message' => 'No places left for the '.$workshop->title.' worshop'])->withInput();
-                                echo "No places left for the ".$workshop->title." worshop<br/>";
-                            }
-                        }
-
-                        $workshopDisable = [2 => 5, 3 => 6, 5 => 2, 6 => 3];
-
-                        foreach($workshops as $workshop_id)
+                        if(!$existingRegistration && isset($requestData['email']) && $requestData['email'] != '')
                         {
-                            if(array_key_exists($workshop_id, $workshopDisable))
+                            $workshops = $requestData['workshops'] ?? [];
+                            // $workshops = $request->workshops ?? [];
+                            foreach($workshops as $workshop_id)
                             {
-                                if(in_array($workshopDisable[$workshop_id], $workshops))
+                                $workshop = Workshop::find($workshop_id);
+
+                                if($workshop->places_left <= 0)
                                 {
-                                    // return redirect()->back()->withErrors(['message' => 'You cannot select both workshops'])->withInput();
-                                    echo "You cannot select both workshops<br/>";
+                                    // return redirect()->back()->withErrors(['message' => 'No places left for the '.$workshop->title.' worshop'])->withInput();
+                                    echo "No places left for the ".$workshop->title." worshop<br/>";
                                 }
                             }
 
-                            // $workshopPrice += $workshop->price;
-                        }
-                        $registration = Registration::create($requestData);
-                        RegistrationWorkshop::where('registration_id', $registration->id)->delete();
-                        foreach($workshops as $workshop_id)
-                        {
-                            $registrationWorkshop = new RegistrationWorkshop;
-                            $registrationWorkshop->registration_id = $registration->id;
-                            $registrationWorkshop->workshop_id = $workshop_id;
-                            $registrationWorkshop->save();
-                        }
-                        FacadesLog::info('Attempting to send registration confirmation email to: ' . $registration->email);
-                        Mail::to($registration->email)->send(new RegistrationConfirmationEmail($registration));
-                        FacadesLog::info('Registration confirmation email sent successfully to: ' . $registration->email);
+                            $workshopDisable = [2 => 5, 3 => 6, 5 => 2, 6 => 3];
 
-                        echo "Created registration for: " . $requestData['email'] . "<br/>";
+                            foreach($workshops as $workshop_id)
+                            {
+                                if(array_key_exists($workshop_id, $workshopDisable))
+                                {
+                                    if(in_array($workshopDisable[$workshop_id], $workshops))
+                                    {
+                                        // return redirect()->back()->withErrors(['message' => 'You cannot select both workshops'])->withInput();
+                                        echo "You cannot select both workshops<br/>";
+                                    }
+                                }
+
+                                // $workshopPrice += $workshop->price;
+                            }
+                            $registration = Registration::create($requestData);
+                            RegistrationWorkshop::where('registration_id', $registration->id)->delete();
+                            foreach($workshops as $workshop_id)
+                            {
+                                $registrationWorkshop = new RegistrationWorkshop;
+                                $registrationWorkshop->registration_id = $registration->id;
+                                $registrationWorkshop->workshop_id = $workshop_id;
+                                $registrationWorkshop->save();
+                            }
+                            FacadesLog::info('Attempting to send registration confirmation email to: ' . $registration->email);
+                            Mail::to($registration->email)->send(new RegistrationConfirmationEmail($registration));
+                            FacadesLog::info('Registration confirmation email sent successfully to: ' . $registration->email);
+
+                            echo "Created registration for: " . $requestData['email'] . "<br/>";
+                        }
+                        else
+                        {
+                            echo "Duplicate email: " . $requestData['email'] . "<br/>";
+                        }
                     }
                     else
                     {
-                        echo "Duplicate email: " . $requestData['email'] . "<br/>";
+                        echo $requestData['email'] . " Email missing or duplicate<br/>";
                     }
                 }
                 else
                 {
-                    echo $requestData['email'] . " Email missing or duplicate<br/>";
+                        
+                    echo $requestData['email'] . " is not a valid email<br/>";
                 }
             }
 
