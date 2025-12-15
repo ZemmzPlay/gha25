@@ -51,7 +51,7 @@
               </div>
             @endif
 
-            <form method="post" id="registerForm" action="{{ route('registrations.create') }}">
+            <form method="post" id="registerForm" action="{{ route('registrations.register') }}">
               {{ csrf_field() }}
               <div class="registerInputsContainer">
                 <div class="registerOneInputContainer" id="titleInput">

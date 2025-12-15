@@ -224,7 +224,7 @@ Route::post('/certificate/verify', ['uses' => 'RegistrationController@verify', '
 
 
 Route::group(['middleware' => 'logs'], function () {
-    Route::post('/registration', ['uses' => 'RegistrationController@create', 'as' => 'registrations.create']);
+    Route::post('/registration', ['uses' => 'RegistrationController@create', 'as' => 'registrations.register']);
     Route::post('/login', 'RegistrationController@postLogin');
 });
 
