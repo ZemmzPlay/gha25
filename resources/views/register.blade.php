@@ -280,7 +280,7 @@
 @stop
 
 @section('scripts')
-  {{-- <script src="https://www.google.com/recaptcha/api.js?render=6LeMfxAsAAAAACcr9ygWDflHEYvip_iJg1DTUfGw"></script> --}}
+  <script src="https://www.google.com/recaptcha/api.js?render=6LeMfxAsAAAAACcr9ygWDflHEYvip_iJg1DTUfGw"></script>
   <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/index.js?ver=1.4') }}"></script>
   <script>
@@ -298,14 +298,14 @@
       checkWorkshops();
       updateSelectedWorkshops();
 
-      function onClick(e) {
-        e.preventDefault();
-        grecaptcha.enterprise.ready(async () => {
-          const token = await grecaptcha.enterprise.execute('6LcAmCssAAAAABubK5B_7SXNMWv7DHGpDxjk3mKS', {
-            action: 'Register'
-          });
-        });
-      }
+      // function onClick(e) {
+      //   e.preventDefault();
+      //   grecaptcha.enterprise.ready(async () => {
+      //     const token = await grecaptcha.enterprise.execute('6LcAmCssAAAAABubK5B_7SXNMWv7DHGpDxjk3mKS', {
+      //       action: 'Register'
+      //     });
+      //   });
+      // }
 
       $(document).on('click', '.register-option-button', function() {
         $('.register-container').fadeIn();
