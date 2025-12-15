@@ -207,7 +207,10 @@ class GenericPageController extends Controller
             else
             {
                 $above[$registration->workshop_id]++;
-                WaitingList::create(['registration_id' => $registration->registration_id, 'workshop_id' => $registration->workshop_id]);
+                WaitingList::create([
+                    'registration_id' => $registration->registration_id,
+                    'workshop_id' => $registration->workshop_id
+                ]);
                 // echo $registration->registration_id . "<br>";
             }
         }

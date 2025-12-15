@@ -9,6 +9,6 @@ class WaitingList extends Model
     protected $table = 'waiting_list';
     
     protected $fillable = [
-        'workshop_id', 'registraion_id'
+        'workshop_id', 'registration_id'
     ];
 }
