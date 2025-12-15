@@ -34,8 +34,10 @@ class RegistrationController extends Controller
         // return $request->first_name;
         if (Auth::guard('web')->check()) return redirect('/');
         
+        // Google
         $request->validate([
             'g-recaptcha-response' => 'required',
+            'cf-turnstile-response' => 'required',
         ]);
 
         $verifyResponse = file_get_contents(
@@ -58,6 +60,33 @@ class RegistrationController extends Controller
                 ->withErrors(['captcha' => 'reCAPTCHA verification failed'])
                 ->withInput();
         }
+        // Google
+
+        // Cloudflare
+        $response = file_get_contents(
+            'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+            false,
+            stream_context_create([
+                'http' => [
+                    'method'  => 'POST',
+                    'header'  => "Content-Type: application/x-www-form-urlencoded\r\n",
+                    'content' => http_build_query([
+                        'secret'   => config('services.turnstile.secret_key'),
+                        'response' => $request->input('cf-turnstile-response'),
+                        'remoteip' => $request->ip(),
+                    ]),
+                ],
+            ])
+        );
+
+        $result = json_decode($response);
+
+        if (!$result->success) {
+            return back()
+                ->withErrors(['captcha' => 'Human verification failed'])
+                ->withInput();
+        }
+        // Cloudflare
 
 
         $request['onlyWorkshop'] = 0;

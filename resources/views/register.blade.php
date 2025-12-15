@@ -204,6 +204,10 @@
 
               <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
 
+              <div class="cf-turnstile" data-sitekey="{{ config('services.turnstile.site_key') }}"></div>
+
+              <input type="hidden" name="cf-turnstile-response">
+
               <div class="registerButtonContainerOut">
                 <div class="registerButtonContainer" id="registerSubmitButton">
                   <div class="registerButtonLeft">Register</div>
@@ -283,11 +287,12 @@
 
 @section('scripts')
   {{-- <script src="https://www.google.com/recaptcha/api.js?render=6LeMfxAsAAAAACcr9ygWDflHEYvip_iJg1DTUfGw"></script> --}}
-  <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}" async defer>
+  </script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/index.js?ver=1.4') }}"></script>
   <script>
-
     if (typeof grecaptcha !== 'undefined' && grecaptcha) {
       if (grecaptcha.enterprise) {
         grecaptcha.enterprise.ready(function() {
