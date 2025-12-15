@@ -202,14 +202,14 @@
                 </div>
               </div>
 
-              <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}">
+              {{-- <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}">
               </div>
 
               @if ($errors->has('g-recaptcha-response'))
                 <span class="text-danger">
                   {{ $errors->first('g-recaptcha-response') }}
                 </span>
-              @endif
+              @endif --}}
 
               <div class="registerButtonContainerOut">
                 <div class="registerButtonContainer" id="registerSubmitButton">
@@ -289,8 +289,8 @@
 @stop
 
 @section('scripts')
-  {{-- <script src="https://www.google.com/recaptcha/api.js?render=6LeMfxAsAAAAACcr9ygWDflHEYvip_iJg1DTUfGw"></script> --}}
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LeMfxAsAAAAACcr9ygWDflHEYvip_iJg1DTUfGw"></script>
+  {{-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> --}}
   <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/index.js?ver=1.4') }}"></script>
   <script>
