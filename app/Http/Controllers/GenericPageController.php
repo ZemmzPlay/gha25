@@ -206,11 +206,16 @@ class GenericPageController extends Controller
             else
             {
                 $above[$registration->workshop_id]++;
-                echo $registration->registration_id . "<br>";
+                // echo $registration->registration_id . "<br>";
             }
         }
 
-        return $above;
+        foreach($workshops as $workshop)
+        {
+            echo $workshop->title . ": " . $above[$workshop->id] . "<br>";
+        }
+
+        return "";
 
         /**
          * Read from logs from 2025-11-18 00:00:00 till now
