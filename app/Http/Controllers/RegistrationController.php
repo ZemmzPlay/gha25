@@ -737,6 +737,8 @@ class RegistrationController extends Controller
         if ($slot == 'failed' && $registration_id != null) abort(404);
         if ($slot == 'confirmation' && $registration_id == null) abort(404);
         if ($registration_id != null && !ctype_digit($registration_id)) abort(404);
+        $registration = Registration::find($registration_id);
+        if(!$registration) abort(404);
         return view('payments.paymentResult', ['result' => $slot, 'registration_id' => $registration_id]);
     }
 
