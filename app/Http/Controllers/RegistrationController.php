@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Validator;
 use App\Configuration;
 use App\Payment;
 use Crypt;
-use Auth;
 
 use App\ConferenceQuestions;
 use App\Workshop;
@@ -26,6 +25,7 @@ use App\Session;
 use App\Classes\TwilioVerify;
 use App\RegistrationWorkshop;
 use DateTime;
+use Illuminate\Support\Facades\Auth;
 
 class RegistrationController extends Controller
 {
@@ -33,12 +33,12 @@ class RegistrationController extends Controller
     {
         // return $request->first_name;
         if (Auth::guard('web')->check()) return redirect('/');
-
+        
         $request->validate([
             'g-recaptcha-response' => 'required',
         ]);
 
-        $response = file_get_contents(
+        $verifyResponse = file_get_contents(
             'https://www.google.com/recaptcha/api/siteverify?secret='
             . config('services.recaptcha.secret_key')
             . '&response='
@@ -47,13 +47,18 @@ class RegistrationController extends Controller
             . $request->ip()
         );
 
-        $response = json_decode($response);
+        $response = json_decode($verifyResponse);
 
-        if (!$response->success) {
+        if (
+            !$response->success ||
+            $response->score < 0.5 ||
+            $response->action !== 'submit'
+        ) {
             return back()
-                ->withErrors(['g-recaptcha-response' => 'reCAPTCHA verification failed'])
+                ->withErrors(['captcha' => 'reCAPTCHA verification failed'])
                 ->withInput();
         }
+
 
         $request['onlyWorkshop'] = 0;
         // $request['workshop_id'] = null;
