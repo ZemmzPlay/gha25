@@ -191,10 +191,16 @@ class GenericPageController extends Controller
             $seats[$workshop->id] = 0;
         }
 
-        return $seats;
+        // return $seats;
 
         $workshop_registrations = RegistrationWorkshop::all();
-        
+
+        foreach($workshop_registrations as $registration)
+        {
+            $seats[$registration->wokrshop_id]++;
+        }
+
+        return $seats;
 
         /**
          * Read from logs from 2025-11-18 00:00:00 till now
