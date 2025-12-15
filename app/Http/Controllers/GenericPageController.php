@@ -185,10 +185,12 @@ class GenericPageController extends Controller
         $workshops = Workshop::all();
 
         $seats = [];
+        $limit = [];
 
         foreach($workshops as $workshop)
         {
             $seats[$workshop->id] = 0;
+            $limit[$workshop->id] = $workshop->places;
         }
 
         // return $seats;
@@ -197,10 +199,12 @@ class GenericPageController extends Controller
 
         foreach($workshop_registrations as $registration)
         {
-            if(isset($seats[$registration->workshop_id]))
+            if($seats[$registration->workshop_id] < $limit[$registration->workshop_id])
                 $seats[$registration->workshop_id]++;
             else
-                echo $registration->workshop_id . "<br>";
+            {
+                echo $registration->registration_id . "<br>";
+            }
         }
 
         return $seats;
