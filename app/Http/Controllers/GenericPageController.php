@@ -181,7 +181,7 @@ class GenericPageController extends Controller
     }
 
     public function test() {
-        // return 'test';
+        return 'test';
         // Read the workshop
         $workshops = Workshop::all();
 
