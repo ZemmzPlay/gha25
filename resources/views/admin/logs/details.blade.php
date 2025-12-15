@@ -56,6 +56,14 @@
         <h5>Response Data</h5>
         <pre style="background:#f8f9fa;padding:10px;border:1px solid #eee;white-space:pre-wrap;">{{ $pretty($log->response_data) }}</pre>
       </div>
+      <div class="col-md-6">
+        <h5>Request Header</h5>
+        <pre style="background:#f8f9fa;padding:10px;border:1px solid #eee;white-space:pre-wrap;">{{ $pretty($log->request_headers) }}</pre>
+      </div>
+      <div class="col-md-6">
+        <h5>Response Header</h5>
+        <pre style="background:#f8f9fa;padding:10px;border:1px solid #eee;white-space:pre-wrap;">{{ $pretty($log->response_headers) }}</pre>
+      </div>
     </div>
 
     <div style="margin-top:10px;">
