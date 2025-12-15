@@ -30,6 +30,7 @@ use App\Exhibitors;
 use App\Log;
 use App\Mail\RegistrationConfirmationEmail;
 use App\RegistrationWorkshop;
+use App\WaitingList;
 use Doctrine\Inflector\Rules\Word;
 use Illuminate\Support\Facades\Log as FacadesLog;
 use Illuminate\Support\Facades\Mail;
@@ -206,6 +207,7 @@ class GenericPageController extends Controller
             else
             {
                 $above[$registration->workshop_id]++;
+                WaitingList::create(['registration_id' => $registration->registration_id, 'workshop_id' => $registration->workshop_id]);
                 // echo $registration->registration_id . "<br>";
             }
         }
