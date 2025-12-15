@@ -204,9 +204,9 @@
 
               <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
 
-              <div class="cf-turnstile" data-sitekey="{{ config('services.turnstile.site_key') }}"></div>
+              <div class="cf-turnstile" data-sitekey="{{ config('services.turnstile.site_key') }}" data-callback="turnstileCallback" data-expired-callback="turnstileExpired"></div>
 
-              <input type="hidden" name="cf-turnstile-response">
+              <input type="hidden" name="cf-turnstile-response" id="cf-turnstile-response">
 
               <div class="registerButtonContainerOut">
                 <div class="registerButtonContainer" id="registerSubmitButton">
@@ -561,5 +561,16 @@
         });
       }
     });
+
+    // Cloudflare Turnstile callbacks to populate the hidden input used by the server
+    function turnstileCallback(token) {
+      var el = document.getElementById('cf-turnstile-response');
+      if (el) el.value = token;
+    }
+
+    function turnstileExpired() {
+      var el = document.getElementById('cf-turnstile-response');
+      if (el) el.value = '';
+    }
   </script>
 @stop
