@@ -39,5 +39,9 @@ return [
         'token' => env('TWILIO_AUTH_TOKEN'),
         'verifySid' => env('TWILIO_VERIFY_SID'),
     ],
+    'recaptcha' => [
+        'site_key' => env('RECAPTCHA_SITE_KEY'),
+        'secret_key' => env('RECAPTCHA_SECRET_KEY'),
+    ],
 
 ];

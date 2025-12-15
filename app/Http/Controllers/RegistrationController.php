@@ -34,6 +34,27 @@ class RegistrationController extends Controller
         // return $request->first_name;
         if (Auth::guard('web')->check()) return redirect('/');
 
+        $request->validate([
+            'g-recaptcha-response' => 'required',
+        ]);
+
+        $response = file_get_contents(
+            'https://www.google.com/recaptcha/api/siteverify?secret='
+            . config('services.recaptcha.secret_key')
+            . '&response='
+            . $request->input('g-recaptcha-response')
+            . '&remoteip='
+            . $request->ip()
+        );
+
+        $response = json_decode($response);
+
+        if (!$response->success) {
+            return back()
+                ->withErrors(['g-recaptcha-response' => 'reCAPTCHA verification failed'])
+                ->withInput();
+        }
+
         $request['onlyWorkshop'] = 0;
         // $request['workshop_id'] = null;
         $data = $request->all();
