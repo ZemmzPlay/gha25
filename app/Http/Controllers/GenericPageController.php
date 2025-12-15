@@ -195,14 +195,12 @@ class GenericPageController extends Controller
 
         $workshop_registrations = RegistrationWorkshop::all();
 
-        return $workshop_registrations;
-
         foreach($workshop_registrations as $registration)
         {
-            if(isset($seats[$registration->wokrshop_id]))
-                $seats[$registration->wokrshop_id]++;
+            if(isset($seats[$registration->workshop_id]))
+                $seats[$registration->workshop_id]++;
             else
-                echo $registration->wokrshop_id . "<br>";
+                echo $registration->workshop_id . "<br>";
         }
 
         return $seats;
