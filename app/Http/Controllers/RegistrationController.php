@@ -33,6 +33,7 @@ class RegistrationController extends Controller
     {
         // return $request->first_name;
         if (Auth::guard('web')->check()) return redirect('/');
+        return $request->all();
         
         $request->validate([
             'g-recaptcha-response' => 'required',
