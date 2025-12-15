@@ -180,9 +180,18 @@ class GenericPageController extends Controller
     }
 
     public function test() {
-        return 'test';
+        // return 'test';
         // Read the workshop
         $workshops = Workshop::all();
+
+        $seats = [];
+
+        foreach($workshops as $workshop)
+        {
+            $seats[$workshop->id] = 0;
+        }
+
+        return $seats;
 
         $workshop_registrations = RegistrationWorkshop::all();
         
