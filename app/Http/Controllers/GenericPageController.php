@@ -197,7 +197,10 @@ class GenericPageController extends Controller
 
         foreach($workshop_registrations as $registration)
         {
-            $seats[$registration->wokrshop_id]++;
+            if($seats[$registration->wokrshop_id])
+                $seats[$registration->wokrshop_id]++;
+            else
+                echo $registration->wokrshop_id . "<br>";
         }
 
         return $seats;
