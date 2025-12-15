@@ -202,8 +202,8 @@ class GenericPageController extends Controller
                     // check if email already exists in registrations table
                     $existingRegistration = Registration::where('email', $requestData['email'])->first();
                     // check if it is a valid email
-                    if(!$requestData['email'] || !filter_var($requestData['email'], FILTER_VALIDATE_EMAIL))
-                        {
+                    if(filter_var($requestData['email'], FILTER_VALIDATE_EMAIL))
+                    {
                         if(!$existingRegistration && isset($requestData['email']) && $requestData['email'] != '')
                         {
                             $workshops = $requestData['workshops'] ?? [];
