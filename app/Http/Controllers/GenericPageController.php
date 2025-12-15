@@ -194,7 +194,7 @@ class GenericPageController extends Controller
             {
                 if(isset($requestData['email']) && !in_array($requestData['email'], $emails))
                 {
-                    echo $requestData['first_name'] . " " . $requestData['last_name'] . " " . $requestData['email'] . "<br/>";
+                    // echo $requestData['first_name'] . " " . $requestData['last_name'] . " " . $requestData['email'] . "<br/>";
                     echo $requestData['email'] . "<br/>";
                     $emails[] = $requestData['email'];
                     // check if email already exists in registrations table
