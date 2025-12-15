@@ -288,14 +288,28 @@
   <script type="text/javascript" src="{{ asset('js/index.js?ver=1.4') }}"></script>
   <script>
 
-    grecaptcha.ready(function() {
-      grecaptcha.execute('{{ config('services.recaptcha.site_key') }}', {
-        action: 'submit'
-      }).then(function(token) {
-        document.getElementById('g-recaptcha-response').value = token;
-      });
-    });
-    
+    if (typeof grecaptcha !== 'undefined' && grecaptcha) {
+      if (grecaptcha.enterprise) {
+        grecaptcha.enterprise.ready(function() {
+          grecaptcha.enterprise.execute('{{ config('services.recaptcha.site_key') }}', {
+            action: 'submit'
+          }).then(function(token) {
+            document.getElementById('g-recaptcha-response').value = token;
+          });
+        });
+      } else {
+        grecaptcha.ready(function() {
+          grecaptcha.execute('{{ config('services.recaptcha.site_key') }}', {
+            action: 'submit'
+          }).then(function(token) {
+            document.getElementById('g-recaptcha-response').value = token;
+          });
+        });
+      }
+    } else {
+      console.warn('grecaptcha not loaded');
+    }
+
     $(document).ready(function() {
       var workshopDisable = {
         2: 5,
