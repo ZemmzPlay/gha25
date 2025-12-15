@@ -34,12 +34,12 @@ class RegistrationController extends Controller
         // return $request->first_name;
         if (Auth::guard('web')->check()) return redirect('/');
         
-        // Google
         $request->validate([
             'g-recaptcha-response' => 'required',
             'cf-turnstile-response' => 'required',
         ]);
-
+        
+        // Google
         $verifyResponse = file_get_contents(
             'https://www.google.com/recaptcha/api/siteverify?secret='
             . config('services.recaptcha.secret_key')

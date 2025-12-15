@@ -226,7 +226,7 @@ Route::post('/certificate/verify', ['uses' => 'RegistrationController@verify', '
 Route::group(['middleware' => 'logs'], function () {
     Route::post('/registration', ['uses' => 'RegistrationController@create', 'as' => 'registrations.register']);
     Route::post('/login', 'RegistrationController@postLogin');
-});
+
 
 ////////// home page register part //////////
 Route::get('/register/verify-otp/{id}', 'RegistrationController@otpValidation');
@@ -247,7 +247,7 @@ Route::get('/watch-live', 'RegistrationController@watchLive')->middleware('auth:
 Route::post('/watch-live', 'RegistrationController@sendQuestion')->middleware('auth:web');
 Route::post('/refresh-session', 'RegistrationController@fetchCurrentAndNextSession')->middleware('auth:web');
 ////// login and watch-live part //////
-
+});
 
 /* Blog */
 // Route::get('/blog/{word?}', 'BlogController@index')->name('pages.blog');
