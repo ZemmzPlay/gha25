@@ -178,6 +178,7 @@ class GenericPageController extends Controller
     }
 
     public function test() {
+        return 'test';
         /**
          * Read from logs from 2025-11-18 00:00:00 till now
          * fetch request_data field and decode it to array
