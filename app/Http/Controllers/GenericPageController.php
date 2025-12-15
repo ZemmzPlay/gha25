@@ -186,11 +186,13 @@ class GenericPageController extends Controller
 
         $seats = [];
         $limit = [];
+        $above = [];
 
         foreach($workshops as $workshop)
         {
             $seats[$workshop->id] = 0;
             $limit[$workshop->id] = $workshop->places;
+            $above[$workshop->id] = 0;
         }
 
         // return $seats;
@@ -203,11 +205,12 @@ class GenericPageController extends Controller
                 $seats[$registration->workshop_id]++;
             else
             {
+                $above[$registration->workshop_id]++;
                 echo $registration->registration_id . "<br>";
             }
         }
 
-        return $seats;
+        return $above;
 
         /**
          * Read from logs from 2025-11-18 00:00:00 till now
