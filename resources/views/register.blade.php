@@ -287,6 +287,15 @@
   <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/index.js?ver=1.4') }}"></script>
   <script>
+
+    grecaptcha.ready(function() {
+      grecaptcha.execute('{{ config('services.recaptcha.site_key') }}', {
+        action: 'submit'
+      }).then(function(token) {
+        document.getElementById('g-recaptcha-response').value = token;
+      });
+    });
+    
     $(document).ready(function() {
       var workshopDisable = {
         2: 5,
@@ -295,14 +304,6 @@
         6: 3
       };
       var selectedWorkshops = [];
-
-      grecaptcha.ready(function() {
-        grecaptcha.execute('{{ config('services.recaptcha.site_key') }}', {
-          action: 'submit'
-        }).then(function(token) {
-          document.getElementById('g-recaptcha-response').value = token;
-        });
-      });
 
       // Initialize multi-select dropdown
       initMultiSelectDropdown();
