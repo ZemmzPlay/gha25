@@ -59,7 +59,7 @@
                         </div>
                         <div class="col-md-6 col-sm-6 registration-section">
                             @if(Settings::get('registration_enabled'))
-                            <form class="registration-form" method="post" style="width:100%; padding: 20px; background: rgba(190, 30, 38, 0.74);" action="{{route('registrations.create')}}">
+                            <form class="registration-form" method="post" style="width:100%; padding: 20px; background: rgba(190, 30, 38, 0.74);" action="{{route('registrations.register')}}">
 
                                 @if(count($errors) > 0)
                                     <h1 style="color:white; text-transform: capitalize; margin-bottom:0; font-family: 'CircularBook', 'sans-serif'; font-size: 22px; line-height: normal">Registration</h1>
