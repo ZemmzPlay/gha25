@@ -176,12 +176,12 @@ $(document).ready(function () {
                 // console.log("Form is valid. Submitting...");
 
                 // Manually submit the form
-                grecaptcha.ready(function () {
-                    grecaptcha.execute('6LeMfxAsAAAAACcr9ygWDflHEYvip_iJg1DTUfGw', { action: 'submit' }).then(function (token) {
+                // grecaptcha.ready(function () {
+                //     grecaptcha.execute('6LeMfxAsAAAAACcr9ygWDflHEYvip_iJg1DTUfGw', { action: 'submit' }).then(function (token) {
                         // Add your logic to submit to your backend server here.
                         $("#registerForm").submit();
-                    });
-                });
+                //     });
+                // });
             } else {
 
                 var titleInput = $('select[name="title"]');
