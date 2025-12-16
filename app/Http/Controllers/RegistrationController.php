@@ -35,31 +35,31 @@ class RegistrationController extends Controller
         if (Auth::guard('web')->check()) return redirect('/');
         
         $request->validate([
-            'g-recaptcha-response' => 'required',
+            // 'g-recaptcha-response' => 'required',
             'cf-turnstile-response' => 'required',
         ]);
         
         // Google
-        $verifyResponse = file_get_contents(
-            'https://www.google.com/recaptcha/api/siteverify?secret='
-            . config('services.recaptcha.secret_key')
-            . '&response='
-            . $request->input('g-recaptcha-response')
-            . '&remoteip='
-            . $request->ip()
-        );
+        // $verifyResponse = file_get_contents(
+        //     'https://www.google.com/recaptcha/api/siteverify?secret='
+        //     . config('services.recaptcha.secret_key')
+        //     . '&response='
+        //     . $request->input('g-recaptcha-response')
+        //     . '&remoteip='
+        //     . $request->ip()
+        // );
 
-        $response = json_decode($verifyResponse);
+        // $response = json_decode($verifyResponse);
 
-        if (
-            !$response->success ||
-            $response->score < 0.5 ||
-            $response->action !== 'submit'
-        ) {
-            return back()
-                ->withErrors(['captcha' => 'reCAPTCHA verification failed'])
-                ->withInput();
-        }
+        // if (
+        //     !$response->success ||
+        //     $response->score < 0.5 ||
+        //     $response->action !== 'submit'
+        // ) {
+        //     return back()
+        //         ->withErrors(['captcha' => 'reCAPTCHA verification failed'])
+        //         ->withInput();
+        // }
         // Google
 
         // Cloudflare

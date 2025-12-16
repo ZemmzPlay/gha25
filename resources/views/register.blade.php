@@ -202,7 +202,7 @@
                 </div>
               </div>
 
-              <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+              {{-- <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response"> --}}
 
               <div class="cf-turnstile" data-sitekey="{{ config('services.turnstile.site_key') }}" data-callback="turnstileCallback" data-expired-callback="turnstileExpired"></div>
 
@@ -287,33 +287,33 @@
 
 @section('scripts')
   {{-- <script src="https://www.google.com/recaptcha/api.js?render=6LeMfxAsAAAAACcr9ygWDflHEYvip_iJg1DTUfGw"></script> --}}
-  <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}" async defer>
-  </script>
+  {{-- <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}" async defer>
+  </script> --}}
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/index.js?ver=1.4') }}"></script>
   <script>
-    if (typeof grecaptcha !== 'undefined' && grecaptcha) {
-      if (grecaptcha.enterprise) {
-        grecaptcha.enterprise.ready(function() {
-          grecaptcha.enterprise.execute('{{ config('services.recaptcha.site_key') }}', {
-            action: 'submit'
-          }).then(function(token) {
-            document.getElementById('g-recaptcha-response').value = token;
-          });
-        });
-      } else {
-        grecaptcha.ready(function() {
-          grecaptcha.execute('{{ config('services.recaptcha.site_key') }}', {
-            action: 'submit'
-          }).then(function(token) {
-            document.getElementById('g-recaptcha-response').value = token;
-          });
-        });
-      }
-    } else {
-      console.warn('grecaptcha not loaded');
-    }
+    // if (typeof grecaptcha !== 'undefined' && grecaptcha) {
+    //   if (grecaptcha.enterprise) {
+    //     grecaptcha.enterprise.ready(function() {
+    //       grecaptcha.enterprise.execute('{{ config('services.recaptcha.site_key') }}', {
+    //         action: 'submit'
+    //       }).then(function(token) {
+    //         document.getElementById('g-recaptcha-response').value = token;
+    //       });
+    //     });
+    //   } else {
+    //     grecaptcha.ready(function() {
+    //       grecaptcha.execute('{{ config('services.recaptcha.site_key') }}', {
+    //         action: 'submit'
+    //       }).then(function(token) {
+    //         document.getElementById('g-recaptcha-response').value = token;
+    //       });
+    //     });
+    //   }
+    // } else {
+    //   console.warn('grecaptcha not loaded');
+    // }
 
     $(document).ready(function() {
       var workshopDisable = {
