@@ -18,7 +18,9 @@ class Log extends Model
         'user_agent',
         'request_data',
         'response_data',
-        'status_code'
+        'status_code',
+        'request_headers',
+        'response_headers'
     ];
 
     public function getUserAttribute()
