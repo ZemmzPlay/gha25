@@ -33,32 +33,9 @@ class Log extends Model
         return ucfirst(str_replace('App\Http\s\Registration@', '', $value));
     }
 
-    public function getAgentAttribute($value)
+    public function getAgentAttribute()
     {
-        $agent = new Agent();
-        $agent->setUserAgent($value);
-
-        $platform = $agent->platform() ?? 'Unknown OS';
-        $platformVersion = $agent->version($platform);
-
-        if ($platform === 'Unknown') {
-            if (str_contains($value, 'Windows NT 10.0')) $platform = 'Windows 10';
-        }
-
-        $browser = $agent->browser() ?? 'Other Browser';
-        $browserVersion = $agent->version($browser);
-
-        if ($browser === 'Other Browser' && str_contains($value, 'Chrome/')) {
-            preg_match('/Chrome\/([0-9\.]+)/', $value, $matches);
-            $browser = 'Chrome';
-            $browserVersion = $matches[1] ?? '';
-        }
-
-        return trim("{$platform} {$platformVersion} · {$browser} {$browserVersion}");
-    }
-
-    public function getUserAgentAttribute($value)
-    {
+        $value = $this->getOriginal('user_agent');
         $agent = new Agent();
         $agent->setUserAgent($value);
 

@@ -32,7 +32,7 @@
         <p><strong>Method:</strong> {{ $log->method }}</p>
         <p><strong>URL:</strong> <a href="{{ $log->url }}" target="_blank">{{ $log->url }}</a></p>
         <p><strong>IP Address:</strong> {{ $log->ip_address }}</p>
-        <p><strong>Agent:</strong> {{ $log->user_agent }}</p>
+        <p><strong>Agent:</strong> {{ $log->agent }}</p>
         <p><strong>Status:</strong> {{ $log->status_code }}</p>
         <p><strong>Created:</strong> {{ $log->created_at }}</p>
       </div>
