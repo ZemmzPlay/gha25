@@ -123,7 +123,7 @@
           @else
             <li><a href="{{ url('/login') }}" class="{{ request()->is('login') ? 'menu-active' : '' }}">login</a>
             </li>
-            <li><a href="{{ url('/registration') }}" class="special-menu-last">register now <svg width="23"
+            <li><a href="{{ url('/register') }}" class="special-menu-last">register now <svg width="23"
                   height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd"
                     d="M11.7947 5.25096C12.1876 4.858 12.8248 4.858 13.2177 5.25096L19.2552 11.2885C19.6482 11.6814 19.6482 12.3185 19.2552 12.7115L13.2177 18.749C12.8248 19.142 12.1876 19.142 11.7947 18.749C11.4017 18.356 11.4017 17.7189 11.7947 17.326L16.1144 13.0062L4.4562 13.0062C3.90047 13.0062 3.44995 12.5557 3.44995 12C3.44995 11.4442 3.90047 10.9937 4.4562 10.9937H16.1144L11.7947 6.67401C11.4017 6.28105 11.4017 5.64393 11.7947 5.25096Z"
@@ -187,7 +187,7 @@
               @else
                 <li><a href="{{ url('/login') }}"
                     class="{{ request()->is('login') ? 'menu-active' : '' }}">login</a></li>
-                <li class="register-link"><a href="{{ url('/registration') }}">register now</a></li>
+                <li class="register-link"><a href="{{ url('/register') }}">register now</a></li>
               @endif
 
             </ul>

@@ -277,7 +277,7 @@ Route::get('/program/download/pdf', ['uses' => 'GenericPageController@downloadPr
 
 Route::post('emails/create', ['uses' => 'GenericPageController@createEmail', 'as' => 'emails.create']);
 Route::get('/registration', ['uses' => 'GenericPageController@registration', 'as' => 'pages.registration']);
-Route::get('/registration', ['uses' => 'GenericPageController@register', 'as' => 'pages.register']);
+Route::get('/register', ['uses' => 'GenericPageController@register', 'as' => 'pages.register']);
 Route::get('/venue', ['uses' => 'GenericPageController@venue', 'as' => 'pages.venue']);
 Route::get('/faculty', ['uses' => 'GenericPageController@faculty', 'as' => 'pages.faculty']);
 Route::post('/faculty/members', ['uses' => 'GenericPageController@getMembers', 'as' => 'pages.faculty-members']);
