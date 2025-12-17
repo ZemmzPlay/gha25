@@ -85,7 +85,7 @@
             <td>{{ $log->action }}</td>
             <td>{{ $log->method }}</td>
             <td>{{ $log->ip_address }}</td>
-            <td>{{ $log->agent }}</td>
+            <td>{{ $log->user_agent }}</td>
             <td>{{ $log->created_at->format('Y-m-d h:i:s a') }}</td>
             <td>
               <a href="{{ url('admin/logs/' . $log->id) }}" class="btn btn-sm btn-info">View</a>
