@@ -14,7 +14,11 @@
 }
 
 /* Typography */
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   color: var(--primary-color-dark);
   font-family: 'DMSerifDisplayRegular';
 }
@@ -148,6 +152,17 @@ body {
   margin: 0;
 }
 
+.note {
+  padding: 20px;
+  margin-bottom: 30px;
+  color: var(--primary-color-dark);
+    background-color: #f4f9fe;
+}
+
+.note p {
+  margin: 0;
+}
+
 /* Map Container */
 .map-container {
   background: white;
@@ -245,7 +260,7 @@ body {
   .map-container {
     touch-action: pan-y;
   }
-  
+
   .map-embed {
     touch-action: pan-x pan-y;
     overscroll-behavior: contain;
@@ -372,6 +387,7 @@ body {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -387,28 +403,28 @@ body {
   .main-title {
     font-size: 2.5rem;
   }
-  
+
   .second-title {
     font-size: 2rem;
   }
-  
+
   .location-info {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   .map-actions {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .btn-direction,
   .btn-secondary {
     width: 100%;
     max-width: 300px;
     justify-content: center;
   }
-  
+
   .info-grid {
     grid-template-columns: 1fr;
   }
@@ -418,23 +434,23 @@ body {
   .location {
     padding: 40px 0;
   }
-  
+
   .main-title {
     font-size: 2rem;
   }
-  
+
   .second-title {
     font-size: 1.5rem;
   }
-  
+
   .map-embed {
     height: 350px;
   }
-  
+
   .info-card {
     padding: 20px;
   }
-  
+
   .additional-info {
     padding: 25px;
   }
