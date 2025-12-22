@@ -103,7 +103,7 @@ return [
   'HU' => array('name' => 'HUNGARY', 'code' => '36'),
   'ID' => array('name' => 'INDONESIA', 'code' => '62'),
   'IE' => array('name' => 'IRELAND', 'code' => '353'),
-  'IL' => array('name' => 'ISRAEL', 'code' => '972'),
+  // 'IL' => array('name' => 'ISRAEL', 'code' => '972'),
   'IM' => array('name' => 'ISLE OF MAN', 'code' => '44'),
   'IN' => array('name' => 'INDIA', 'code' => '91'),
   'IO' => array('name' => 'BRITISH INDIAN OCEAN TERRITORY', 'code' => '246'),
