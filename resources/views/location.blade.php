@@ -47,8 +47,7 @@
 
       <div class="note">
         <p>
-          <strong>Note:</strong> Guest accommodation is not provided for this event. Rooms may be booked via The Regency Hotel at standard
-          rates; no discounts apply. Please be aware that the Convention Center is a separate facility with no direct
+          <strong>Note:</strong> Guest accommodation is not provided for this event. Please be aware that the Convention Center is a separate facility with no direct
           access to the beach.
         </p>
       </div>
