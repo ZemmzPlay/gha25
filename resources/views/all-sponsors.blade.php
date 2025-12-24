@@ -24,6 +24,9 @@
       <div class="sponsors-image-div">
         <img class="sponsors-image" src="{{ asset('images/sponsors/HCD LogoAsset.png') }}" alt="HealthCare Dynamics Company" />
       </div>
+      <div class="sponsors-image-div">
+        <img class="sponsors-image" src="{{ asset('images/sponsors/AT PNG.png') }}" alt="American Technology" />
+      </div>
     </div>
   </div>
 
