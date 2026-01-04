@@ -25,7 +25,7 @@ class RegistrationsController extends Controller
         // apply filters by workshop
         if(request()->has('workshop_id') && request()->get('workshop_id') != '') {
             $workshopId = request()->get('workshop_id');
-            $registrations = Registration::whereHas('Workshops', function($query) use ($workshopId) {
+            $registrations = Registration::whereHas('RegistrationWorkshops', function($query) use ($workshopId) {
                 $query->where('workshop_id', $workshopId);
             })->get();
         } else {
