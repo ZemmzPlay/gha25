@@ -9,6 +9,7 @@ use App\Exports\WorkshopExport;
 use App\Configuration;
 use App\Registration;
 use App\Payment;
+use App\RegistrationWorkshop;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Auth;
@@ -31,6 +32,12 @@ class RegistrationsController extends Controller
         } else {
             $registrations = Registration::all();
         }
+        $workshops = RegistrationWorkshop::all();
+        foreach($workshops as $workshop) {
+            $registration = Registration::find($workshop->registration_id);
+            if(!$registration)
+                $workshop->delete();
+        }    
         $user = Auth::guard('admin')->user();
         return view('admin.registrations.registrations', compact('user','registrations', 'workshops'));
     }
