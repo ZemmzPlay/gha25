@@ -32,12 +32,12 @@ class RegistrationsController extends Controller
         } else {
             $registrations = Registration::all();
         }
-        $workshops = RegistrationWorkshop::all();
-        foreach($workshops as $workshop) {
-            $registration = Registration::find($workshop->registration_id);
-            if(!$registration)
-                $workshop->delete();
-        }    
+        // $workshops = RegistrationWorkshop::all();
+        // foreach($workshops as $workshop) {
+        //     $registration = Registration::find($workshop->registration_id);
+        //     if(!$registration)
+        //         $workshop->delete();
+        // }    
         $user = Auth::guard('admin')->user();
         return view('admin.registrations.registrations', compact('user','registrations', 'workshops'));
     }
