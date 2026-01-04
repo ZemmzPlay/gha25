@@ -56,7 +56,7 @@
             <div class="widget text-center">
                 <div class="widget-body">
                     <h5 class="mb-5">{{ $workshop->title }}</h5>
-                    <div class="fs-36 fw-600 mb-20 counter">{{ count($workshop->Registrations) }}</div>
+                    <div class="fs-36 fw-600 mb-20 counter">{{ count($workshop->RegistrationWorkshops) }}</div>
                     <div class="stat-icon fs-60">
                         <i class="ti-briefcase text-muted"></i>
                     </div>
