@@ -75,7 +75,7 @@
                         <th>Name</th>
                         <th>E-mail</th>
                         <th>Mobile</th>
-                        <th>Payment status</th>
+                        {{-- <th>Payment status</th> --}}
                         <th>Registration type</th>
                         <th>Actions</th>
                     </tr>
@@ -130,7 +130,7 @@
                             <td>{{$registration->first_name}} {{$registration->last_name}}</td>
                             <td>{{$registration->email}}</td>
                             <td>{{$registration->countryCode.$registration->mobile}}</td>
-                            <td style="color: {{$PaymentStatusColor}}">{{$PaymentStatus}}</td>
+                            {{-- <td style="color: {{$PaymentStatusColor}}">{{$PaymentStatus}}</td> --}}
                             <td>{!!$RegistrationType!!}</td>
                             <td>
                                 <a href="{{url('admin/registrations/'.$registration->id.'/print')}}" class="btn btn-sm btn-default" target="_blank">Print ID</a>
