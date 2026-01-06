@@ -16,6 +16,6 @@
     }
 
 </style>
-<h1 style="text-align: center; margin-top: 280px; margin-bottom:5px; text-transform: capitalize; font-size:18px">{{$registration->title}}. {{$registration->first_name}} {{$registration->last_name}}</h1>
+<h1 style="text-align: center; margin-top: 280px; margin-bottom:5px; text-transform: capitalize; font-size:22px">{{$registration->title}}. {{$registration->first_name}} {{$registration->last_name}}</h1>
 <h2 style="text-align: center; margin-top: 0;">ID: {{$registration->id}}</h2>
 {{-- <h2 style="text-align:center; margin-top:50px;">{!! DNS1D::getBarcodeSVG(str_pad($registration->id, 3, "0", STR_PAD_LEFT), "C39") !!}</h2> --}}
