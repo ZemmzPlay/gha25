@@ -4,9 +4,11 @@
 /public/images/slideshow
 /public/images/faculty
 /public/images/abstract
+/public/images/committees
 /public/hot
 /public/storage
 /storage/*.key
+/storage/framework
 /vendor
 /.idea
 /.vscode
