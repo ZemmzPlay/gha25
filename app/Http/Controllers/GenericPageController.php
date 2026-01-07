@@ -181,6 +181,77 @@ class GenericPageController extends Controller
     }
 
     public function test() {
+        $registrations = [
+            [
+                'first_name' => 'Nour',
+                'last_name' => 'Hassouneh',
+                'email' => 'hassounehnoor@gmail.com',
+                'mobile' => '65190325'
+            ],
+            [
+                'first_name' => 'Shaban',
+                'last_name' => 'Salah',
+                'email' => 'Shibo0100025@gmail.com',
+                'mobile' => ''
+            ],
+            [
+                'first_name' => 'Mohamed Saied',
+                'last_name' => 'Ragheb',
+                'email' => 'abcr1001abcr@yahoo.com',
+                'mobile' => '66017151'
+            ],
+            [
+                'first_name' => 'Ahmed',
+                'last_name' => 'Atia',
+                'email' => 'ahmedatia28416@gmail.com',
+                'mobile' => ''
+            ],
+            [
+                'first_name' => 'Tarek',
+                'last_name' => 'Gaafar',
+                'email' => 'tarek.gaafar1988@gmail.com',
+                'mobile' => ''
+            ],
+            [
+                'first_name' => 'Magid',
+                'last_name' => 'Mohammed',
+                'email' => 'omarmagedac3@gmail.com',
+                'mobile' => ''
+            ],
+            [
+                'first_name' => 'Mohamed',
+                'last_name' => 'Adel',
+                'email' => 'mohamed.ad461@gmail.com',
+                'mobile' => ''
+            ],
+            [
+                'first_name' => 'Nithuna',
+                'last_name' => 'Othayothazha',
+                'email' => 'nithuna2310@gmail.com',
+                'mobile' => ''
+            ],
+            [
+                'title' => 'Mrs.',
+                'first_name' => 'Hanan',
+                'last_name' => 'magdy',
+                'email' => 'h.m.zahra83@gmail.com',
+                'mobile' => '56640337'
+            ]
+        ];
+
+        foreach ($registrations as $reg) {
+            $existingRegistration = Registration::where('email', $reg['email'])->first();
+            if(!$existingRegistration) {
+                $reg['speciality'] = 'Nurse';
+                $reg['country'] = 'KUWAIT';
+                $reg['city'] = 'Kuwait';
+                $reg['countryCode'] = '+965';
+                $reg['title'] = $reg['title'] ?? 'Mr.';
+                Registration::create($reg);
+            }
+        }
+
+        return $registrations;
         return 'test';
         // Read the workshop
         $workshops = Workshop::all();
