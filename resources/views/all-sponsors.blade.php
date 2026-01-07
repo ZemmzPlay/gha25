@@ -42,6 +42,9 @@
       <div class="sponsors-image-div">
         <img class="sponsors-image" src="{{ asset('images/sponsors/Emara Logo.jpeg') }}" alt="Emara" />
       </div>
+      <div class="sponsors-image-div">
+        <img class="sponsors-image" src="{{ asset('images/sponsors/Mezzan.png') }}" alt="Mezzan" />
+      </div>
     </div>
   </div>
 
