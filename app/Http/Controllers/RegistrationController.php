@@ -1101,7 +1101,7 @@ class RegistrationController extends Controller
 
         $pdf = app()->make('dompdf.wrapper')->setPaper('a4', 'landscape');
         $pdf->loadHtml("<style>html{margin:0;}</style><div style='text-align: center; margin-top: 0; position: relative;'><h3 style='position: absolute; top: 290px; left: 220px; font-weight: normal; font-size: 26px; width: 60%; font-family: Arial, sans-serif; color: #000000;'>" . ucwords($registration->title . ". " . $registration->first_name . " " . $registration->last_name) . "</h3><h3 style='position: absolute;top: 510px;left: 210px;font-weight: normal;font-size: 20px;width: 60%;font-family: Arial, sans-serif;color: #000000;'>" . $points . "</h3><img src='data:image/jpeg;base64,{$imageDataUri}' style='width: 93%;'></div>");
-        return $pdf->download('GHA-SCAI-CME Certificate' . $registration->id . '.pdf');
+        return $pdf->download('GHA-SCAI-CME Certificate_' . $registration->id . '.pdf');
         // return $pdf->download('GHA23_cert_' . $registration->id . '.pdf');
     }
 
