@@ -983,19 +983,20 @@ class RegistrationController extends Controller
 
 
         ///////////// check if user paid /////////////
-        $paid_status = $registration->Payment->paid_status;
-        if ($paid_status != 1) {
-            return redirect()->back()->withErrors(['message' => 'Your account is not active']);
-        }
+        // $paid_status = $registration->Payment->paid_status;
+        // if ($paid_status != 1) {
+        //     return redirect()->back()->withErrors(['message' => 'Your account is not active']);
+        // }
         ///////////// check if user paid /////////////
 
 
         if (!$registration->attended) {
             return redirect()->back()->withErrors(['message' => 'You have not attended the event.']);
         }
-        if (!$registration->answered) {
-            return redirect()->route('evaluation.form')->with(['registration' => $registration]);
-        }
+        // return $id;
+        // if (!$registration->answered) {
+        //     return redirect()->route('evaluation.form')->with(['registration' => $registration]);
+        // }
         return $this->downloadCertificate($registration);
     }
 
@@ -1085,7 +1086,8 @@ class RegistrationController extends Controller
         // $pdf->loadHtml("<style>html{margin:0;}</style><div style='text-align: center; margin-top: 0; position: relative;'><h3 style='position: absolute; top: 300px; left: 220px; font-weight: normal; font-size: 26px; width: 60%; font-family: Arial, sans-serif; color: #000000;'>" . ucwords($registration->title . ". " . $registration->first_name . " " . $registration->last_name) . "</h3><img src='".asset('images/certificate.jpg')."' style='width: 93%;'></div>");
         // return $pdf->download('GHAESC2019_cert_'.$registration->id.'.pdf');
 
-        $imagePath = public_path('images/GHA23Certificate_old.png');
+        $imagePath = public_path('images/certificate.jpg');
+        // $imagePath = public_path('images/GHA23Certificate_old.png');
         $imageData = file_get_contents($imagePath);
         $imageDataUri = base64_encode($imageData);
 

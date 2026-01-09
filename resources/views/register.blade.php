@@ -243,7 +243,7 @@
 
 
 
-        @if (Settings::get('certificates_enabled') && !Settings::get('registration_enabled'))
+        @if (Settings::get('certificates_enabled'))
 
           <div class="registerTopTitle" id="CertificateTopTitle">
             <div class="registerTopTitleText">Certificate</div>
