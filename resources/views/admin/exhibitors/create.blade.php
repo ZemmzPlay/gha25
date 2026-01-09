@@ -85,7 +85,7 @@
       <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
         <label for="email" class="col-sm-3 control-label">Email</label>
         <div class="col-sm-9">
-          <input id="email" type="email" class="form-control" name="email" required autofocus value="{{ old('email') }}">
+          <input id="email" type="email" class="form-control" name="email" autofocus value="{{ old('email') }}">
 
           @if ($errors->has('email'))
           <span class="help-block">
@@ -100,7 +100,7 @@
       <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
         <label for="phone" class="col-sm-3 control-label">Phone</label>
         <div class="col-sm-9">
-          <input id="phone" type="tel" class="form-control" name="phone" required autofocus value="{{ old('phone') }}">
+          <input id="phone" type="tel" class="form-control" name="phone" autofocus value="{{ old('phone') }}">
           <span id="phone-error" class="error"></span>
           <p id="output"></p>
           <input type="hidden" name="phoneCode" id="phoneCode" value="{{ old('phoneCode') }}" />
