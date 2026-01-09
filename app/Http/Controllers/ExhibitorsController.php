@@ -78,7 +78,8 @@ class ExhibitorsController extends Controller
     $request->validate([
       'firstName' => 'required|max:191',
       'lastName' => 'required|max:191',
-      'email' => 'sometimes|email|max:191|unique:exhibitors,email',
+      // 'email' => 'sometimes|email|max:191|unique:exhibitors,email',
+      'email' => 'sometimes|email|max:191',
       'phone' => 'sometimes',
       'phoneCode' => 'sometimes',
       'company' => 'required|exists:companies,id',
@@ -92,6 +93,12 @@ class ExhibitorsController extends Controller
     if($countExhibitors >= $company->places)
     {
       return redirect()->back()->withErrors(['space' => 'No more places'])->withInput();
+    }
+    
+    if($request->has('email')) {
+      $request->validate([
+        'email' => 'email|max:191|unique:exhibitors,email',
+      ]);
     }
 
     $exhibitor = new Exhibitors();
