@@ -94,7 +94,7 @@ class ExhibitorsController extends Controller
       return redirect()->back()->withErrors(['space' => 'No more places'])->withInput();
     }
     
-    if($request->has('email')) {
+    if($request->has('email') && !empty($request->email)) {
       $request->validate([
         'email' => 'email|max:191|unique:exhibitors,email',
       ]);
