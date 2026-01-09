@@ -1092,11 +1092,11 @@ class RegistrationController extends Controller
         $imageDataUri = base64_encode($imageData);
 
         //// check points ////
-        $points = 15;
-        if ($registration->onlyWorkshop) $points = 6;
-        else if ($registration->workshop_id && ($registration->workshop_id == 1 || $registration->workshop_id == 2)) {
-            $points = 21;
-        }
+        $points = 14;
+        // if ($registration->onlyWorkshop) $points = 6;
+        // else if ($registration->workshop_id && ($registration->workshop_id == 1 || $registration->workshop_id == 2)) {
+        //     $points = 21;
+        // }
         //// check points ////
 
         $pdf = app()->make('dompdf.wrapper')->setPaper('a4', 'landscape');
