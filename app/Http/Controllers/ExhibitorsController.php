@@ -78,9 +78,9 @@ class ExhibitorsController extends Controller
     $request->validate([
       'firstName' => 'required|max:191',
       'lastName' => 'required|max:191',
-      'email' => 'required|email|max:191|unique:exhibitors,email',
-      'phone' => 'required',
-      'phoneCode' => 'required',
+      'email' => 'sometimes|email|max:191|unique:exhibitors,email',
+      'phone' => 'sometimes',
+      'phoneCode' => 'sometimes',
       'company' => 'required|exists:companies,id',
     ]);
 
