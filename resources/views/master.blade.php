@@ -130,7 +130,7 @@
                     fill="white" />
                 </svg>
               </a></li> --}}
-            <li><a href="{{ url('/certifacte') }}" class="special-menu-last">
+            <li><a href="{{ url('/certificate') }}" class="special-menu-last">
               Claim Your Certificate
               </a></li>
           @endif
