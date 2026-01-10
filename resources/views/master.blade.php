@@ -191,7 +191,7 @@
                 <li><a href="{{ url('/login') }}"
                     class="{{ request()->is('login') ? 'menu-active' : '' }}">login</a></li>
                 {{--<li class="register-link"><a href="{{ url('/register-now') }}">register now</a></li>--}}
-              <li><a href="{{ url('/certifacte') }}" class="special-menu-last">
+              <li><a href="{{ url('/certificate') }}" class="special-menu-last">
               Claim Your Certificate
               </a></li>
               @endif
