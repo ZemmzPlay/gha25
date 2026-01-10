@@ -343,10 +343,10 @@
        * Once the form is submitted and the file is downloaded the page will reload 
        * */
       $('#certificateForm').on('submit', function() {
-        $(this).find('input[type="submit"]').attr('disabled', 'disabled');
+        $(this).find('input[type="submit"]').attr('disabled', 'disabled').addClass('disabled');
         // enable the button after 10 seconds in case of any issue
         setTimeout(() => {
-          $('#certificateForm').find('input[type="submit"]').removeAttr('disabled');
+          $('#certificateForm').find('input[type="submit"]').removeAttr('disabled').removeClass('disabled');
         }, 10000);
       });
 
