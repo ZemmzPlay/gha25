@@ -68,7 +68,7 @@
             <button class="registration-button">Register Now</button>
           </a>--}}
           <a href="{{ url('/certificate') }}">
-            <button class="registration-button">Claim Certificate</button>
+            <button class="registration-button">Claim Your Certificate</button>
           </a>
         </div>
       </div>
