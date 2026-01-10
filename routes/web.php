@@ -189,6 +189,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::post('/exhibitors/company/space', 'ExhibitorsController@companySpace')->name('exhibitors.company.space');
     Route::get('/exhibitors/view/{id}', 'ExhibitorsController@view')->name('exhibitors.view');
     Route::get('/exhibitors/print/{id}', 'ExhibitorsController@getPrint')->name('exhibitors.print');
+    Route::delete('/exhibitors/list/{id}', 'ExhibitorsController@delete')->name('exhibitors.delete');
     /* Exhibitors */
 
     /* Blog */

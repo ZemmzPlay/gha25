@@ -133,4 +133,16 @@ class ExhibitorsController extends Controller
     $exhibitor = Exhibitors::find($id);
     return view('admin.exhibitors.print', compact('exhibitor'));
   }
+
+  // delete exhibitor
+  public function delete($id)
+  {
+    $exhibitor = Exhibitors::find($id);
+    if ($exhibitor) {
+      $exhibitor->delete();
+      return response()->json(['message' => 'Exhibitor Deleted Successfully'], 200);
+    } else {
+      return response()->json(['message' => 'Exhibitor Not Found'], 404);
+    }
+  }
 }

@@ -47,9 +47,30 @@ $(document).ready(function() {
       sortable: false,
       render: function ( data, type, row, meta ) {
         return '<a href="' + exhibitorsPrintURL + '/' + data +'" target="_blank"><button class="btn btn-default">Print</button></a>\
-        <a href="' + exhibitorsViewURL + '/' + data +'"><button class="btn btn-primary">View</button></a>';
+        <a href="' + exhibitorsViewURL + '/' + data +'"><button class="btn btn-primary">View</button></a>\
+        <button class="delete-exhibitor-btn btn btn-danger" data-id="' + data + '">Delete</button>';
       }
     }
     ]
+  });
+
+  $(document).on('click', '.delete-exhibitor-btn', function() {
+    var exhibitorId = $(this).data('id');
+    if (confirm('Are you sure you want to delete this exhibitor?')) {
+      $.ajax({
+        url: exhibitorsURL + '/' + exhibitorId,
+        type: 'DELETE',
+        data: {
+          _token: $("meta[name=_token]").attr("content")
+        },
+        success: function(result) {
+          alert('Exhibitor deleted successfully.');
+          datatable.ajax.reload();
+        },
+        error: function(xhr, status, error) {
+          alert('An error occurred while deleting the exhibitor.');
+        }
+      });
+    }
   });
 });
