@@ -338,9 +338,16 @@
       //   });
       // }
       
-      // when submitting certificateForm disable the button to prevent multiple submits, and enable it one the form is done
+      /**
+       *  when submitting certificateForm disable the button to prevent multiple submits
+       * Once the form is submitted and the file is downloaded the page will reload 
+       * */
       $('#certificateForm').on('submit', function() {
         $(this).find('input[type="submit"]').attr('disabled', 'disabled');
+        // enable the button after 10 seconds in case of any issue
+        setTimeout(() => {
+          $('#certificateForm').find('input[type="submit"]').removeAttr('disabled');
+        }, 10000);
       });
 
       $(document).on('click', '.register-option-button', function() {

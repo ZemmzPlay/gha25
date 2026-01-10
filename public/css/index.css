@@ -1408,6 +1408,11 @@
  	font-size: 20px;
  }
 
+ .certificateClaimButton:disable {
+ 	opacity: 0.6;
+ 	cursor: not-allowed;
+ }
+
  @media all and (max-width: 991px) {
  	.certificateTitleID {
  		font-size: 17px;
