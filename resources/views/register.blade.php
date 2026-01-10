@@ -337,6 +337,11 @@
       //     });
       //   });
       // }
+      
+      // when submitting certificateForm disable the button to prevent multiple submits, and enable it one the form is done
+      $('#certificateForm').on('submit', function() {
+        $(this).find('input[type="submit"]').attr('disabled', 'disabled');
+      });
 
       $(document).on('click', '.register-option-button', function() {
         $('.register-container').fadeIn();
