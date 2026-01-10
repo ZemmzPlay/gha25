@@ -64,8 +64,11 @@
         <div class="ourMessageTitle">{{ Settings::get('message_title') }}</div>
         <div class="ourMessageText">{!! nl2br(Settings::get('message')) !!}</div>
         <div class="registration-container">
-          <a href="{{ url('/register') }}">
+          {{--<a href="{{ url('/register') }}">
             <button class="registration-button">Register Now</button>
+          </a>--}}
+          <a href="{{ url('/claim') }}">
+            <button class="registration-button">Claim Certificate</button>
           </a>
         </div>
       </div>
