@@ -221,10 +221,10 @@ Route::get('/payment-email', 'GenericPageController@paymentIncomplete');
 
 Route::post('/evaluation', ['uses' => 'RegistrationController@evaluate', 'as' => 'evaluation.post']);
 Route::get('/evaluation', ['uses' => 'RegistrationController@evaluationForm', 'as' => 'evaluation.form']);
-Route::post('/certificate/verify', ['uses' => 'RegistrationController@verify', 'as' => 'registration.verify']);
 
 
 Route::group(['middleware' => 'logs'], function () {
+    Route::post('/certificate/verify', ['uses' => 'RegistrationController@verify', 'as' => 'registration.verify']);
     Route::post('/registration', ['uses' => 'RegistrationController@create', 'as' => 'registrations.register']);
     Route::post('/login', 'RegistrationController@postLogin');
 });
