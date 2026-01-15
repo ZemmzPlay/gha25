@@ -1386,7 +1386,7 @@
 
  .certificateTitleID {
  	font-size: 20px;
- 	color: white;
+ 	color: var(--primary-color-dark);;
  	padding-top: 20px;
  }
 
@@ -2535,6 +2535,10 @@
  /* Select2 Custom Styles */
  .select2-container {
  	width: 100% !important;
+ }
+ 
+ #certificateForm .select2-container {
+	width: 50% !important;
  }
 
  .select2-container .select2-selection--single {

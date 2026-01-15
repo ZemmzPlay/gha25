@@ -104,6 +104,7 @@
                             <td class="text-right">
                                 <a href="{{url('admin/faculty/'.$member->id.'/print')}}" class="btn btn-sm btn-default" target="_blank">Print ID</a>
                                 <a class="btn btn-sm btn-default" href="{{url('/admin/faculty/'.$member->id.'/edit')}}">Edit</a>
+                                <a class="btn btn-sm btn-primary" href="{{url('/admin/faculty/'.$member->id.'/certificate')}}">Certificate</a>
                                 <button class="btn btn-sm btn-danger delete">Delete</button>
                             </td>
                         </tr>

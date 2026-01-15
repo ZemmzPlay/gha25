@@ -66,6 +66,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('/faculty/{id}', 'FacultyController@getInstructor');
     Route::get('/faculty', 'FacultyController@getIndex');
     Route::get('/faculty/{id}/print', 'FacultyController@getPrint');
+    Route::get('/faculty/{id}/certificate', 'FacultyController@downloadCertificate');
 
     // Comittee Category Routes
     Route::get('/committee/categories', ['uses' => 'CommitteeController@categoryList', 'as' => 'committee.categories']);

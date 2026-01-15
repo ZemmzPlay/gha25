@@ -104,7 +104,7 @@ class FacultyController extends Controller
         //     FacultyMember::where('country', $key)->update(['country' => $country]);
         // }
 
-        $members = FacultyMember::all()->sortBy(function($member) { 
+        $members = FacultyMember::all()->sortBy(function ($member) {
             $firstInitial = strtolower(substr($member->first_name, 0, 1));
             $lastInitial = strtolower(substr($member->last_name, 0, 1));
             return $firstInitial . $lastInitial;
@@ -295,5 +295,34 @@ class FacultyController extends Controller
         // $faculty->attended = 1;
         // $faculty->save();
         return view('admin.faculty.print', compact('faculty'));
+    }
+
+    /**
+     * Download Certificate
+     */
+    public function downloadCertificate($id)
+    {
+        $faculty = FacultyMember::find($id);
+        
+        if (!$faculty) {
+            return redirect('admin/faculty/')->with('message', "Member Not Found.");
+        }
+
+        $imagePath = public_path('images/certificate.jpg');
+        // $imagePath = public_path('images/GHA23Certificate_old.png');
+        $imageData = file_get_contents($imagePath);
+        $imageDataUri = base64_encode($imageData);
+
+        //// check points ////
+        $points = 14;
+        // if ($registration->onlyWorkshop) $points = 6;
+        // else if ($registration->workshop_id && ($registration->workshop_id == 1 || $registration->workshop_id == 2)) {
+        //     $points = 21;
+        // }
+        //// check points ////
+
+        $pdf = app()->make('dompdf.wrapper')->setPaper('a4', 'landscape');
+        $pdf->loadHtml("<style>html{margin:0;}</style><div style='text-align: center; margin-top: 0; position: relative;'><h3 style='position: absolute; top: 290px; left: 220px; font-weight: normal; font-size: 26px; width: 60%; font-family: Arial, sans-serif; color: #000000;'>" . ucwords($faculty->first_name . " " . $faculty->last_name) . "</h3><h3 style='position: absolute;top: 510px;left: 210px;font-weight: normal;font-size: 20px;width: 60%;font-family: Arial, sans-serif;color: #000000;'>" . $points . "</h3><img src='data:image/jpeg;base64,{$imageDataUri}' style='width: 93%;'></div>");
+        return $pdf->download('GHA-SCAI-CME Certificate_' . $faculty->id . '.pdf');
     }
 }

@@ -33,12 +33,12 @@ class RegistrationController extends Controller
     {
         // return $request->first_name;
         if (Auth::guard('web')->check()) return redirect('/');
-        
+
         $request->validate([
             // 'g-recaptcha-response' => 'required',
             'cf-turnstile-response' => 'required',
         ]);
-        
+
         // Google
         // $verifyResponse = file_get_contents(
         //     'https://www.google.com/recaptcha/api/siteverify?secret='
@@ -120,24 +120,19 @@ class RegistrationController extends Controller
         //     // $workshopPrice = $workshop->price;
         // }
         $workshops = $request->workshops ?? [];
-        foreach($workshops as $workshop_id)
-        {
+        foreach ($workshops as $workshop_id) {
             $workshop = Workshop::find($workshop_id);
 
-            if($workshop->places_left <= 0)
-            {
-                return redirect()->back()->withErrors(['message' => 'No places left for the '.$workshop->title.' worshop'])->withInput();
+            if ($workshop->places_left <= 0) {
+                return redirect()->back()->withErrors(['message' => 'No places left for the ' . $workshop->title . ' worshop'])->withInput();
             }
         }
 
         $workshopDisable = [2 => 5, 3 => 6, 5 => 2, 6 => 3];
 
-        foreach($workshops as $workshop_id)
-        {
-            if(array_key_exists($workshop_id, $workshopDisable))
-            {
-                if(in_array($workshopDisable[$workshop_id], $workshops))
-                {
+        foreach ($workshops as $workshop_id) {
+            if (array_key_exists($workshop_id, $workshopDisable)) {
+                if (in_array($workshopDisable[$workshop_id], $workshops)) {
                     return redirect()->back()->withErrors(['message' => 'You cannot select both workshops'])->withInput();
                 }
             }
@@ -230,8 +225,7 @@ class RegistrationController extends Controller
 
         // attach workshops
         RegistrationWorkshop::where('registration_id', $registration->id)->delete();
-        foreach($workshops as $workshop_id)
-        {
+        foreach ($workshops as $workshop_id) {
             $registrationWorkshop = new RegistrationWorkshop;
             $registrationWorkshop->registration_id = $registration->id;
             $registrationWorkshop->workshop_id = $workshop_id;
@@ -767,7 +761,7 @@ class RegistrationController extends Controller
         if ($slot == 'confirmation' && $registration_id == null) abort(404);
         if ($registration_id != null && !ctype_digit($registration_id)) abort(404);
         $registration = Registration::find($registration_id);
-        if(!$registration) abort(404);
+        if (!$registration) abort(404);
         return view('payments.paymentResult', ['result' => $slot, 'registration_id' => $registration_id]);
     }
 
@@ -976,10 +970,34 @@ class RegistrationController extends Controller
 
 
 
-    public function verify(VerifyRegistrationRequest $request)
+    public function verify(Request $request)
     {
-        $id = $request->get('id');
-        $registration = Registration::find($id);
+        // get registration by id or email or mobile
+        if ($request->get('id')) {
+            $request->validate([
+                'id' => 'integer|exists:registrations,id',
+            ]);
+            $id = $request->get('id');
+            $registration = Registration::find($id);
+        } elseif ($request->get('email')) {
+            $request->validate([
+                'email' => 'email|exists:registrations,email',
+            ]);
+            $email = $request->get('email');
+            $registration = Registration::where('email', $email)->first();
+        } elseif ($request->get('mobile')) {
+            $request->validate([
+                'mobile' => 'numeric|exists:registrations,mobile',
+                'countryCode'      => 'required|max:10',
+            ]);
+            $mobile = $request->get('mobile');
+            $countryCode = $request->get('countryCode');
+            $registration = Registration::where('mobile', $mobile)->where('countryCode', $countryCode)->first();
+        } else {
+            return redirect()->back()->withErrors(['message' => 'Please provide a valid ID, Email, or Mobile number to verify your registration.']);
+        }
+
+        // return [$registration, $request->all()];
 
 
         ///////////// check if user paid /////////////

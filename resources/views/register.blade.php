@@ -268,13 +268,42 @@
               </div>
             @endif
 
-            <div class="certificateTitleID">Please use your registration ID (in the confirmation email) to claim your
+            <div class="certificateTitleID">Please use your registration ID, Email, Or Phone Number to claim your
               certificate.</div>
+            {{-- <div class="certificateTitleID">Please use your registration ID (in the confirmation email) to claim your
+              certificate.</div> --}}
             <input type="hidden" name="request_type" value="certificate">
+            {{-- ID --}}
             <div class="registerOneInputContainer" id="IDInput">
-              <input type="text" name="id" class="registerOneInputValue" placeholder="* Your ID"
-                value="{{ old('id') }}" required />
+              <input type="text" name="id" class="registerOneInputValue" placeholder="Your Conference ID"
+                value="{{ old('id') }}" />
             </div>
+            {{-- Email --}}
+            {{-- <div class="registerOneInputContainer" id="emailInputCertificate">
+              <input type="text" name="email" class="registerOneInputValue" placeholder="Your Email"
+                value="{{ old('email') }}" />
+            </div> --}}
+            {{-- Phone --}}
+            {{-- <div class="registerOneInputContainer" id="phoneInputCertificate">
+              
+                  <div class="twoInputsPhone">
+                    <select name="countryCode" class="twoInputsPhoneSmall select2-phone" required>
+                      @php
+                        $countries = config('countries');
+                      @endphp
+                      @foreach ($countries as $countryCode => $countryData)
+                        <option value="+{{ $countryData['code'] }}"
+                          {{ (old('countryCode') && old('countryCode') == '+' . $countryData['code']) || (!old('countryCode') && $countryCode == 'KW') ? 'selected' : '' }}
+                          data-flag="{{ strtolower($countryCode) }}">
+                          +{{ $countryData['code'] }} ({{ $countryData['name'] }})
+                        </option>
+                      @endforeach
+                    </select>
+                    <input type="text" name="mobile" class="twoInputsPhoneNumber" placeholder="5000 9876"
+                      value="{{ old('mobile') }}" required />
+                  </div>
+            </div> --}}
+
             <input type="submit" class="certificateClaimButton" value="Claim" />
           </form>
         @endif
