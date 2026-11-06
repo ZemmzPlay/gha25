@@ -77,19 +77,19 @@
 
   <div class="news-line">
     <div class="news-line-text">
-      <span>3RD GHA - SCAI SHOCK MIDDLE EAST KUWAIT JAN 9-10 2026</span>
+      <span>4TH GHA - SCAI SHOCK MIDDLE EAST KUWAIT JAN 16 2027</span>
       <span> | </span>
-      <span>3RD GHA - SCAI SHOCK MIDDLE EAST KUWAIT JAN 9-10 2026</span>
+      <span>4TH GHA - SCAI SHOCK MIDDLE EAST KUWAIT JAN 16 2027</span>
       <span> | </span>
-      <span>3RD GHA - SCAI SHOCK MIDDLE EAST KUWAIT JAN 9-10 2026</span>
+      <span>4TH GHA - SCAI SHOCK MIDDLE EAST KUWAIT JAN 16 2027</span>
       <span> | </span>
-      <span>3RD GHA - SCAI SHOCK MIDDLE EAST KUWAIT JAN 9-10 2026</span>
+      <span>4TH GHA - SCAI SHOCK MIDDLE EAST KUWAIT JAN 16 2027</span>
       <span> | </span>
-      <span>3RD GHA - SCAI SHOCK MIDDLE EAST KUWAIT JAN 9-10 2026</span>
+      <span>4TH GHA - SCAI SHOCK MIDDLE EAST KUWAIT JAN 16 2027</span>
       <span> | </span>
-      <span>3RD GHA - SCAI SHOCK MIDDLE EAST KUWAIT JAN 9-10 2026</span>
+      <span>4TH GHA - SCAI SHOCK MIDDLE EAST KUWAIT JAN 16 2027</span>
       <span> | </span>
-      <span>3RD GHA - SCAI SHOCK MIDDLE EAST KUWAIT JAN 9-10 2026</span>
+      <span>4TH GHA - SCAI SHOCK MIDDLE EAST KUWAIT JAN 16 2027</span>
       <span> | </span>
     </div>
   </div>
@@ -114,7 +114,7 @@
               <div class="event-detail-item">
                 <i class="fa fa-calendar"></i>
                 <span class="event-label">When:</span>
-                <span class="event-value">09th - 10th January, 2026</span>
+                <span class="event-value">16th January, 2027</span>
               </div>
               <div class="event-detail-item">
                 <i class="fa fa-map-marker-alt"></i>

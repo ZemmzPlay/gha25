@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('title', 'Case Submission' . (isset($configuration) && isset($configuration->website_title) ? ' - ' .
-  $configuration->website_title : ' - 3RD GHA - SCAI SHOCK MIDDLE EAST - KUWAIT'))
+  $configuration->website_title : ' - 4TH GHA - SCAI SHOCK MIDDLE EAST - KUWAIT'))
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/case-submission.css') }}" />
 @endsection

@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', 'Program'.(isset($configuration) && isset($configuration->website_title) ? ' - '.$configuration->website_title : ' - 3RD GHA - SCAI SHOCK MIDDLE EAST - KUWAIT'))
+@section('title', 'Program'.(isset($configuration) && isset($configuration->website_title) ? ' - '.$configuration->website_title : ' - 4TH GHA - SCAI SHOCK MIDDLE EAST - KUWAIT'))
 
 
 @section('style')
@@ -14,9 +14,9 @@
         <div class="program_middle_container">
             <div class="program_title">The Program</div>
 
-            <div class="text-right">
+            {{-- <div class="text-right">
                 <a href="{{route('downloadProgramPDF')}}" class="download_program_btn" target="_blank"><i class="fa fa-download"></i> Download Program PDF</a>
-            </div>
+            </div> --}}
 
 
             <?php
@@ -377,9 +377,9 @@
             </div>
 
             <!-- Mobile Download Button -->
-            <div class="mobile-download-btn">
+            {{-- <div class="mobile-download-btn">
                 <a href="{{route('downloadProgramPDF')}}" class="download_program_btn" target="_blank"><i class="fa fa-download"></i> Download Program PDF</a>
-            </div>
+            </div> --}}
         </div>
     </div>
 @stop

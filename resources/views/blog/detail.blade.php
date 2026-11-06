@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', 'News'.(isset($configuration) && isset($configuration->website_title) ? ' - '.$configuration->website_title : ' - 3RD GHA - SCAI SHOCK MIDDLE EAST - KUWAIT'))
+@section('title', 'News'.(isset($configuration) && isset($configuration->website_title) ? ' - '.$configuration->website_title : ' - 4TH GHA - SCAI SHOCK MIDDLE EAST - KUWAIT'))
 
 @section('metas')
     <?php

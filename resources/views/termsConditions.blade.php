@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', '3RD GHA - SCAI SHOCK MIDDLE EAST - KUWAIT')
+@section('title', '4TH GHA - SCAI SHOCK MIDDLE EAST - KUWAIT')
 @section('style')
 <link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}" />
 <link rel="stylesheet" href="{{asset('css/responsive.css')}}" />

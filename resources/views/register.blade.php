@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('title', 'Register' . (isset($configuration) && isset($configuration->website_title) ? ' - ' .
-  $configuration->website_title : ' - 3RD GHA - SCAI SHOCK MIDDLE EAST - KUWAIT'))
+  $configuration->website_title : ' - 4TH GHA - SCAI SHOCK MIDDLE EAST - KUWAIT'))
 
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/owl.theme.default.css') }}" />
@@ -230,7 +230,7 @@
                 </div> --}}
                 </div>
                 <div class="termsText">By registering you agree to the <a href="{{ url('/terms-and-conditions') }}"
-                    target="_blank"><u>Terms & Conditions</u></a> of the 3RD GHA - SCAI SHOCK MIDDLE EAST KUWAIT JAN 9-10
+                    target="_blank"><u>Terms & Conditions</u></a> of the 4TH GHA - SCAI SHOCK MIDDLE EAST KUWAIT JAN 9-10
                   2026 registration guidelines.</div>
               </div>
               {{-- <div class="registerCheckboxContainer">

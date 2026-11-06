@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('title', 'Contact Us' . (isset($configuration) && isset($configuration->website_title) ? ' - ' .
-  $configuration->website_title : ' - 3RD GHA - SCAI SHOCK MIDDLE EAST - KUWAIT'))
+  $configuration->website_title : ' - 4TH GHA - SCAI SHOCK MIDDLE EAST - KUWAIT'))
 @section('style')
   <link rel="stylesheet" href="{{ asset('css/contact.css') }}" />
 @endsection
@@ -49,7 +49,7 @@
           <div class="additional-info">
             <h3>Need Immediate Assistance?</h3>
             <p>For urgent matters or technical support, please call us directly. Our team is committed to providing you with the best possible service and support.</p>
-            <p>We look forward to hearing from you and helping with any questions you may have about the 3RD GHA - SCAI SHOCK MIDDLE EAST conference.</p>
+            <p>We look forward to hearing from you and helping with any questions you may have about the 4TH GHA - SCAI SHOCK MIDDLE EAST conference.</p>
           </div>
         </div>
       </div>

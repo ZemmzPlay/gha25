@@ -86,7 +86,7 @@
       </div>
 
       <div class="paragraph">
-        Thank you for registering for the 3rd GHA SCAI Shock Middle East Meeting. We are looking forward to hosting you
+        Thank you for registering for the 4th GHA SCAI Shock Middle East Meeting. We are looking forward to hosting you
         at the Regency, Kuwait, on January 9th and 10th, 2026.
       </div>
 
@@ -126,7 +126,7 @@
 
       <div class="signature">
         Sincerely,<br>
-        3rd GHA SCAI Shock Middle East Meeting
+        4th GHA SCAI Shock Middle East Meeting
       </div>
     </div>
 

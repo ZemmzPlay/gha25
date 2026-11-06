@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', 'Abstract' .(isset($configuration) && isset($configuration->website_title) ? ' - '.$configuration->website_title : ' - 3RD GHA - SCAI SHOCK MIDDLE EAST - KUWAIT'))
+@section('title', 'Abstract' .(isset($configuration) && isset($configuration->website_title) ? ' - '.$configuration->website_title : ' - 4TH GHA - SCAI SHOCK MIDDLE EAST - KUWAIT'))
 @section('style')
 <link rel="stylesheet" href="{{asset('css/abstract.css')}}" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css">

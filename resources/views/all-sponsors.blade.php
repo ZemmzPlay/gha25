@@ -1,15 +1,15 @@
   {{-- Main sponsor --}}
-  <div class="sponsors-container">
+  {{-- <div class="sponsors-container">
     <h1 class="sponsors-text">Main sponsor</h1>
     <div class="sponsors-image-container">
       <div class="sponsors-image-div">
         <img style="max-width: 300px;" class="sponsors-image" src="{{ asset('images/sponsors/ATC.jpg') }}" alt="ATC" />
       </div>
     </div>
-  </div>
+  </div> --}}
 
   {{-- Platinum sponsor --}}
-  <div class="sponsors-container">
+  {{-- <div class="sponsors-container">
     <h1 class="sponsors-text">Platinum sponsor</h1>
     <div class="sponsors-image-container">
       <div class="sponsors-image-div">
@@ -28,12 +28,12 @@
         <img class="sponsors-image" src="{{ asset('images/sponsors/AT PNG.png') }}" alt="American Technology" />
       </div>
     </div>
-  </div>
+  </div> --}}
 
 
 
   {{-- Gold sponsor --}}
-  <div class="sponsors-container">
+  {{-- <div class="sponsors-container">
     <h1 class="sponsors-text">Gold sponsor</h1>
     <div class="sponsors-image-container">
       <div class="sponsors-image-div">
@@ -46,10 +46,10 @@
         <img class="sponsors-image" src="{{ asset('images/sponsors/Mezzan.png') }}" alt="Mezzan" />
       </div>
     </div>
-  </div>
+  </div> --}}
 
   {{-- silver sponsor --}}
-  <div class="sponsors-container">
+  {{-- <div class="sponsors-container">
     <h1 class="sponsors-text">silver sponsor</h1>
     <div class="sponsors-image-container">
       <div class="sponsors-image-div">
@@ -59,7 +59,7 @@
         <img class="sponsors-image" src="{{ asset('images/sponsors/Warba.jpg') }}" alt="Warba" />
       </div>
     </div>
-  </div>
+  </div> --}}
 
   {{-- support sponsor --}}
   <!-- <div class="sponsors-container">

@@ -19,7 +19,7 @@
   <meta name="_token" content="{{ csrf_token() }}">
   {{-- <meta property="og:title" content="The Fourth Joint GHA/ESC Meeting" /> --}}
   <meta property="og:title"
-    content="{{ isset($configuration) && isset($configuration->website_title) ? $configuration->website_title : '3RD GHA - SCAI SHOCK MIDDLE EAST - KUWAIT' }}" />
+    content="{{ isset($configuration) && isset($configuration->website_title) ? $configuration->website_title : '4TH GHA - SCAI SHOCK MIDDLE EAST - KUWAIT' }}" />
   {{-- <meta property="og:description" content="Join us at the Fourth Joint GHA/ESC Meeting. October 11-12, 2019."> --}}
   <meta property="og:image" content="{{ asset('images/' . $configuration->logo) }}">
   {{-- <meta property="og:image" content="{{asset('icon/ghaesc-og.png')}}"> --}}
@@ -108,9 +108,9 @@
              <li><a href="{{ url('/location') }}"
                  class="{{ request()->is('location') ? 'menu-active' : '' }}">where</a>
              </li>
-             <li><a href="{{ url('/cme') }}"
+             {{-- <li><a href="{{ url('/cme') }}"
                  class="{{ request()->is('cme') ? 'menu-active' : '' }}">CME</a>
-             </li>
+             </li> --}}
            </div>
           {{-- <li><a href="{{ url('/abstracts') }}" class="{{ request()->is('abstracts') ? 'menu-active' : '' }}">abstracts</a></li> --}}
           <!-- <li><a href="{{ url('/more-info') }}" class="{{ request()->is('more-info') ? 'menu-active' : '' }}">more info</a></li> -->
@@ -176,8 +176,8 @@
                   class="{{ request()->is('blog') || request()->is('post/*') ? 'menu-active' : '' }}">News</a></li> --}}
               <li><a href="{{ url('/location') }}"
                   class="{{ request()->is('location') ? 'menu-active' : '' }}">where</a></li>
-              <li><a href="{{ url('/cme') }}"
-                  class="{{ request()->is('cme') ? 'menu-active' : '' }}">CME</a></li>
+              {{-- <li><a href="{{ url('/cme') }}"
+                  class="{{ request()->is('cme') ? 'menu-active' : '' }}">CME</a></li> --}}
               {{-- <li><a href="{{ url('/abstracts') }}" class="{{ request()->is('abstracts') ? 'menu-active' : '' }}">abstracts</a></li> --}}
               <!-- <li><a href="{{ url('/more-info') }}" class="{{ request()->is('more-info') ? 'menu-active' : '' }}">more info</a></li> -->
 
@@ -208,7 +208,7 @@
     <div class="event-banner">
       <div class="event-banner-content">
         <img src="{{ asset('images/event-banner/3rd-GHA-SCAI-wordmark.svg') }}"
-          alt="3rd GHA-SCAI SHOCK MIDDLE EAST KUWAIT - JAN 9-10, 2026" class="event-banner-logo">
+          alt="4th GHA-SCAI SHOCK MIDDLE EAST KUWAIT - JAN 16, 2027" class="event-banner-logo">
       </div>
     </div>
   @endunless
@@ -225,7 +225,7 @@
       <img src="{{ asset('images/global/kuwaitHeartFoundation.png') }}" alt="Kuwait Heart Foundation" />
     </div> --}}
     <div class="footerBottom">
-      <div class="footerText">© Gulf Heart Association 2025 - 3rd gha scai shock middle east meeting.</div>
+      <div class="footerText">GULF HEART ASSOCIATION 2026 © 4th GHA-SCAI Shock Middle East Meeting </div>
       <div class="byData">
         <div class="organizedBy">
           <div class="organizedByText">Meeting organized by</div>
