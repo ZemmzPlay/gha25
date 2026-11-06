@@ -205,12 +205,12 @@
 
   <!-- Event Banner - Hidden on home page -->
   @unless (request()->is('/'))
-    <div class="event-banner">
+    {{-- <div class="event-banner">
       <div class="event-banner-content">
         <img src="{{ asset('images/event-banner/3rd-GHA-SCAI-wordmark.svg') }}"
           alt="4th GHA-SCAI SHOCK MIDDLE EAST KUWAIT - JAN 16, 2027" class="event-banner-logo">
       </div>
-    </div>
+    </div> --}}
   @endunless
 
   <div class="main-content">
