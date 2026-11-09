@@ -263,7 +263,7 @@ Route::post('/refresh-session', 'RegistrationController@fetchCurrentAndNextSessi
 /* Case Submission */
 
 /* Sponsors */
-Route::get('/sponsors', ['uses' => 'GenericPageController@sponsors', 'as' => 'pages.sponsors']);
+// Route::get('/sponsors', ['uses' => 'GenericPageController@sponsors', 'as' => 'pages.sponsors']);
 /* Sponsors */
 
 /* Contact Us */
@@ -290,7 +290,7 @@ Route::get('/terms-and-conditions', ['uses' => 'GenericPageController@termsCondi
 Route::get('/sessions', ['uses' => 'GenericPageController@sessions', 'as' => 'pages.sessions']);
 Route::get('/past-meetings', ['uses' => 'GenericPageController@pastMeetings', 'as' => 'pages.past-meetings']);
 Route::get('/', ['uses' => 'GenericPageController@getIndex', 'as' => 'pages.index']);
-Route::get('/location', ['uses' => 'GenericPageController@location', 'as' => 'pages.location']);
+// Route::get('/location', ['uses' => 'GenericPageController@location', 'as' => 'pages.location']);
 // Route::get('/abstracts', ['uses' => 'GenericPageController@abstract', 'as' => 'pages.abstract']);
 // Route::get('/abstracts/download/template', ['uses' => 'GenericPageController@abstractTemplate']);
 // Route::post('/abstracts', ['uses' => 'GenericPageController@saveAbstract', 'as' => 'pages.saveAbstract']);

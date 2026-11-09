@@ -114,12 +114,12 @@
               <div class="event-detail-item">
                 <i class="fa fa-calendar"></i>
                 <span class="event-label">When:</span>
-                <span class="event-value">16th January, 2027</span>
+                <span class="event-value">January 16th, 2027</span>
               </div>
               <div class="event-detail-item">
                 <i class="fa fa-map-marker-alt"></i>
                 <span class="event-label">Where:</span>
-                <span class="event-value">The Regency Hotel, 25 Al-Ta'awen St, Kuwait</span>
+                <span class="event-value">Kuwait</span>
               </div>
             </div>
           </div>
@@ -145,7 +145,7 @@
   </div>
 
   {{-- Organized --}}
-  <div class="sponsors-container">
+  {{-- <div class="sponsors-container">
     <h1 class="sponsors-text">Organized by</h1>
     <div class="sponsors-image-container">
       <div class="sponsors-image-div">
@@ -155,7 +155,7 @@
         <img class="sponsors-image" src="{{ asset('images/home/SCAI.png') }}" alt="Organized 2" />
       </div>
     </div>
-  </div>
+  </div> --}}
 
   {{-- endorsement --}}
   <!-- <div class="sponsors-container">

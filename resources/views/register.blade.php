@@ -21,13 +21,13 @@
             Registration
           </h1>
 
-          <div class="register-options">
-            <button class="register-option-button" data-registration="conference_workshop">Meeting and Workshop</button>
+          <div class="register-options" style="display: none;">
+            {{-- <button class="register-option-button" data-registration="conference_workshop">Meeting and Workshop</button> --}}
             <button class="register-option-button" data-registration="only_conference">Meeting Only</button>
-            <button class="register-option-button" data-registration="only_workshop">Workshop Only</button>
+            {{-- <button class="register-option-button" data-registration="only_workshop">Workshop Only</button> --}}
           </div>
 
-          <div class="register-container" style="display: none;">
+          <div class="register-container" style="display: block;">
             {{-- <div class="close-register-container">
               <div class="register-close-button">
                 <i class="fa fa-arrow-left"></i>
@@ -91,7 +91,7 @@
                     @foreach ($countries as $countryCode => $countryData)
                       <option value="{{ $countryData['name'] }}"
                         {{ old('country') && old('country') == $countryData['name'] ? 'selected' : '' }}
-                        data-flag="{{ strtolower($countryCode) }}">
+                        data-flag="{{ strtolower($countryCode) }}" @if($countryCode == 'KW') selected @endif>
                         {{ $countryData['name'] }}
                       </option>
                     @endforeach
@@ -150,7 +150,7 @@
                 value="{{ old('virtualAccess') ? old('virtualAccess') : '0' }}" />
 
 
-              <div class="workshopSection">
+              <div class="workshopSection" style="display: none;">
                 {{-- <div class="workshopTitleSection">Workshop Registration</div> --}}
                 <div class="registerOneInputContainer hidden" id="onlyWorkshopInput">
                   <div class="onlyWorkshopContainer">
@@ -230,8 +230,8 @@
                 </div> --}}
                 </div>
                 <div class="termsText">By registering you agree to the <a href="{{ url('/terms-and-conditions') }}"
-                    target="_blank"><u>Terms & Conditions</u></a> of the 4TH GHA - SCAI SHOCK MIDDLE EAST KUWAIT JAN 9-10
-                  2026 registration guidelines.</div>
+                    target="_blank"><u>Terms & Conditions</u></a> of the 4TH GHA - SCAI SHOCK MIDDLE EAST KUWAIT JAN 16
+                  2027 registration guidelines.</div>
               </div>
               {{-- <div class="registerCheckboxContainer">
 						<div data-element="" class="registerCheckbox {{(old('receive_updates') && old('receive_updates') == '0') ? '' : 'registerCheckboxChecked'}}"></div> <!-- registerCheckboxChecked -->
