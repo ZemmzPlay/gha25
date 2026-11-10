@@ -104,7 +104,7 @@
         {{-- Registration Type:
         {{ $registration->onlyWorkshop == 1 ? 'Workshop Only' : (count($registration->Workshops) > 0 ? 'Meeting and Workshop' : 'Meeting Only') }} --}}
         <br><strong>January 16</strong><br>
-        <br><strong>10:00 - 16:45</strong><br>
+        <strong>10:00 - 16:45</strong><br>
         {{-- @if (count($registration->Workshops) > 0)
           <br><br><strong>You have successfully registered to:</strong><br>
           <br><strong>January 16</strong><br>

@@ -12,7 +12,8 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class TestController extends Controller
 {
-    public function cert() {
+    public function cert()
+    {
         dd('none');
         $registration = Registration::find(24);
         $imagePath = public_path('images/GHA23Certificate_old.png');
@@ -21,22 +22,23 @@ class TestController extends Controller
 
         //// check points ////
         $points = 15;
-        if($registration->onlyWorkshop) $points = 6;
-        else if($registration->workshop_id) {
+        if ($registration->onlyWorkshop) $points = 6;
+        else if ($registration->workshop_id) {
             $points = 21;
         }
         //// check points ////
 
         try {
             $pdf = app()->make('dompdf.wrapper')->setPaper('a4', 'landscape');
-            $pdf->loadHtml("<style>html{margin:0;}</style><div style='text-align: center; margin-top: 0; position: relative;'><h3 style='position: absolute; top: 290px; left: 220px; font-weight: normal; font-size: 26px; width: 60%; font-family: Arial, sans-serif; color: #000000;'>" . ucwords($registration->title . ". " . $registration->first_name . " " . $registration->last_name) . "</h3><h3 style='position: absolute;top: 500px;left: 170px;font-weight: normal;font-size: 23px;width: 60%;font-family: Arial, sans-serif;color: #000000;'>".$points."</h3><img src='data:image/jpeg;base64,{$imageDataUri}' style='width: 93%;'></div>");
-            return $pdf->download('GHA23_cert_'.$registration->id.'.pdf');
+            $pdf->loadHtml("<style>html{margin:0;}</style><div style='text-align: center; margin-top: 0; position: relative;'><h3 style='position: absolute; top: 290px; left: 220px; font-weight: normal; font-size: 26px; width: 60%; font-family: Arial, sans-serif; color: #000000;'>" . ucwords($registration->title . ". " . $registration->first_name . " " . $registration->last_name) . "</h3><h3 style='position: absolute;top: 500px;left: 170px;font-weight: normal;font-size: 23px;width: 60%;font-family: Arial, sans-serif;color: #000000;'>" . $points . "</h3><img src='data:image/jpeg;base64,{$imageDataUri}' style='width: 93%;'></div>");
+            return $pdf->download('GHA23_cert_' . $registration->id . '.pdf');
         } catch (\Exception $e) {
             dd($e->getMessage());
         }
     }
 
-    public function howtocert() {
+    public function howtocert()
+    {
 
         $emails = [];
 
@@ -58,10 +60,8 @@ class TestController extends Controller
             'email' => 'drihabaf@hotmail.com'
         ];
 
-        if(count($emails))
-        {
-            foreach ($emails as $email)
-            {
+        if (count($emails)) {
+            foreach ($emails as $email) {
                 Mail::send(
                     'emails.cert',
                     [
@@ -69,34 +69,31 @@ class TestController extends Controller
                     ],
                     function ($m) use ($email) {
                         $m->to($email['email'], $email['name'])
-                        ->subject('Get Certificate Steps')
-                        ->from('conferences@zawaya.me', 'GHA');
-
+                            ->subject('Get Certificate Steps')
+                            ->from('conferences@zawaya.me', 'GHA');
                     }
                 );
             }
-        }    
+        }
     }
 
-    public function sendSteps() {
+    public function sendSteps()
+    {
 
         $emails = [];
         dd($emails);
         $virtualRegistration = Registration::where('virtualAccess', 1)->get();
-        foreach ($virtualRegistration as $key => $value)
-        {
-            if($value->Payment->paid_status == 1) {
+        foreach ($virtualRegistration as $key => $value) {
+            if ($value->Payment->paid_status == 1) {
                 $emails[] = [
-                    'name' => $value->title.' '.$value->first_name.' '.$value->last_name,
+                    'name' => $value->title . ' ' . $value->first_name . ' ' . $value->last_name,
                     'email' => $value->email
                 ];
             }
         }
 
-        if(count($emails))
-        {
-            foreach ($emails as $email)
-            {
+        if (count($emails)) {
+            foreach ($emails as $email) {
                 Mail::send(
                     'emails.steps',
                     [
@@ -104,20 +101,21 @@ class TestController extends Controller
                     ],
                     function ($m) use ($email) {
                         $m->to($email['email'], $email['name'])
-                        ->subject('Virtual Access Steps')
-                        ->from('conferences@zawaya.me', 'GHA');
-
+                            ->subject('Virtual Access Steps')
+                            ->from('conferences@zawaya.me', 'GHA');
                     }
                 );
             }
-        }    
+        }
     }
 
-    public function index() {
+    public function index()
+    {
         return view('test');
     }
 
-    public function save(Request $request) {
+    public function save(Request $request)
+    {
 
         // $member = PaymentGateway::where('live_creds', 'test')->first();
         // if(!$member) $member = new PaymentGateway();
@@ -143,21 +141,30 @@ class TestController extends Controller
         // }
         // $member->save();
 
-        if(
-            (isset($request['id']) && $request['id'] != null && $request['id'] != "") || 
+        if (
+            (isset($request['id']) && $request['id'] != null && $request['id'] != "") ||
             (isset($request['email']) && $request['email'] != null && $request['email'] != "")
-        )
-        {
-            if(isset($request['id']) && $request['id'] != null && $request['id'] != "") $registration = Registration::find($request['id']);
+        ) {
+            if (isset($request['id']) && $request['id'] != null && $request['id'] != "") $registration = Registration::find($request['id']);
             else $registration = Registration::where('email', $request['email'])->first();
 
-            if(!$registration) return redirect('admin/mail')->withErrors(['error' => 'User is incorrect'])->withInput();
+            if (!$registration) return redirect('admin/mail')->withErrors(['error' => 'User is incorrect'])->withInput();
+
+            Mail::send(
+                'emails.confirmation',
+                [
+                    'registration' => $registration,
+                ],
+                function ($m) use ($registration) {
+                    $m->to($registration->email, $registration->first_name)
+                        ->subject('Registration Confirmation')
+                        ->from('conferences@zawaya.me', 'GHA-SCAI Shock ME Meeting');
+                }
+            );
 
             $this->sendMail($registration->id);
             return redirect('admin/mail')->with('message', "Email send successfully");
-        }
-        else
-        {
+        } else {
             return redirect('admin/mail')->withErrors(['error' => 'Please enter ID or an email'])->withInput();
         }
         // $request['id']
@@ -165,24 +172,21 @@ class TestController extends Controller
 
         // return redirect('admin/mail')->with('message', "Email send successfully");
         // return redirect('admin/mail')->withErrors(['error' => 'Something went wrong'])->withInput();
-        
+
     }
 
-    private function sendMail($id) {
+    private function sendMail($id)
+    {
         $registration = Registration::find($id);
 
-        if($registration)
-        {
-            if($registration->Payment->paid_status == 1)
-            {
-                if(!$registration->onlyWorkshop)
-                {
+        if ($registration) {
+            if ($registration->Payment->paid_status == 1) {
+                if (!$registration->onlyWorkshop) {
                     $qrcode = QrCode::format('svg')->size(200)->generate(url('admin/registrations/' . $registration->id . '/print'));
                     \App\Mail\SimpleEmailService::sendRegistrationEmail($registration, $qrcode);
                 }
 
-                if($registration->workshop_id)
-                {
+                if ($registration->workshop_id) {
                     Mail::send(
                         'emails.workshop',
                         [
@@ -190,9 +194,8 @@ class TestController extends Controller
                         ],
                         function ($m) use ($registration) {
                             $m->to($registration->email, $registration->first_name)
-                            ->subject('Workshop Details')
-                            ->from('conferences@zawaya.me', 'GHA');
-
+                                ->subject('Workshop Details')
+                                ->from('conferences@zawaya.me', 'GHA');
                         }
                     );
                 }

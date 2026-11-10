@@ -21,12 +21,13 @@ use Mail;
 
 class RegistrationsController extends Controller
 {
-    public function getRegistrations() {
+    public function getRegistrations()
+    {
         $workshops = Workshop::all();
         // apply filters by workshop
-        if(request()->has('workshop_id') && request()->get('workshop_id') != '') {
+        if (request()->has('workshop_id') && request()->get('workshop_id') != '') {
             $workshopId = request()->get('workshop_id');
-            $registrations = Registration::whereHas('RegistrationWorkshops', function($query) use ($workshopId) {
+            $registrations = Registration::whereHas('RegistrationWorkshops', function ($query) use ($workshopId) {
                 $query->where('workshop_id', $workshopId);
             })->get();
         } else {
@@ -39,10 +40,11 @@ class RegistrationsController extends Controller
         //         $workshop->delete();
         // }    
         $user = Auth::guard('admin')->user();
-        return view('admin.registrations.registrations', compact('user','registrations', 'workshops'));
+        return view('admin.registrations.registrations', compact('user', 'registrations', 'workshops'));
     }
 
-    public function getCreate() {
+    public function getCreate()
+    {
         $method = 'post';
         $user = Auth::guard('admin')->user();
         $registration = new Registration();
@@ -51,7 +53,8 @@ class RegistrationsController extends Controller
     }
 
 
-    public function postCreate(Request $request) {
+    public function postCreate(Request $request)
+    {
         $this->validate($request, [
             'title'            => 'required|in:Prof,Dr,Mr,Mrs,Miss',
             'first_name'       => 'required|max:255',
@@ -74,16 +77,14 @@ class RegistrationsController extends Controller
 
         $workshopPrice = 0;
         //////////// check if there is more places on this worshop ////////////
-        if($data['workshop_id'] != null)
-        {
+        if ($data['workshop_id'] != null) {
             $workshop = Workshop::find($data['workshop_id']);
             $checkReservedPlaces = Registration::where('workshop_id', $data['workshop_id'])
-                                        ->join('payments', 'registrations.payment_id', '=', 'payments.id')
-                                        ->where('payments.paid_status', 1)
-                                        ->get();
+                ->join('payments', 'registrations.payment_id', '=', 'payments.id')
+                ->where('payments.paid_status', 1)
+                ->get();
 
-            if($workshop->places <= count($checkReservedPlaces))
-            {
+            if ($workshop->places <= count($checkReservedPlaces)) {
                 return redirect()->back()->withErrors(['message' => 'No places left for this worshop']);
             }
 
@@ -95,10 +96,10 @@ class RegistrationsController extends Controller
 
         //// check if email used and paid ////
         $registration = Registration::where('email', $data['email'])->first();
-        if($registration) {
-            if(isset($registration->Payment)) {
+        if ($registration) {
+            if (isset($registration->Payment)) {
                 $paid_status = $registration->Payment->paid_status;
-                if($paid_status == 1) {
+                if ($paid_status == 1) {
                     return redirect()->back()->withErrors(['message' => 'The email has already been taken']);
                 }
             }
@@ -109,10 +110,10 @@ class RegistrationsController extends Controller
 
         //// calculate total price ////
         $total = 20;
-        if($data['virtualAccess'] == 1) $total = 10;
+        if ($data['virtualAccess'] == 1) $total = 10;
 
-        if($data['onlyWorkshop'] == 1) $total = $workshopPrice;
-        else if($data['workshop_id'] != null) $total += $workshopPrice;
+        if ($data['onlyWorkshop'] == 1) $total = $workshopPrice;
+        else if ($data['workshop_id'] != null) $total += $workshopPrice;
         //// calculate total price ////
 
         $payment = new Payment;
@@ -125,7 +126,7 @@ class RegistrationsController extends Controller
         $paymentID = $payment->id;
         $data['payment_id'] = $paymentID;
 
-        if(!$registration) $registration = Registration::create($data);
+        if (!$registration) $registration = Registration::create($data);
         else {
             $registration->title = $data['title'];
             $registration->first_name = $data['first_name'];
@@ -148,10 +149,9 @@ class RegistrationsController extends Controller
 
 
         //////////////////// SEND EMAIL PART ////////////////////
-        if(isset($data['sendEmail']) && $data['sendEmail'] == 1)
-        {
+        if (isset($data['sendEmail']) && $data['sendEmail'] == 1) {
             $this->sendConfirmationEmail($registration);
-            
+
             // $qrcode = QrCode::format('png')->size(200)->generate(url('admin/registrations/' . $registration->id . '/print'));
             // Mail::send(
             //     'emails.confirmation',
@@ -162,7 +162,7 @@ class RegistrationsController extends Controller
             //     function ($m) use ($registration) {
             //         $m->to($registration->email, $registration->first_name)
             //         ->subject('Registration Confirmation')
-            //         ->from('conferences@zawaya.me', 'GHA');
+            //         ->from('conferences@zawaya.me', 'GHA-SCAI Shock ME Meeting');
 
             //     }
             // );
@@ -170,14 +170,15 @@ class RegistrationsController extends Controller
         //////////////////// SEND EMAIL PART ////////////////////
 
 
-        return redirect('admin/registrations/'.$registration->id.'/edit')->with('message', $registration->first_name . " has been registered.");
+        return redirect('admin/registrations/' . $registration->id . '/edit')->with('message', $registration->first_name . " has been registered.");
     }
 
-    public function getEdit($id) {
+    public function getEdit($id)
+    {
         $user = Auth::guard('admin')->user();
         $registration = Registration::find($id);
         $workshops = Workshop::all();
-        if(!$registration)
+        if (!$registration)
             abort(404);
         return view('admin.registrations.registration-form', [
             'registration'    => $registration,
@@ -187,9 +188,10 @@ class RegistrationsController extends Controller
         ]);
     }
 
-    public function postEdit($id, Request $request) {
+    public function postEdit($id, Request $request)
+    {
         $registration = Registration::find($id);
-        if(!$registration)
+        if (!$registration)
             abort(404);
 
         $this->validate($request, [
@@ -199,7 +201,7 @@ class RegistrationsController extends Controller
             'speciality'       => 'required|max:255',
             'country'          => 'required|max:255',
             'city'             => 'required|max:255',
-            'email'            => 'required|max:255|email|unique:registrations,email,'.$registration->id,
+            'email'            => 'required|max:255|email|unique:registrations,email,' . $registration->id,
             'countryCode'      => 'required|max:255',
             'mobile'           => 'required|max:255',
             'receive_updates'  => 'required|in:0,1',
@@ -215,25 +217,22 @@ class RegistrationsController extends Controller
 
 
         $workshopPrice = 0;
-        if($data['workshop_id'] != null)
-        {
+        if ($data['workshop_id'] != null) {
             $workshop = Workshop::find($data['workshop_id']);
             $workshopPrice = $workshop->price;
         }
 
         //////////// check if there is more places on this worshop ////////////
-        if(
-            $data['workshop_id'] != null && 
+        if (
+            $data['workshop_id'] != null &&
             $data['workshop_id_old'] != $data['workshop_id']
-        )
-        {
+        ) {
             $checkReservedPlaces = Registration::where('workshop_id', $data['workshop_id'])
-                                        ->join('payments', 'registrations.payment_id', '=', 'payments.id')
-                                        ->where('payments.paid_status', 1)
-                                        ->get();
+                ->join('payments', 'registrations.payment_id', '=', 'payments.id')
+                ->where('payments.paid_status', 1)
+                ->get();
 
-            if($workshop->places <= count($checkReservedPlaces))
-            {
+            if ($workshop->places <= count($checkReservedPlaces)) {
                 return redirect()->back()->withErrors(['message' => 'No places left for this worshop']);
             }
         }
@@ -254,16 +253,15 @@ class RegistrationsController extends Controller
         $registration->virtualAccess = $data['virtualAccess'];
         $registration->workshop_id = $data['workshop_id'];
 
-        if(isset($data['paidByAdmin']) && $data['paidByAdmin'] == 1)
-        {
+        if (isset($data['paidByAdmin']) && $data['paidByAdmin'] == 1) {
             $configuration = Configuration::find(1);
 
             //// calculate total price ////
             $total = 20;
-            if($data['virtualAccess'] == 1) $total = 10;
+            if ($data['virtualAccess'] == 1) $total = 10;
 
-            if($data['onlyWorkshop'] == 1) $total = $workshopPrice;
-            else if($data['workshop_id'] != null) $total += $workshopPrice;
+            if ($data['onlyWorkshop'] == 1) $total = $workshopPrice;
+            else if ($data['workshop_id'] != null) $total += $workshopPrice;
             //// calculate total price ////
 
             $payment = new Payment;
@@ -280,8 +278,7 @@ class RegistrationsController extends Controller
         $registration->save();
 
         //////////////////// SEND EMAIL PART ////////////////////
-        if(isset($data['sendEmail']) && $data['sendEmail'] == 1)
-        {
+        if (isset($data['sendEmail']) && $data['sendEmail'] == 1) {
             $this->sendConfirmationEmail($registration);
 
             // $qrcode = QrCode::format('png')->size(200)->generate(url('admin/registrations/' . $registration->id . '/print'));
@@ -294,7 +291,7 @@ class RegistrationsController extends Controller
             //     function ($m) use ($registration) {
             //         $m->to($registration->email, $registration->first_name)
             //         ->subject('Registration Confirmation')
-            //         ->from('conferences@zawaya.me', 'GHA');
+            //         ->from('conferences@zawaya.me', 'GHA-SCAI Shock ME Meeting');
 
             //     }
             // );
@@ -302,51 +299,61 @@ class RegistrationsController extends Controller
         //////////////////// SEND EMAIL PART ////////////////////
 
         return redirect()->back()->with('message', "Registration has been updated.");
-
     }
 
     private function sendConfirmationEmail($registration)
     {
         /////////////// EMAIL PART HERE AFTER PAYMENT SUCCESS ///////////////
-        if(!$registration->onlyWorkshop)
-        {
-            $qrcode = QrCode::format('svg')->size(200)->generate(url('admin/registrations/' . $registration->id . '/print'));
-            \App\Mail\SimpleEmailService::sendRegistrationEmail($registration, $qrcode);
-        }
+        Mail::send(
+            'emails.confirmation',
+            [
+                'registration' => $registration,
+            ],
+            function ($m) use ($registration) {
+                $m->to($registration->email, $registration->first_name)
+                    ->subject('Registration Confirmation')
+                    ->from('conferences@zawaya.me', 'GHA-SCAI Shock ME Meeting');
+            }
+        );
+        // if(!$registration->onlyWorkshop)
+        // {
+        //     $qrcode = QrCode::format('svg')->size(200)->generate(url('admin/registrations/' . $registration->id . '/print'));
+        //     \App\Mail\SimpleEmailService::sendRegistrationEmail($registration, $qrcode);
+        // }
 
-        if($registration->workshop_id)
-        {
-            Mail::send(
-                'emails.workshop',
-                [
-                    'registration' => $registration
-                ],
-                function ($m) use ($registration) {
-                    $m->to($registration->email, $registration->first_name)
-                    ->subject('Workshop Details')
-                    ->from('conferences@zawaya.me', 'GHA');
+        // if($registration->workshop_id)
+        // {
+        //     Mail::send(
+        //         'emails.workshop',
+        //         [
+        //             'registration' => $registration
+        //         ],
+        //         function ($m) use ($registration) {
+        //             $m->to($registration->email, $registration->first_name)
+        //             ->subject('Workshop Details')
+        //             ->from('conferences@zawaya.me', 'GHA-SCAI Shock ME Meeting');
 
-                }
-            );
-        }
+        //         }
+        //     );
+        // }
         /////////////// EMAIL PART HERE AFTER PAYMENT SUCCESS ///////////////
     }
 
 
-    public function getExport() {
+    public function getExport()
+    {
         $registrations = Registration::all();
-        Excel::create('Registrants | amsd2017.com', function($excel) use($registrations) {
+        Excel::create('Registrants | amsd2017.com', function ($excel) use ($registrations) {
 
-            $excel->sheet('AMSD2017 Registrations', function($sheet) use($registrations) {
+            $excel->sheet('AMSD2017 Registrations', function ($sheet) use ($registrations) {
 
                 $sheet->fromArray($registrations);
-
             });
-
         })->download('xls');
     }
 
-    public function getPrint($id) {
+    public function getPrint($id)
+    {
         $registration = Registration::find($id);
         $registration->attended = 1;
         $registration->save();
@@ -358,9 +365,9 @@ class RegistrationsController extends Controller
         // return Excel::download(new RegistrationsExport, "GHA23 Registrants - " . Carbon::now()->format('Ymd').'.xlsx');
         // $workshopId = request()->query('workshop_id', null);
         // $workshop = null;
-        if($workshopId) {
+        if ($workshopId) {
             $workshop = Workshop::find($workshopId);
-            if(!$workshop) {
+            if (!$workshop) {
                 abort(404, "Workshop not found");
             }
         }
@@ -369,19 +376,19 @@ class RegistrationsController extends Controller
         return Excel::download(new RegistrationsExport($workshopId), $fileName);
     }
 
-    public function exportAttendees() {
-        return Excel::download(new AttendeesExport, "GHA23 Attendees - " . Carbon::now()->format('Ymd').'.xlsx');
-
+    public function exportAttendees()
+    {
+        return Excel::download(new AttendeesExport, "GHA23 Attendees - " . Carbon::now()->format('Ymd') . '.xlsx');
     }
 
-    public function exportWorkshop($id) {
+    public function exportWorkshop($id)
+    {
         // dd(new WorkshopExport($id));
-        return Excel::download(new WorkshopExport($id), "GHA23 Attendees - " . Carbon::now()->format('Ymd').'.xlsx');
-
+        return Excel::download(new WorkshopExport($id), "GHA23 Attendees - " . Carbon::now()->format('Ymd') . '.xlsx');
     }
 
-    public function exportCertificateDownloaders() {
-        return Excel::download(new CertificateDownloadersExport, "GHA23 Certificate Downloaders - " . Carbon::now()->format('Ymd').'.xlsx');
-
+    public function exportCertificateDownloaders()
+    {
+        return Excel::download(new CertificateDownloadersExport, "GHA23 Certificate Downloaders - " . Carbon::now()->format('Ymd') . '.xlsx');
     }
 }
