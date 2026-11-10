@@ -87,12 +87,13 @@
 
       <div class="paragraph">
         Thank you for registering for the 4th GHA SCAI Shock Middle East Meeting. We are looking forward to hosting you
-        at the Regency, Kuwait, on January 9th and 10th, 2026.
+        in Kuwait, on January 16, 2027.
       </div>
 
       <div class="paragraph">
-        We are excited to bring together leading experts and professionals to share the latest advancements in critical
-        care. We are confident that this meeting will provide a valuable platform for networking and collaboration.
+        We are excited to bring together leading experts and professionals to share the latest advancements in
+        Cardiogenic Shock. We are confident that this meeting will provide a valuable platform for networking and
+        collaboration.
       </div>
 
       <div class="contact-info">
@@ -100,11 +101,13 @@
         Registration ID: {{ str_pad($registration->id, 6, '0', STR_PAD_LEFT) }}<br>
         Email: {{ $registration->email }}<br>
         Phone: {{ $registration->mobile }}<br>
-        Registration Type:
-        {{ $registration->onlyWorkshop == 1 ? 'Workshop Only' : (count($registration->Workshops) > 0 ? 'Meeting and Workshop' : 'Meeting Only') }}
-        @if (count($registration->Workshops) > 0)
+        {{-- Registration Type:
+        {{ $registration->onlyWorkshop == 1 ? 'Workshop Only' : (count($registration->Workshops) > 0 ? 'Meeting and Workshop' : 'Meeting Only') }} --}}
+        <br><strong>January 16</strong><br>
+        <br><strong>10:00 - 16:45</strong><br>
+        {{-- @if (count($registration->Workshops) > 0)
           <br><br><strong>You have successfully registered to:</strong><br>
-          <br><strong>January 9</strong><br>
+          <br><strong>January 16</strong><br>
           @foreach ($registration->Workshops as $workshop)
             {{ $workshop->title }}<br>
           @endforeach
@@ -112,7 +115,7 @@
         @if ($registration->onlyWorkshop == 0)
           <br><strong>January 10</strong><br>
           09:00 - 17:30 GHA-SCAI Shock Middle East Meeting<br>
-        @endif
+        @endif --}}
       </div>
 
       <div class="paragraph">

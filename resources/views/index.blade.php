@@ -39,7 +39,7 @@
         <div class="onePerson">
           <img class="ourMessageImage" src="{{ asset('images/home/chairman.png') }}" alt="Prof. Mohammad Zubaid" />
           <div class="ourMessageNamePos">
-            <div class="ourMessageName">Prof. Mohammad Zubaid</div>
+            <div class="ourMessageName">Dr. Mohammad Zubaid</div>
             <div class="ourMessagePos">Meeting Co-Chair</div>
           </div>
         </div>
